@@ -17,6 +17,8 @@ void preset_panel_init();
 void preset_panel_update(float delta);
 void preset_panel_drawing_tree();
 
+int load_presets(const char* presets_folder_filepath);
+
 
 
 

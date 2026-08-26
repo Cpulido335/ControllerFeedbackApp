@@ -1,6 +1,7 @@
 #include "application/preset_panel.h"
 
 #include <stdbool.h>
+#include <stdio.h>
 #include "render/draw.h"
 #include "globals.h"
 
@@ -78,4 +79,12 @@ void preset_panel_drawing_tree() //FFS just clear the whole screen this is is ri
         default:
             break;
     }
+}
+
+
+int load_presets(const char* presets_folder_filepath)
+{
+    FILE *fp = fopen(presets_folder_filepath, "rb");
+
+    
 }
