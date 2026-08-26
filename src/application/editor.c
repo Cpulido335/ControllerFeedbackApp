@@ -101,7 +101,7 @@ void editor_panel_drawing_tree() //FFS just clear the whole screen this is is ri
     {
         draw_text_blazing(g_EditorPanelData.currentEditorProfile.bindings[i].stringThatIsTheKeyTheButtonIsBindedTo, (WINDOW_WIDTH/2) + 8, currentYvalue); //PROBLEM passing as inconrrect type?
         currentYvalue += 40;
-    }
+    } //new feature
 
 
 
