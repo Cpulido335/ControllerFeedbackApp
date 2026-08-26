@@ -1,0 +1,30 @@
+# Xbox Controller Button List
+# name        id    type     bitmask    axis_min axis_max
+
+A             0     button   0x0001     -         -
+B             1     button   0x0002     -         -
+X             2     button   0x0004     -         -
+Y             3     button   0x0008     -         -
+
+LB            4     button   0x0010     -         -
+RB            5     button   0x0020     -         -
+
+BACK          6     button   0x0040     -         -
+START         7     button   0x0080     -         -
+GUIDE         8     button   0x0100     -         -
+
+LSTICK_PRESS  9     button   0x0200     -         -
+RSTICK_PRESS 10     button   0x0400     -         -
+
+DPAD_UP      11     button   0x0800     -         -
+DPAD_DOWN    12     button   0x1000     -         -
+DPAD_LEFT    13     button   0x2000     -         -
+DPAD_RIGHT   14     button   0x4000     -         -
+
+LT           15     axis     -          0         255
+RT           16     axis     -          0         255
+
+LSTICK_X     17     axis     -         -32768    32767
+LSTICK_Y     18     axis     -         -32768    32767
+RSTICK_X     19     axis     -         -32768    32767
+RSTICK_Y     20     axis     -         -32768    32767

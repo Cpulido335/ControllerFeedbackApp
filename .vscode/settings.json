@@ -1,0 +1,11 @@
+{
+    "C_Cpp.default.compilerPath": "C:/msys64/mingw64/bin/gcc.exe",
+    "files.associations": {
+        "windows.h": "c",
+        "vec.h": "c",
+        "renderer.h": "c",
+        "matrixmul.h": "c",
+        "rotation.h": "c"
+    },
+    "cmake.ignoreCMakeListsMissing": true
+}

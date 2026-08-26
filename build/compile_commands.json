@@ -1,0 +1,98 @@
+[
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\application\\application.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\application\\application.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\application\\application.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\application\\application.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\application\\buttonlist.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\application\\buttonlist.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\application\\buttonlist.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\application\\buttonlist.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\application\\editor.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\application\\editor.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\application\\editor.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\application\\editor.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\application\\gui.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\application\\gui.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\application\\gui.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\application\\gui.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\application\\preset_panel.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\application\\preset_panel.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\application\\preset_panel.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\application\\preset_panel.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\geometry\\cube.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\geometry\\cube.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\geometry\\cube.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\geometry\\cube.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\geometry\\fbx_ascii_parser.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\geometry\\fbx_ascii_parser.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\geometry\\fbx_ascii_parser.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\geometry\\fbx_ascii_parser.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\geometry\\mesh.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\geometry\\mesh.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\geometry\\mesh.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\geometry\\mesh.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\input\\input.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\input\\input.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\input\\input.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\input\\input.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\main.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\main.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\main.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\main.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\math\\matrixmul.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\math\\matrixmul.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\math\\matrixmul.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\math\\matrixmul.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\math\\renderer.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\math\\renderer.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\math\\renderer.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\math\\renderer.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\math\\rotation.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\math\\rotation.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\math\\rotation.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\math\\rotation.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\render\\draw.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\render\\draw.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\render\\draw.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\render\\draw.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\render\\fontmap.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\render\\fontmap.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\render\\fontmap.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\render\\fontmap.c.obj"
+},
+{
+  "directory": "C:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe -IC:/Users/cjpul/Desktop/ControllFeedbackAppRefactored/include -g -o CMakeFiles\\MyProgram.dir\\src\\util\\clock.c.obj -c C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\util\\clock.c",
+  "file": "C:\\Users\\cjpul\\Desktop\\ControllFeedbackAppRefactored\\src\\util\\clock.c",
+  "output": "CMakeFiles\\MyProgram.dir\\src\\util\\clock.c.obj"
+}
+]

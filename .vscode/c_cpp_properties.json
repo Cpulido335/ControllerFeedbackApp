@@ -1,0 +1,31 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/include/**",
+                "${workspaceFolder}/include/",
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/include/math/**",
+                "${workspaceFolder}/include/render/**",
+                "${workspaceFolder}/include/geometry/**",
+                "${workspaceFolder}/include/application/**",
+                "${workspaceFolder}/include/input/**",
+                "${workspaceFolder}/include/util/**",
+                "${workspaceFolder}/src/util"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.22621.0",
+            "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

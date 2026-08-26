@@ -1,0 +1,23 @@
+# ninja log v7
+89	626	7922486968573515	CMakeFiles/MyProgram.dir/src/geometry/cube.c.obj	d1df1a9cf3d4b9d4
+180	527	7922486969478883	CMakeFiles/MyProgram.dir/src/math/renderer.c.obj	3148d306fe447b17
+113	477	7922486968803483	CMakeFiles/MyProgram.dir/src/geometry/mesh.c.obj	b24f84224247070f
+167	600	7922486969358901	CMakeFiles/MyProgram.dir/src/math/matrixmul.c.obj	af4801323597ada7
+231	587	7922486969988975	CMakeFiles/MyProgram.dir/src/render/fontmap.c.obj	84754f269e723c22
+192	639	7922486969758845	CMakeFiles/MyProgram.dir/src/math/rotation.c.obj	f13b2d2a6000b0b4
+101	715	7922486968693500	CMakeFiles/MyProgram.dir/src/geometry/fbx_ascii_parser.c.obj	18988cefbe7877a2
+64	1417	7925270904799953	CMakeFiles/MyProgram.dir/src/main.c.obj	4f418b3aebc646aa
+51	1984	7922500727868409	CMakeFiles/MyProgram.dir/src/application/gui.c.obj	fed5b8a9bb6d058f
+36	6650	7922486968049520	CMakeFiles/MyProgram.dir/src/application/application.c.obj	3118105e35c5f4aa
+248	6603	7922486970154265	CMakeFiles/MyProgram.dir/src/util/clock.c.obj	d7e6c696afbe7988
+58	1964	7922785931979994	CMakeFiles/MyProgram.dir/src/input/input.c.obj	d9c1ccdadc38dec6
+221	6863	7922486969888827	CMakeFiles/MyProgram.dir/src/render/draw.c.obj	813e672c40426a4e
+2096	2421	7925270925116191	MyProgram.exe	3f36417defe034b2
+78	6609	7922486968458465	CMakeFiles/MyProgram.dir/src/application/preset_panel.c.obj	3ee1a1ba5e930e33
+53	2096	7925270904685087	CMakeFiles/MyProgram.dir/src/application/editor.c.obj	b0870caff82b7830
+35	715	7925263383261608	CMakeFiles/MyProgram.dir/src/application/buttonlist.c.obj	d318c271138491b
+31	764	8093807358684471	CMakeFiles/MyProgram.dir/src/main.c.obj	4f418b3aebc646aa
+14	936	8093807358528237	CMakeFiles/MyProgram.dir/src/application/editor.c.obj	b0870caff82b7830
+20	946	8093807358574980	CMakeFiles/MyProgram.dir/src/application/gui.c.obj	fed5b8a9bb6d058f
+25	954	8093807358635839	CMakeFiles/MyProgram.dir/src/input/input.c.obj	d9c1ccdadc38dec6
+954	1357	8093807367926581	MyProgram.exe	3f36417defe034b2

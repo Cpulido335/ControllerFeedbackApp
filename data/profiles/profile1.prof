@@ -1,0 +1,35 @@
+# Profile for controller feedback app
+
+#
+type: xbox360
+
+bindings:
+
+         #id          #binded to
+binding: 0             KB_ENTER                     
+binding: 1             KB_b             
+binding: 2             KB_x            
+binding: 3             KB_y            
+
+binding: LB            default                    
+binding: RB            default                   
+
+binding: BACK          default                   
+binding: START         default                    
+binding: GUIDE         default                    
+
+binding: LSTICK_PRESS  default                   
+binding: RSTICK_PRESS  default                    
+
+binding: DPAD_UP       default                    
+binding: DPAD_DOWN    default                   
+binding: DPAD_LEFT    default      
+binding: DPAD_RIGHT   default      
+
+binding: LT           default    
+binding: RT           default      
+
+binding: LSTICK_X     default      
+binding: LSTICK_Y     default      
+binding: RSTICK_X     default      
+binding: RSTICK_Y     default      

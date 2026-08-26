@@ -1,0 +1,59 @@
+#ifndef BUTTONLIST_H
+#define BUTTONLIST_H
+
+#include <stdio.h>
+#include <string.h>
+
+enum ButtonType {
+    BTN_BUTTON,
+    BTN_AXIS
+};
+
+struct ControllerButton {
+    char        name[32];
+    int         id;
+    enum ButtonType  type;
+    unsigned int bitmask;   // 0 if not used
+    int         axis_min;   // ignored for buttons
+    int         axis_max;
+};
+
+
+struct nlist { /* table entry: */ //TODO PUT THIS IN UTIL MAYBE?
+    struct nlist *next; /* next entry in chain */
+    struct ControllerButton* ptrToAControllerButton; /* defined name */
+    char *correspondingBinding; //CorrespondingBindingID?
+};
+
+
+
+//we need some struct that is a list of mappings from string id to string binded_key
+struct Binding {
+    struct ControllerButton*  ptrToAControllerButton;
+    char *stringThatIsTheKeyTheButtonIsBindedTo;
+};
+
+struct Profile { //so your idea is that a Profile has a member that is a list of controller buttons?
+    char name[128]; //TODO problem does this imply const?
+    struct Binding* bindings; //TODO PROBLEM, is this heap alloc?
+};
+
+int populateProfile(struct ControllerButton* arrayOfControllerButtons, struct Profile* profile);
+
+// struct nlist createnlist() //TODO PROBLEM unused get rid of this when youre done using as an example
+// {
+//     struct ControllerButton cb;
+//     struct ControllerButton cb = {"cb", 12, 1, 0x0001, 0, 255};
+
+//     struct nlist* firstNode; 
+//     struct nlist* secondNode;
+//     struct nlist firstNode = { &secondNode,  &cb, "KB_ENTER", };
+// }
+
+
+int parse_buttonlist(const char *path, struct ControllerButton *out, int max);
+
+int create_bindinglist_from_profile(const char *path, struct ControllerButton *out, int max); //TODO PROBLEM unused so far
+
+
+#endif 
