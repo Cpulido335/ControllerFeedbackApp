@@ -90,5 +90,6 @@ void input_process_keyboard_input(uint32_t VKCode, bool wasDown, bool isDown);
 
 
 void handle_gui_input();
+void handle_editor_input();
 
 #endif

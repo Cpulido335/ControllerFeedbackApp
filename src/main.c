@@ -127,20 +127,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
             // draw_fbx_model(mesh, 1); //TODO MOVE THIS TO GUI_DRAWING_TREE
 
-            handle_gui_input();
+
             gui_update(delta); //called once per frame
             //gui_drawing_tree();
             //preset_panel_drawing_tree();
-            switch(g_GuiState.currentPanel) 
+            switch(g_GuiState.currentPanel) //TODO you need to double check that there is issue with having both the window and handle_input within this tree and before gui_update delta
             {
                 case 0:
                     gui_drawing_tree();
+                    handle_gui_input();
                     break;
                 case 1:
                     preset_panel_drawing_tree();
                     break;
                 case 2:
                     editor_panel_drawing_tree();
+                    handle_editor_input();
                     break;
             }
                 

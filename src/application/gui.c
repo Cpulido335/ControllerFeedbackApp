@@ -34,9 +34,9 @@ struct cursorHighlighterRectMapping g_cursorHighlighterRectMap[] = {
     { 5,         80+10, 180, 300-20, 40}, //editor panel LOAD button
     { 6,         80+10, 220, 300-20, 40}, //editor panel SAVE button
     
-    { 7,         80+10, 340, 300-20, 40}, //editor panel new button 
-    { 8,         80+10, 380, 300-20, 40}, //editor panel new button
-    { 9,         80+10, 420, 300-20, 40}, //editor panel new button
+    { 7,         80+10, 340, 300-20, 40}, //editor panel HOME button 
+    { 8,         80+10, 380, 300-20, 40}, //editor panel PRESETS button
+    { 9,         80+10, 420, 300-20, 40}, //editor panel NEW button
     
 };
 

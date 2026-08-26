@@ -188,3 +188,75 @@ void handle_gui_input()
 
     //printf("gGuiState.cursorPosition: %d\n", g_GuiState.cursorPosition);
 }
+
+
+
+
+//handles the input when the editor page is active
+void handle_editor_input()
+{
+    static bool prevS = false;
+    static bool prevW = false;
+    static bool prevDown = false; //up and down on keypad for scrolling through editor list
+    static bool prevUp = false; //up and down on keypad for scrolling through editor list
+
+    bool sDown = isKeyPressed(DC_S);
+    bool wDown = isKeyPressed(DC_W);
+    bool downArrow = isKeyPressed(DC_DOWN); //up and down on keypad for scrolling through editor list
+    bool upArrow   = isKeyPressed(DC_UP);   //up and down on keypad for scrolling through editor list
+
+    // S key: only trigger on DOWN edge
+    if (sDown && !prevS)
+    {
+        if (g_GuiState.cursorPosition < 9)
+            g_GuiState.cursorPosition++;
+    }
+
+    // W key: only trigger on DOWN edge
+    if (wDown && !prevW)
+    {
+        if (g_GuiState.cursorPosition > 0)
+            g_GuiState.cursorPosition--;
+    }
+
+
+     // Down arrow: increase because were scrolling down and its going DEEPER into the list currentPositionInList on DOWN edge
+    if (downArrow && !prevDown &&  g_GuiState.currentPositionInEditorList < 9) //TODO basically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
+    {
+        g_GuiState.currentPositionInEditorList++;
+    }
+
+    // Up arrow: decrement currentPositionInList on DOWN edge
+    if (upArrow && !prevUp && g_GuiState.currentPositionInEditorList > 0)
+    {
+        g_GuiState.currentPositionInEditorList--;
+    }
+
+    if (isKeyPressed(DC_ENTER) && g_GuiState.cursorPosition ==  7) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
+    {
+        g_GuiState.currentPanel = 0;
+    }
+
+
+    if (isKeyPressed(DC_ENTER) && g_GuiState.cursorPosition ==  8) //if the cursor is on the PRESETS button in the editor panel and enter is pressed: switch to the PRESETS panel
+    {
+        g_GuiState.currentPanel = 1;
+    }
+
+    
+    //Editor panel key list logic
+    if (isKeyPressed(DC_0) /* && editor panel is being dispalyed */) 
+    {
+        //find the corresponding entry in Profile
+    }
+
+
+
+    prevS = sDown;
+    prevW = wDown;
+
+    prevDown = downArrow;  //up and down on keypad for scrolling through editor list
+    prevUp = upArrow;  //up and down on keypad for scrolling through editor list
+
+    //printf("gGuiState.cursorPosition: %d\n", g_GuiState.cursorPosition);
+}
