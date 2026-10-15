@@ -11,6 +11,7 @@ struct cursorHighlighterRectMapping g_gui_cursorHighlighterRectMap[] = { //TODO 
     { 0,          35,  37,  186,    12 },   // F10 MENU OPTION
     { 1,          35,  51,  186,    12 },   // F1 MENU OPTION
     { 2,          35,  65,  186,    12 },   // F2 MENU OPTION
+    { 3,          35,  79,  186,    12 },   // F3 MENU OPTION
     
 };
 
@@ -19,14 +20,14 @@ struct cursorHighlighterRectMapping g_editor_cursorHighlighterRectMap[] = { //TO
     // cursor_id, x,   y,   width, height
 
     //editor panel
-    { 3,         80+10, 100, 300-20, 40}, //editor panel NEW button
-    { 4,         80+10, 140, 300-20, 40}, //editor panel EDIT button
-    { 5,         80+10, 180, 300-20, 40}, //editor panel LOAD button
-    { 6,         80+10, 220, 300-20, 40}, //editor panel SAVE button
+    { 0,         80+10, 100, 300-20, 40}, //editor panel NEW button
+    { 1,         80+10, 140, 300-20, 40}, //editor panel EDIT button
+    { 2,         80+10, 180, 300-20, 40}, //editor panel LOAD button
+    { 3,         80+10, 220, 300-20, 40}, //editor panel SAVE button
     
-    { 7,         80+10, 340, 300-20, 40}, //editor panel HOME button 
-    { 8,         80+10, 380, 300-20, 40}, //editor panel PRESETS button
-    { 9,         80+10, 420, 300-20, 40}, //editor panel NEW button
+    { 4,         80+10, 340, 300-20, 40}, //editor panel HOME button 
+    { 5,         80+10, 380, 300-20, 40}, //editor panel PRESETS button
+    { 6,         80+10, 420, 300-20, 40}, //editor panel NEW button
     
 };
 

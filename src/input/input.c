@@ -167,9 +167,9 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
         g_ApplicationState.currentPositionInEditorList--;
     }
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  7) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  3) 
     {
-        g_ApplicationState.currentPanel = 0;
+        g_ApplicationState.currentPanel = 2; //TODO I thought the editor was 1 not 2?????? im so confused
     }
 
     
@@ -233,13 +233,14 @@ void handle_editor_input()
         g_ApplicationState.currentPositionInEditorList--;
     }
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  7) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  4) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
     {
         g_ApplicationState.currentPanel = 0;
+        g_ApplicationState.cursorPosition =  0; //after switching to home panel set cursor position to 0
     }
 
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  8) //if the cursor is on the PRESETS button in the editor panel and enter is pressed: switch to the PRESETS panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  5) //if the cursor is on the PRESETS button in the editor panel and enter is pressed: switch to the PRESETS panel
     {
         g_ApplicationState.currentPanel = 1;
     }
