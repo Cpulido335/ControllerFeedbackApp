@@ -131,7 +131,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             // draw_fbx_model(mesh, 1); //TODO MOVE THIS TO GUI_DRAWING_TREE
 
 
-            gui_update(delta); //called once per frame
+            gui_update(delta); //called once per frame TODO This function used to be the thing that was responsible for flashing the cursor now its applicaiton_update
+            application_update();
             //gui_drawing_tree();
             //preset_panel_drawing_tree();
             switch(g_ApplicationState.currentPanel) //TODO you need to double check that there is issue with having both the window and handle_input within this tree and before gui_update delta
