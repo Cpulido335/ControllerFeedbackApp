@@ -97,7 +97,7 @@ void editor_panel_drawing_tree() //FFS just clear the whole screen this is is ri
         currentYvalue += 40;
     }
     
-    currentYvalue = 126; //TODO combine this with the above for loop
+    currentYvalue = 126; //TODO combine this with the above for-loop
     for(int i=g_ApplicationState.currentPositionInEditorList; i<12 + g_ApplicationState.currentPositionInEditorList; i++)
     {
         draw_text_blazing(g_EditorPanelData.currentEditorProfile.bindings[i].stringThatIsTheKeyTheButtonIsBindedTo, (WINDOW_WIDTH/2) + 8, currentYvalue); //PROBLEM passing as inconrrect type?

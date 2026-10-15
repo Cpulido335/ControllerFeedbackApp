@@ -233,6 +233,13 @@ void handle_editor_input()
         g_ApplicationState.currentPositionInEditorList--;
     }
 
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  2) //if the cursor is on the LOAD button in the editor panel and enter is pressed: switch to the preset panel and then the preset panels list view of presets with load highlighted
+    {
+        g_ApplicationState.currentPanel = 1; // switch to the preset panel
+        g_ApplicationState.cursorPosition =  0; // TODO GO INTO THE LOAD ON THE ACTUAL LIST VIEW OF THE PRESETS 
+    }
+
+
     if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  4) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
     {
         g_ApplicationState.currentPanel = 0;
