@@ -22,7 +22,7 @@ struct GUI_STATE g_GuiState = {
 };
 
 
-struct cursorHighlighterRectMapping g_cursorHighlighterRectMap[] = {
+struct cursorHighlighterRectMapping g_cursorHighlighterRectMap[] = { //TODO so this is a map of mappings or an array that is a struct of structs?
     // cursor_id, x,   y,   width, height
     { 0,          35,  37,  186,    12 },   // F10 MENU OPTION
     { 1,          35,  51,  186,    12 },   // F1 MENU OPTION
@@ -87,12 +87,12 @@ void gui_update(float delta) //updates all the things within the gui that need t
 }
 
 
-void gui_draw_cursor_highlighter()
+void gui_draw_cursor_highlighter() //TODO this functionality needs its own module  
 {
     if (!g_GuiState.cursorFlashingState) //if its not flashed then return
         return;
     
-    int currentCursorID = g_GuiState.cursorPosition;
+    int currentCursorID = g_GuiState.cursorPosition; //TODO do we need this variable?
     struct cursorHighlighterRectMapping *currentMapping = NULL;
     int cursorHighlighterMapLength = 10; // TODO PROBLEM hardcoded TODO
 
