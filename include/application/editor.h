@@ -9,7 +9,7 @@
 
 
 struct EDITOR_PANEL_DATA {
-    int cursorPosition;
+    int cursorPosition; //TODO dont think we need the cursor variables in here anymore they're in g_ApplicationData
     bool cursorFlashingState;
     double lastFlashToggleTime;   // seconds
     

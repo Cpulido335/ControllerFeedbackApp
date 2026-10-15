@@ -19,7 +19,7 @@ struct ControllerButton {
 };
 
 
-struct nlist { /* table entry: */ //TODO PUT THIS IN UTIL MAYBE?
+struct nlist { /* table entry: */ //TODO PUT THIS IN UTIL MAYBE? TODO where does this even get used???
     struct nlist *next; /* next entry in chain */
     struct ControllerButton* ptrToAControllerButton; /* defined name */
     char *correspondingBinding; //CorrespondingBindingID?
