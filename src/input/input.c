@@ -3,6 +3,7 @@
 #include <windows.h>
 
 #include "application/gui.h" //TODO not sure if this how I want to architect this
+#include "application/application_manager.h"
 
 #include <stdio.h> //TODO for deubbing handle_input function REMOVE
 
@@ -127,7 +128,7 @@ void input_process_keyboard_input(uint32_t VKCode, bool wasDown, bool isDown)
 }
 
 
-void handle_gui_input()
+void handle_gui_input() //TODO change the name of this to "handle_application_input" maybe idk still dont know
 {
     static bool prevS = false;
     static bool prevW = false;
@@ -142,33 +143,33 @@ void handle_gui_input()
     // S key: only trigger on DOWN edge
     if (sDown && !prevS)
     {
-        if (g_GuiState.cursorPosition < 9)
-            g_GuiState.cursorPosition++;
+        if (g_ApplicationState.cursorPosition < 9)
+            g_ApplicationState.cursorPosition++;
     }
 
     // W key: only trigger on DOWN edge
     if (wDown && !prevW)
     {
-        if (g_GuiState.cursorPosition > 0)
-            g_GuiState.cursorPosition--;
+        if (g_ApplicationState.cursorPosition > 0)
+            g_ApplicationState.cursorPosition--;
     }
 
 
      // Down arrow: increase because were scrolling down and its going DEEPER into the list currentPositionInList on DOWN edge
-    if (downArrow && !prevDown &&  g_GuiState.currentPositionInEditorList < 9) //TODO basically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
+    if (downArrow && !prevDown &&  g_ApplicationState.currentPositionInEditorList < 9) //TODO basically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
     {
-        g_GuiState.currentPositionInEditorList++;
+        g_ApplicationState.currentPositionInEditorList++;
     }
 
     // Up arrow: decrement currentPositionInList on DOWN edge
-    if (upArrow && !prevUp && g_GuiState.currentPositionInEditorList > 0)
+    if (upArrow && !prevUp && g_ApplicationState.currentPositionInEditorList > 0)
     {
-        g_GuiState.currentPositionInEditorList--;
+        g_ApplicationState.currentPositionInEditorList--;
     }
 
-    if (isKeyPressed(DC_ENTER) && g_GuiState.cursorPosition ==  7) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  7) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
     {
-        g_GuiState.currentPanel = 0;
+        g_ApplicationState.currentPanel = 0;
     }
 
     
@@ -208,39 +209,39 @@ void handle_editor_input()
     // S key: only trigger on DOWN edge
     if (sDown && !prevS)
     {
-        if (g_GuiState.cursorPosition < 9)
-            g_GuiState.cursorPosition++;
+        if (g_ApplicationState.cursorPosition < 9)
+            g_ApplicationState.cursorPosition++;
     }
 
     // W key: only trigger on DOWN edge
     if (wDown && !prevW)
     {
-        if (g_GuiState.cursorPosition > 0)
-            g_GuiState.cursorPosition--;
+        if (g_ApplicationState.cursorPosition > 0)
+            g_ApplicationState.cursorPosition--;
     }
 
 
      // Down arrow: increase because were scrolling down and its going DEEPER into the list currentPositionInList on DOWN edge
-    if (downArrow && !prevDown &&  g_GuiState.currentPositionInEditorList < 9) //TODO basically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
+    if (downArrow && !prevDown &&  g_ApplicationState.currentPositionInEditorList < 9) //TODO basically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
     {
-        g_GuiState.currentPositionInEditorList++;
+        g_ApplicationState.currentPositionInEditorList++;
     }
 
     // Up arrow: decrement currentPositionInList on DOWN edge
-    if (upArrow && !prevUp && g_GuiState.currentPositionInEditorList > 0)
+    if (upArrow && !prevUp && g_ApplicationState.currentPositionInEditorList > 0)
     {
-        g_GuiState.currentPositionInEditorList--;
+        g_ApplicationState.currentPositionInEditorList--;
     }
 
-    if (isKeyPressed(DC_ENTER) && g_GuiState.cursorPosition ==  7) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  7) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
     {
-        g_GuiState.currentPanel = 0;
+        g_ApplicationState.currentPanel = 0;
     }
 
 
-    if (isKeyPressed(DC_ENTER) && g_GuiState.cursorPosition ==  8) //if the cursor is on the PRESETS button in the editor panel and enter is pressed: switch to the PRESETS panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  8) //if the cursor is on the PRESETS button in the editor panel and enter is pressed: switch to the PRESETS panel
     {
-        g_GuiState.currentPanel = 1;
+        g_ApplicationState.currentPanel = 1;
     }
 
     

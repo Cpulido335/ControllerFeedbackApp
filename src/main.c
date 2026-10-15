@@ -28,6 +28,9 @@
 
 #include "application/buttonlist.h" //TODO PROBLEM for sure remove this once youre done, the preset functionality needs a (run-once-initialization) phase 
 
+#include "application/application_manager.h"
+#include "application/cursor_highlight.h"
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
     //_chdir("C:/Users/cjpul/Desktop/ControllFeedbackApp"); //TODO why tf do we need this I never see any app need some stupid ass line like this
@@ -131,7 +134,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             gui_update(delta); //called once per frame
             //gui_drawing_tree();
             //preset_panel_drawing_tree();
-            switch(g_GuiState.currentPanel) //TODO you need to double check that there is issue with having both the window and handle_input within this tree and before gui_update delta
+            switch(g_ApplicationState.currentPanel) //TODO you need to double check that there is issue with having both the window and handle_input within this tree and before gui_update delta
             {
                 case 0:
                     gui_drawing_tree();
@@ -150,7 +153,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
             //CURSOR
             
-            gui_draw_cursor_highlighter(); //TODO THIS CAN ALSO BE MOVED WITHIN THE GUI_DRAWING_TREE() FUNCTION
+            // gui_draw_cursor_highlighter(); //TODO THIS CAN ALSO BE MOVED WITHIN THE GUI_DRAWING_TREE() FUNCTION
+            draw_cursor_highlighter();
 
             // --- DRAW TO SCREEN ---
             HDC deviceContext = GetDC(hwnd); //TODO wtf is going on here

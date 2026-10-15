@@ -5,6 +5,10 @@
 #include "globals.h"
 
 #include "input/input.h" //I dont know if this is how I want to architect this
+#include "util/clock.h"
+#include "application/application_manager.h"
+#include "application/cursor_highlight.h"
+
 
 
 //define window procedure
@@ -44,6 +48,18 @@ void Application_Init(struct Application* app, HINSTANCE hInstance)
     app->windowTitle = "Jahsehs App"; //hardcoded
     app->windowWidth = WINDOW_WIDTH;
     app->windowHeight = WINDOW_HEIGHT;
+}
+
+
+void application_update()
+{
+    double now = get_time_seconds();
+
+    if (now - g_ApplicationState.lastFlashToggleTime >= CURSOR_FLASH_PERIOD)
+    {
+        g_ApplicationState.cursorFlashingState = !g_ApplicationState.cursorFlashingState;
+        g_ApplicationState.lastFlashToggleTime = now;
+    }
 }
 
 

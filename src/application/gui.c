@@ -11,32 +11,28 @@
 #include "math/rotation.h"
 
 
-/* Global GUI state (singleton) */ //TODO PPROBLEM this is not specific to the GUI/Main panel
-struct GUI_STATE g_GuiState = {
-    .currentPanel= 2, //0=main, 1=preset, 2=editor
-    .cursorPosition = 8,        // start on F10
-    .cursorFlashingState = false,
-    .lastFlashToggleTime = 0,
-    .currentPositionInEditorList =0 
+
+
+// struct cursorHighlighterRectMapping g_cursorHighlighterRectMap[] = { //TODO so this is a map of mappings or an array that is a struct of structs? TODO probably remove this too?
+//     // cursor_id, x,   y,   width, height
+//     { 0,          35,  37,  186,    12 },   // F10 MENU OPTION
+//     { 1,          35,  51,  186,    12 },   // F1 MENU OPTION
+//     { 2,          35,  65,  186,    12 },   // F2 MENU OPTION
+
+//     //editor panel
+//     { 3,         80+10, 100, 300-20, 40}, //editor panel NEW button
+//     { 4,         80+10, 140, 300-20, 40}, //editor panel EDIT button
+//     { 5,         80+10, 180, 300-20, 40}, //editor panel LOAD button
+//     { 6,         80+10, 220, 300-20, 40}, //editor panel SAVE button
     
-};
-
-
-struct cursorHighlighterRectMapping g_cursorHighlighterRectMap[] = { //TODO so this is a map of mappings or an array that is a struct of structs?
-    // cursor_id, x,   y,   width, height
-    { 0,          35,  37,  186,    12 },   // F10 MENU OPTION
-    { 1,          35,  51,  186,    12 },   // F1 MENU OPTION
-    { 2,          35,  65,  186,    12 },   // F2 MENU OPTION
-
-    //editor panel
-    { 3,         80+10, 100, 300-20, 40}, //editor panel NEW button
-    { 4,         80+10, 140, 300-20, 40}, //editor panel EDIT button
-    { 5,         80+10, 180, 300-20, 40}, //editor panel LOAD button
-    { 6,         80+10, 220, 300-20, 40}, //editor panel SAVE button
+//     { 7,         80+10, 340, 300-20, 40}, //editor panel HOME button 
+//     { 8,         80+10, 380, 300-20, 40}, //editor panel PRESETS button
+//     { 9,         80+10, 420, 300-20, 40}, //editor panel NEW button
     
-    { 7,         80+10, 340, 300-20, 40}, //editor panel HOME button 
-    { 8,         80+10, 380, 300-20, 40}, //editor panel PRESETS button
-    { 9,         80+10, 420, 300-20, 40}, //editor panel NEW button
+// };
+
+
+struct GUI_STATE g_GuiState = { 
     
 };
 
@@ -75,11 +71,11 @@ void gui_update(float delta) //updates all the things within the gui that need t
 {
     double now = get_time_seconds();
 
-    if (now - g_GuiState.lastFlashToggleTime >= CURSOR_FLASH_PERIOD)
-    {
-        g_GuiState.cursorFlashingState = !g_GuiState.cursorFlashingState;
-        g_GuiState.lastFlashToggleTime = now;
-    }
+    // if (now - g_GuiState.lastFlashToggleTime >= CURSOR_FLASH_PERIOD)
+    // {
+    //     g_GuiState.cursorFlashingState = !g_GuiState.cursorFlashingState;
+    //     g_GuiState.lastFlashToggleTime = now;
+    // }
 
     rotate_vertices_around_point(g_GuiState.controllerMesh->vertices, g_GuiState.controllerMeshPivot, 0, 40*delta, 0); //TODO MOVE THIS TO UPDATE GUI
     rotateCubeAroundOrigin(g_GuiState.leftCube, 100*delta, 20*delta, 40*delta);  //TODO MOVE THIS TO UPDATE GUI
@@ -87,30 +83,30 @@ void gui_update(float delta) //updates all the things within the gui that need t
 }
 
 
-void gui_draw_cursor_highlighter() //TODO this functionality needs its own module  
-{
-    if (!g_GuiState.cursorFlashingState) //if its not flashed then return
-        return;
+// void gui_draw_cursor_highlighter() //TODO this functionality needs its own module  
+// {
+//     if (!g_GuiState.cursorFlashingState) //if its not flashed then return
+//         return;
     
-    int currentCursorID = g_GuiState.cursorPosition; //TODO do we need this variable?
-    struct cursorHighlighterRectMapping *currentMapping = NULL;
-    int cursorHighlighterMapLength = 10; // TODO PROBLEM hardcoded TODO
+//     int currentCursorID = g_GuiState.cursorPosition; //TODO do we need this variable?
+//     struct cursorHighlighterRectMapping *currentMapping = NULL;
+//     int cursorHighlighterMapLength = 10; // TODO PROBLEM hardcoded TODO
 
-    for (int i = 0; i < cursorHighlighterMapLength; i++)
-    {
-        if (g_cursorHighlighterRectMap[i].cursorHighlightPositionStateID == currentCursorID)
-        {
-            currentMapping = &g_cursorHighlighterRectMap[i];
-            break;
-        }
-    }
+//     for (int i = 0; i < cursorHighlighterMapLength; i++)
+//     {
+//         if (g_cursorHighlighterRectMap[i].cursorHighlightPositionStateID == currentCursorID)
+//         {
+//             currentMapping = &g_cursorHighlighterRectMap[i];
+//             break;
+//         }
+//     }
 
-    if (!currentMapping)
-        return;
+//     if (!currentMapping)
+//         return;
 
-    //draw_rectangle_top_left(currentMapping->rectTopLeftX, currentMapping->rectTopLeftY, currentMapping->rectWidth, currentMapping->rectDepth, 0xFFFFFFFF, 2 );
-    invert_rectangle_within_drawContext(currentMapping->rectTopLeftX, currentMapping->rectTopLeftY, currentMapping->rectWidth, currentMapping->rectDepth);
-}
+//     //draw_rectangle_top_left(currentMapping->rectTopLeftX, currentMapping->rectTopLeftY, currentMapping->rectWidth, currentMapping->rectDepth, 0xFFFFFFFF, 2 );
+//     invert_rectangle_within_drawContext(currentMapping->rectTopLeftX, currentMapping->rectTopLeftY, currentMapping->rectWidth, currentMapping->rectDepth);
+// }
 
 
 void gui_drawing_tree()
@@ -141,23 +137,23 @@ void gui_drawing_tree()
     draw_rounded_rectangle(1030, 510, 200, 160, 10, 1,  COLOR_GREEN); //1220 = -mainframe padding -bottom corner rect padding
     //////////////----SETUP----//////////////
 
-    switch(g_GuiState.cursorPosition) 
-    {
-        case 0: //top left
-        case 1:
-        case 2: 
-            //clear_rectangle_within_drawContext(28, 27, 204, 86); //TODO should we clear before or after?
+    // switch(g_GuiState.cursorPosition) //TODO idek wtf this is supposed to do you can probablby just remove it all
+    // {
+    //     case 0: //top left
+    //     case 1:
+    //     case 2: 
+    //         //clear_rectangle_within_drawContext(28, 27, 204, 86); //TODO should we clear before or after?
 
-            draw_rounded_rectangle(30, 30, 200, 80, 10, 1,  COLOR_GREEN);
-            draw_text_blazing("F10: EXIT",  35, 35); //top left options
-            draw_text_blazing("F1: LOAD PRESET",  35, 49); //top left options
-            draw_text_blazing("F2: VIEW PRESET",  35, 63);
-            draw_text_blazing("F3: TOOLS",  35, 77); //++14
-            break;
+    //         draw_rounded_rectangle(30, 30, 200, 80, 10, 1,  COLOR_GREEN);
+    //         draw_text_blazing("F10: EXIT",  35, 35); //top left options
+    //         draw_text_blazing("F1: LOAD PRESET",  35, 49); //top left options
+    //         draw_text_blazing("F2: VIEW PRESET",  35, 63);
+    //         draw_text_blazing("F3: TOOLS",  35, 77); //++14
+    //         break;
 
-        default:
-            break;
-    }
+    //     default:
+    //         break;
+    // }
 
     draw_cube(g_GuiState.leftCube, 1);  //TODO MOVE THIS TO GUI_DRAWING_TREE
     draw_cube(g_GuiState.rightCube,1); //TODO MOVE THIS TO GUI_DRAWING_TREE

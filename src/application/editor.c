@@ -5,11 +5,12 @@
 #include "globals.h"
 
 #include "application/gui.h" //TODO PROBLEM I dont wanna have a specific input handler for cursor position, list position, flashing
+#include "application/application_manager.h"
 //cursor etc eachly  unique for each panel thats stupid they should all just use the same one and logic will dictate its functionality per each panel
 
 
 
-/* Global GUI state (singleton) */   //TODO why is this here?? shouldnt this only be in one spot?
+/* Global GUI state (singleton) */   //TODO why is this here?? shouldnt this only be in one spot? //TODO What the fuck probably remove this whole thing too
 struct EDITOR_PANEL_DATA g_EditorPanelData = {
     .cursorPosition = 0,        // start on F10
     .cursorFlashingState = false,
@@ -89,7 +90,7 @@ void editor_panel_drawing_tree() //FFS just clear the whole screen this is is ri
 
     int currentYvalue = 126;
     // int currentPositionInList = 4;
-    for(int i=g_GuiState.currentPositionInEditorList; i<12 + g_GuiState.currentPositionInEditorList; i++) //12 is the amt of entries that is displayed on the editor panel
+    for(int i=g_ApplicationState.currentPositionInEditorList; i<12 + g_ApplicationState.currentPositionInEditorList; i++) //12 is the amt of entries that is displayed on the editor panel
     {
         draw_text_blazing(g_EditorPanelData.buttons[i].name, (WINDOW_WIDTH/2) -200 + 8, currentYvalue);
 
@@ -97,7 +98,7 @@ void editor_panel_drawing_tree() //FFS just clear the whole screen this is is ri
     }
     
     currentYvalue = 126; //TODO combine this with the above for loop
-    for(int i=g_GuiState.currentPositionInEditorList; i<12 + g_GuiState.currentPositionInEditorList; i++)
+    for(int i=g_ApplicationState.currentPositionInEditorList; i<12 + g_ApplicationState.currentPositionInEditorList; i++)
     {
         draw_text_blazing(g_EditorPanelData.currentEditorProfile.bindings[i].stringThatIsTheKeyTheButtonIsBindedTo, (WINDOW_WIDTH/2) + 8, currentYvalue); //PROBLEM passing as inconrrect type?
         currentYvalue += 40;
