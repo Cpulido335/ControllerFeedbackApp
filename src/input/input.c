@@ -243,10 +243,84 @@ void handle_editor_input()
     if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  5) //if the cursor is on the PRESETS button in the editor panel and enter is pressed: switch to the PRESETS panel
     {
         g_ApplicationState.currentPanel = 1;
+        g_ApplicationState.cursorPosition =  0; //after switching to preset panel set cursor position to 0
     }
 
     
     //Editor panel key list logic
+    if (isKeyPressed(DC_0) /* && editor panel is being dispalyed */) 
+    {
+        //find the corresponding entry in Profile
+    }
+
+
+
+    prevS = sDown;
+    prevW = wDown;
+
+    prevDown = downArrow;  //up and down on keypad for scrolling through editor list
+    prevUp = upArrow;  //up and down on keypad for scrolling through editor list
+
+    //printf("gGuiState.cursorPosition: %d\n", g_GuiState.cursorPosition);
+}
+
+
+
+
+void handle_preset_panel_input()
+{
+    static bool prevS = false;
+    static bool prevW = false;
+    static bool prevDown = false; //up and down on keypad for scrolling through editor list
+    static bool prevUp = false; //up and down on keypad for scrolling through editor list
+
+    bool sDown = isKeyPressed(DC_S);
+    bool wDown = isKeyPressed(DC_W);
+    bool downArrow = isKeyPressed(DC_DOWN); //up and down on keypad for scrolling through editor list
+    bool upArrow   = isKeyPressed(DC_UP);   //up and down on keypad for scrolling through editor list
+
+    // S key: only trigger on DOWN edge
+    if (sDown && !prevS)
+    {
+        if (g_ApplicationState.cursorPosition < 9)
+            g_ApplicationState.cursorPosition++;
+    }
+
+    // W key: only trigger on DOWN edge
+    if (wDown && !prevW)
+    {
+        if (g_ApplicationState.cursorPosition > 0)
+            g_ApplicationState.cursorPosition--;
+    }
+
+
+     // Down arrow: increase because were scrolling down and its going DEEPER into the list currentPositionInList on DOWN edge
+    if (downArrow && !prevDown &&  g_ApplicationState.currentPositionInEditorList < 9) //TODO basically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
+    {
+        g_ApplicationState.currentPositionInEditorList++;
+    }
+
+    // Up arrow: decrement currentPositionInList on DOWN edge
+    if (upArrow && !prevUp && g_ApplicationState.currentPositionInEditorList > 0)
+    {
+        g_ApplicationState.currentPositionInEditorList--;
+    }
+
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  1) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
+    {
+        g_ApplicationState.currentPanel = 0; //switch to home
+        g_ApplicationState.cursorPosition =  0; //after switching to home panel set cursor position to 0
+    }
+
+
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  2) //if the cursor is on the editor button in the presets panel and enter is pressed: switch to the editor panel
+    {
+        g_ApplicationState.currentPanel = 2; //switch to editor panel
+        g_ApplicationState.cursorPosition =  0; //after switching to the editor panel set cursor position to 0
+    }
+
+    
+    //prset panel panel key list logic //TODO THIS WAS JUST COPIED FROM OTHER FUNCTION IT HASNT BEEN TOUCHED YET 
     if (isKeyPressed(DC_0) /* && editor panel is being dispalyed */) 
     {
         //find the corresponding entry in Profile

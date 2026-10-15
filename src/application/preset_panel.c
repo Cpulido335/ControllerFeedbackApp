@@ -22,43 +22,50 @@ void preset_panel_drawing_tree() //FFS just clear the whole screen this is is ri
     //TOPCENTER
     draw_text_blazing("PRESETS",  640-((7*12)/2), 40);
 
+    //TOPLEFT
+    draw_rounded_rectangle(30, 30, 200, 80, 10, 1,  COLOR_GREEN);
+    draw_text_blazing("F10: EXIT",  35, 35); //top left options
+    draw_text_blazing("F1: HOME",  35, 49); //top left options
+    draw_text_blazing("F2: EDITOR",  35, 63);
+
+
     //INNER FRAME
-    draw_rectangle_top_left(80, 80, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); //ROW 0 X=80 =80
-        draw_rectangle_top_left(80, 80, 300, 40, COLOR_GREEN, 1, NOT_FILLED); //preset name
+    draw_rectangle_top_left(80, 160, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); //ROW 0 X=80 =80
+        draw_rectangle_top_left(80, 160, 300, 40, COLOR_GREEN, 1, NOT_FILLED); //preset name
         
-        draw_rectangle_top_left(860, 80, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
-        draw_rectangle_top_left(960, 80, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
-        draw_rectangle_top_left(1060, 80, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete 
-    
-    
-    draw_rectangle_top_left(80, 120, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); //ROW 1 row1.y = row0.y + 40
-        draw_rectangle_top_left(80, 120, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
-
-        draw_rectangle_top_left(860, 120, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
-        draw_rectangle_top_left(960, 120, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
-        draw_rectangle_top_left(1060, 120, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete 
-    
-    
-    draw_rectangle_top_left(80, 160, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); //ROW 2
-        draw_rectangle_top_left(80, 160, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
-
         draw_rectangle_top_left(860, 160, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
         draw_rectangle_top_left(960, 160, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
         draw_rectangle_top_left(1060, 160, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete 
-
-    draw_rectangle_top_left(80, 200, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); 
+    
+    
+    draw_rectangle_top_left(80, 200, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); //ROW 1 row1.y = row0.y + 40
         draw_rectangle_top_left(80, 200, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
 
         draw_rectangle_top_left(860, 200, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
         draw_rectangle_top_left(960, 200, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
         draw_rectangle_top_left(1060, 200, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete 
-
-     draw_rectangle_top_left(80, 240, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED);
+    
+    
+    draw_rectangle_top_left(80, 240, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); //ROW 2
         draw_rectangle_top_left(80, 240, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
 
         draw_rectangle_top_left(860, 240, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
         draw_rectangle_top_left(960, 240, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
         draw_rectangle_top_left(1060, 240, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete 
+
+    draw_rectangle_top_left(80, 240, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); 
+        draw_rectangle_top_left(80, 280, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
+
+        draw_rectangle_top_left(860, 280, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
+        draw_rectangle_top_left(960, 280, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
+        draw_rectangle_top_left(1060, 280, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete 
+
+     draw_rectangle_top_left(80, 320, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED);
+        draw_rectangle_top_left(80, 320, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
+
+        draw_rectangle_top_left(860, 320, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
+        draw_rectangle_top_left(960, 320, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
+        draw_rectangle_top_left(1060, 320, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete 
 
 
 

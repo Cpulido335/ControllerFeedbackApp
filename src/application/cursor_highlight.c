@@ -35,6 +35,9 @@ struct cursorHighlighterRectMapping g_editor_cursorHighlighterRectMap[] = { //TO
 
 struct cursorHighlighterRectMapping g_preset_panel_cursorHighlighterRectMap[] = { //TODO so this is a map of mappings or an array that is a struct of structs?
     // cursor_id, x,   y,   width, height
+    { 0,          35,  37,  186,    12 },   // F10 MENU OPTION
+    { 1,          35,  51,  186,    12 },   // F1 MENU OPTION
+    { 2,          35,  65,  186,    12 },   // F2 MENU OPTION
     
 };
 

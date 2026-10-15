@@ -143,6 +143,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                     break;
                 case 1:
                     preset_panel_drawing_tree();
+                    handle_preset_panel_input();
                     break;
                 case 2:
                     editor_panel_drawing_tree();
