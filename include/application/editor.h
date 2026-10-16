@@ -13,8 +13,8 @@ struct EDITOR_PANEL_DATA {
     bool cursorFlashingState;
     double lastFlashToggleTime;   // seconds
     
-    struct ControllerButton buttons[32];
-    struct Profile currentEditorProfile;
+    // struct ControllerButton buttons[32]; TODO Remove
+    struct Profile currentEditorProfile; //should this be stack or heap alloc?
 };
 
 extern struct EDITOR_PANEL_DATA g_EditorPanelState;

@@ -16,6 +16,7 @@ struct ControllerButton {
     unsigned int bitmask;   // 0 if not used
     int         axis_min;   // ignored for buttons
     int         axis_max;
+    char        key_that_its_binded_to[32];
 };
 
 
@@ -28,17 +29,18 @@ struct nlist { /* table entry: */ //TODO PUT THIS IN UTIL MAYBE? TODO where does
 
 
 //we need some struct that is a list of mappings from string id to string binded_key
-struct Binding {
-    struct ControllerButton*  ptrToAControllerButton;
-    char *stringThatIsTheKeyTheButtonIsBindedTo;
-};
+// struct Binding {
+//     struct ControllerButton*  ptrToAControllerButton;
+//     char *stringThatIsTheKeyTheButtonIsBindedTo;
+// };
 
 struct Profile { //so your idea is that a Profile has a member that is a list of controller buttons?
     char name[128]; //TODO problem does this imply const?
-    struct Binding* bindings; //TODO PROBLEM, is this heap alloc?
+    // struct Binding* bindings; //TODO PROBLEM, is this heap alloc?
+    struct ControllerButton  arrayOfControllerButton[21]; //21 keys 
 };
 
-int populateProfile(struct ControllerButton* arrayOfControllerButtons, struct Profile* profile);
+// int populateProfile(struct ControllerButton* arrayOfControllerButtons, struct Profile* profile);
 
 // struct nlist createnlist() //TODO PROBLEM unused get rid of this when youre done using as an example
 // {
@@ -53,7 +55,7 @@ int populateProfile(struct ControllerButton* arrayOfControllerButtons, struct Pr
 
 int parse_buttonlist(const char *path, struct ControllerButton *out, int max);
 
-int create_bindinglist_from_profile(const char *path, struct ControllerButton *out, int max); //TODO PROBLEM unused so far
+// int create_bindinglist_from_profile(const char *path, struct ControllerButton *out, int max); //TODO PROBLEM unused so far
 
 
 #endif 

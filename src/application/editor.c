@@ -20,11 +20,9 @@ struct EDITOR_PANEL_DATA g_EditorPanelData = {
 
 void editor_panel_init()
 {
-    parse_buttonlist("data/xbox360.buttonlist", g_EditorPanelData.buttons, 32);
-
-    //TODO this needs to be done once in init not every call of something in the loop this should just be the drawing tree
-    populateProfile(g_EditorPanelData.buttons, &g_EditorPanelData.currentEditorProfile);
+    parse_buttonlist("data/xbox360.buttonlist", g_EditorPanelData.currentEditorProfile.arrayOfControllerButton, 21);
 }
+
 
 void editor_panel_drawing_tree() //FFS just clear the whole screen this is is ridiclous
 {
@@ -92,7 +90,7 @@ void editor_panel_drawing_tree() //FFS just clear the whole screen this is is ri
     // int currentPositionInList = 4;
     for(int i=g_ApplicationState.currentPositionInEditorList; i<12 + g_ApplicationState.currentPositionInEditorList; i++) //12 is the amt of entries that is displayed on the editor panel
     {
-        draw_text_blazing(g_EditorPanelData.buttons[i].name, (WINDOW_WIDTH/2) -200 + 8, currentYvalue);
+        draw_text_blazing(g_EditorPanelData.currentEditorProfile.arrayOfControllerButton[i].name, (WINDOW_WIDTH/2) -200 + 8, currentYvalue);
 
         currentYvalue += 40;
     }
@@ -100,7 +98,7 @@ void editor_panel_drawing_tree() //FFS just clear the whole screen this is is ri
     currentYvalue = 126; //TODO combine this with the above for-loop
     for(int i=g_ApplicationState.currentPositionInEditorList; i<12 + g_ApplicationState.currentPositionInEditorList; i++)
     {
-        draw_text_blazing(g_EditorPanelData.currentEditorProfile.bindings[i].stringThatIsTheKeyTheButtonIsBindedTo, (WINDOW_WIDTH/2) + 8, currentYvalue); //PROBLEM passing as inconrrect type?
+        draw_text_blazing(g_EditorPanelData.currentEditorProfile.arrayOfControllerButton[i].key_that_its_binded_to, (WINDOW_WIDTH/2) + 8, currentYvalue); //PROBLEM passing as inconrrect type?
         currentYvalue += 40;
     } //new feature
 
