@@ -20,7 +20,7 @@ struct EDITOR_PANEL_DATA g_EditorPanelData = {
 
 void editor_panel_init()
 {
-    parse_buttonlist("data/xbox360.buttonlist", g_EditorPanelData.currentEditorProfile.arrayOfControllerButton, 21);
+    parse_buttonlist(g_ApplicationState.currentSelectedProfile, g_EditorPanelData.currentEditorProfile.arrayOfControllerButton, 21);
 }
 
 

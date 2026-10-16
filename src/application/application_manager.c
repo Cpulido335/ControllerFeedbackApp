@@ -9,7 +9,9 @@ struct APPLICATION_STATE g_ApplicationState = {
     .cursorPosition = 6,        // start on F10
     .cursorFlashingState = false,
     .lastFlashToggleTime = 0,
-    .currentPositionInEditorList =0 
+    .currentPositionInEditorList =0,
+
+    .currentSelectedProfile = "data/profiles/xbox360example.preset"
     
 };
 

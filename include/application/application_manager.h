@@ -13,7 +13,7 @@ struct APPLICATION_STATE {
     int currentPositionInEditorList;
     //Editor panel specific button selected logic //if 0 is pressed editor list entry is selected, changes to rebind, 
 
-    char *currentSelectedProfile; 
+    const char *currentSelectedProfile; 
 
 };
 

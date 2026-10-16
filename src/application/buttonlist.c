@@ -4,8 +4,6 @@
 #include <string.h>
 
 
-
-
 int parse_buttonlist(const char *path, struct ControllerButton *out, int max)
 {
     FILE *fileptr = fopen(path, "r");
@@ -28,7 +26,7 @@ int parse_buttonlist(const char *path, struct ControllerButton *out, int max)
         char key_str[32];
 
         int fields = sscanf(line,
-            "%31s %d %15s %15s %15s %15s %31s",
+            "%31s %d %15s %15s %15s %15s %31s", //string format specificier
             button->name,
             &button->id,
             type_str,
@@ -38,13 +36,15 @@ int parse_buttonlist(const char *path, struct ControllerButton *out, int max)
             button->key_that_its_binded_to
         );
 
-        if (fields != 7) {
+        if (fields != 7) { //TODO this number 7 could change in the future
             fprintf(stderr, "Invalid line: %s", line);
             fclose(fileptr);
             return -1;
         }
 
-        if (strcmp(type_str, "button") == 0) {
+
+        if (strcmp(type_str, "button") == 0) 
+        {
             button->type = BTN_BUTTON;
 
             if (sscanf(bitmask_str, "%x",
@@ -56,7 +56,8 @@ int parse_buttonlist(const char *path, struct ControllerButton *out, int max)
             button->axis_min = 0;
             button->axis_max = 0;
         }
-        else if (strcmp(type_str, "axis") == 0) {
+        else if (strcmp(type_str, "axis") == 0) 
+        {
             button->type = BTN_AXIS;
             button->bitmask = 0;
 
@@ -68,12 +69,13 @@ int parse_buttonlist(const char *path, struct ControllerButton *out, int max)
                 return -1;
             }
         }
-        else {
+        else 
+        {
             fclose(fileptr);
             return -1;
         }
 
-        // Store key_str in your binding field here.
+        //store key_str in your binding field here.
         // Exact assignment depends on its declared type.
 
         count++;
