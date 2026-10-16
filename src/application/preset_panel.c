@@ -5,11 +5,13 @@
 #include "render/draw.h"
 #include "globals.h"
 
+#include <dirent.h> //POSIX library for reading directories
+
 
 
 /* Global GUI state (singleton) */
 struct PRESET_PANEL_STATE g_PresetPanelState = {
-    .cursorPosition = 0,        // start on F10
+    .cursorPosition = 0,        // start on F10 //TODO can probably remove all this stuff the cursor stuff is handled in application state
     .cursorFlashingState = false,
     .lastFlashToggleTime = 0
 };
@@ -89,9 +91,24 @@ void preset_panel_drawing_tree() //FFS just clear the whole screen this is is ri
 }
 
 
-int load_presets(const char* presets_folder_filepath)
+int load_presets(const char* presets_folder_filepath) //TODO for this we're gonna need the posix library 
 {
     FILE *fp = fopen(presets_folder_filepath, "rb");
 
+    DIR *directory;
+    struct dirent *entry;
+
+    directory = opendir(".");
+
+    if (directory == NULL)
+    {
+        printf("Error opening directory!\n"); //TODO isnt there something else other than printf thats more practical for error messages?
+        return 1;
+    }
+
+    while ((entry = readdir(directory)) != NULL)
+    {
+        //create profile from file with buttonlist parser function
+    }
     
 }

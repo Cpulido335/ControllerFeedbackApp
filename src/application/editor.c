@@ -20,7 +20,15 @@ struct EDITOR_PANEL_DATA g_EditorPanelData = {
 
 void editor_panel_init()
 {
-    parse_buttonlist(g_ApplicationState.currentSelectedProfile, g_EditorPanelData.currentEditorProfile.arrayOfControllerButton, 21);
+    g_EditorPanelData.currentEditorProfile.arrayOfControllerButton = malloc(sizeof(struct ControllerButton) * 21); //TODO 21 buttons still hardcoded
+
+    if (!g_EditorPanelData.currentEditorProfile.arrayOfControllerButton) 
+    {
+        return;
+    }
+
+
+    parse_buttonlist(g_ApplicationState.currentSelectedProfile, g_EditorPanelData.currentEditorProfile.arrayOfControllerButton, 21); //TODO 21 buttons still hardcoded
 }
 
 
