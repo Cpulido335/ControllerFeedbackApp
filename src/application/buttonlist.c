@@ -4,7 +4,7 @@
 #include <string.h>
 
 
-int parse_buttonlist(const char *path, struct ControllerButton *out, int max)
+int parse_buttonlist(const char *path, struct ControllerButton *out, int max) //TODO name this function to something better
 {
     FILE *fileptr = fopen(path, "r");
     if (!fileptr) return -1;
@@ -87,12 +87,15 @@ int parse_buttonlist(const char *path, struct ControllerButton *out, int max)
 
 
 //Takes in a an array of ControllerButtons modifys a Profile struct
-void create_profile_from_preset_filepath(const char *path, struct ControllerButton *buttons, int max, struct Profile *profile)
+void create_profile_from_preset_filepath(const char *path, struct ControllerButton *buttons, int max, struct Profile *profile, char* profile_name)
 {
     //TODO we might be able to create the ControllerButton array with a heap allocation within the scope of this function but idk 
     parse_buttonlist(path, buttons, max);
 
     profile->arrayOfControllerButton = buttons;
+    profile->name = profile_name;
+
+    //get the filename from the path
 }
 
 

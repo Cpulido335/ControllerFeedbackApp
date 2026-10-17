@@ -154,21 +154,21 @@ int load_presets(const char* presets_folder_filepath) //TODO for this we're gonn
                 strcat(profilepath1, entry->d_name);
                 printf("%s\n", profilepath1);
                 
-                create_profile_from_preset_filepath(profilepath1, g_PresetPanelState.buttons1, 21, g_PresetPanelState.profile1);
+                create_profile_from_preset_filepath(profilepath1, g_PresetPanelState.buttons1, 21, g_PresetPanelState.profile1, entry->d_name);
                 break;
             case 2:
                 strcat(profilepath2, "/");
                 strcat(profilepath2, entry->d_name);
                 printf("%s\n", profilepath2);
                 
-                create_profile_from_preset_filepath(profilepath2, g_PresetPanelState.buttons2, 21, g_PresetPanelState.profile2);
+                create_profile_from_preset_filepath(profilepath2, g_PresetPanelState.buttons2, 21, g_PresetPanelState.profile2, entry->d_name);
                 break;
             case 3:
                 strcat(profilepath3, "/");
                 strcat(profilepath3, entry->d_name);
                 printf("%s\n", profilepath3);
                 
-                create_profile_from_preset_filepath(profilepath3, g_PresetPanelState.buttons3, 21, g_PresetPanelState.profile3);
+                create_profile_from_preset_filepath(profilepath3, g_PresetPanelState.buttons3, 21, g_PresetPanelState.profile3, entry->d_name);
                 break;
             case 4:
                 strcat(profilepath4, "/");
@@ -176,14 +176,14 @@ int load_presets(const char* presets_folder_filepath) //TODO for this we're gonn
                 printf("%s\n", profilepath4);
                 
                 
-                create_profile_from_preset_filepath(profilepath4, g_PresetPanelState.buttons4, 21, g_PresetPanelState.profile4);
+                create_profile_from_preset_filepath(profilepath4, g_PresetPanelState.buttons4, 21, g_PresetPanelState.profile4, entry->d_name);
                 break;     
             case 5:
                 strcat(profilepath5, "/");
                 strcat(profilepath5, entry->d_name);
                 printf("%s\n", profilepath5);
                 
-                create_profile_from_preset_filepath(profilepath5, g_PresetPanelState.buttons5, 21, g_PresetPanelState.profile5);
+                create_profile_from_preset_filepath(profilepath5, g_PresetPanelState.buttons5, 21, g_PresetPanelState.profile5, entry->d_name);
                 break; 
         }
 
