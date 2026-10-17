@@ -5,6 +5,7 @@
 #include "render/draw.h"
 #include "globals.h"
 
+#include "application/buttonlist.h"
 #include <dirent.h> //POSIX library for reading directories
 
 
@@ -16,6 +17,21 @@ struct PRESET_PANEL_STATE g_PresetPanelState = {
     .lastFlashToggleTime = 0
 };
 
+
+void preset_panel_init()
+{
+    g_PresetPanelState.buttons1 = malloc(sizeof(struct ControllerButton) * 21); //TODO 21 buttons in a preset is still hardcoded fckn everywhere
+    g_PresetPanelState.buttons2 = malloc(sizeof(struct ControllerButton) * 21);
+    g_PresetPanelState.buttons3 = malloc(sizeof(struct ControllerButton) * 21);
+    g_PresetPanelState.buttons4 = malloc(sizeof(struct ControllerButton) * 21);
+    g_PresetPanelState.buttons5 = malloc(sizeof(struct ControllerButton) * 21);
+
+    g_PresetPanelState.profile1 = malloc(sizeof(struct Profile));
+    g_PresetPanelState.profile2 = malloc(sizeof(struct Profile));
+    g_PresetPanelState.profile3 = malloc(sizeof(struct Profile));
+    g_PresetPanelState.profile4 = malloc(sizeof(struct Profile));
+    g_PresetPanelState.profile5 = malloc(sizeof(struct Profile));
+}
 
 void preset_panel_drawing_tree() //FFS just clear the whole screen this is is ridiclous
 {
@@ -93,12 +109,12 @@ void preset_panel_drawing_tree() //FFS just clear the whole screen this is is ri
 
 int load_presets(const char* presets_folder_filepath) //TODO for this we're gonna need the posix library 
 {
-    FILE *fp = fopen(presets_folder_filepath, "rb");
+    printf("%s\n\n", presets_folder_filepath);
 
     DIR *directory;
     struct dirent *entry;
 
-    directory = opendir(".");
+    directory = opendir(presets_folder_filepath);
 
     if (directory == NULL)
     {
@@ -106,9 +122,72 @@ int load_presets(const char* presets_folder_filepath) //TODO for this we're gonn
         return 1;
     }
 
-    while ((entry = readdir(directory)) != NULL)
-    {
-        //create profile from file with buttonlist parser function
+
+    //the first part of each profiles file path will just be the path to the directory
+    char profilepath1[128];
+    char profilepath2[128];
+    char profilepath3[128];
+    char profilepath4[128];
+    char profilepath5[128];
+
+    strcpy(profilepath1, presets_folder_filepath);
+    strcpy(profilepath2, presets_folder_filepath);
+    strcpy(profilepath3, presets_folder_filepath);
+    strcpy(profilepath4, presets_folder_filepath);
+    strcpy(profilepath5, presets_folder_filepath);
+
+    //The program will only use 5 presets, using more than 5 presets in memory is more complicated than the program needs to be.
+    //dont need to make arrays for these 2 just gonna use a switch statement and have the profile structs numbered 1-5 in memory
+    int i = 1; //TODO starting at 1 and going to 5 because the profilepaths start at 1 and switch statement starts at 1 so its neater 
+    while ((entry = readdir(directory)) != NULL && i <= 5) //TODO harcoded 5 for five presets in the directory
+    {   
+        if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) { //the first 2 in directory are '.' and '..' we need to skip over these 
+            continue;
+        }
+
+
+
+        switch(i)
+        {
+            case 1:
+                strcat(profilepath1, "/");
+                strcat(profilepath1, entry->d_name);
+                printf("%s\n", profilepath1);
+                
+                create_profile_from_preset_filepath(profilepath1, g_PresetPanelState.buttons1, 21, g_PresetPanelState.profile1);
+                break;
+            case 2:
+                strcat(profilepath2, "/");
+                strcat(profilepath2, entry->d_name);
+                printf("%s\n", profilepath2);
+                
+                create_profile_from_preset_filepath(profilepath2, g_PresetPanelState.buttons2, 21, g_PresetPanelState.profile2);
+                break;
+            case 3:
+                strcat(profilepath3, "/");
+                strcat(profilepath3, entry->d_name);
+                printf("%s\n", profilepath3);
+                
+                create_profile_from_preset_filepath(profilepath3, g_PresetPanelState.buttons3, 21, g_PresetPanelState.profile3);
+                break;
+            case 4:
+                strcat(profilepath4, "/");
+                strcat(profilepath4, entry->d_name);
+                printf("%s\n", profilepath4);
+                
+                
+                create_profile_from_preset_filepath(profilepath4, g_PresetPanelState.buttons4, 21, g_PresetPanelState.profile4);
+                break;     
+            case 5:
+                strcat(profilepath5, "/");
+                strcat(profilepath5, entry->d_name);
+                printf("%s\n", profilepath5);
+                
+                create_profile_from_preset_filepath(profilepath5, g_PresetPanelState.buttons5, 21, g_PresetPanelState.profile5);
+                break; 
+        }
+
+        i++;
     }
     
 }

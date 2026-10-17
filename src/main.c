@@ -81,6 +81,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         
         //TODO you see how theres a GUI init there needs to be like a preset init where we initialize the preset structs in memory 
         editor_panel_init();
+        preset_panel_init();
+        load_presets("data/profiles");
         
         while(true) //MAIN LOOP
         {
