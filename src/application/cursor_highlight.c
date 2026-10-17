@@ -39,6 +39,37 @@ struct cursorHighlighterRectMapping g_preset_panel_cursorHighlighterRectMap[] = 
     { 1,          35,  51,  186,    12 },   // F1 MENU OPTION
     { 2,          35,  65,  186,    12 },   // F2 MENU OPTION
     
+
+    { 3,          80,  160,  300,   40 },   // TOP ROW FIRST CELL
+    { 4,          80,  200,  300,   40 },   // 2ND ROW DOWN FIRST CELL
+    { 5,          80,  240,  300,   40 },   // 3RD ROW DOWN FIRST CELL
+    { 6,          80,  280,  300,   40 },   // 4th ROW DOWN FIRST CELL
+    { 7,          80,  320,  300,   40 },   // 5th ROW DOWN FIRST CELL
+
+    { 8,          380,  160,  480,   40 },   // TOP ROW 2nd CELL
+    { 9,          380,  200,  480,   40 },   // 2nd row down 2nd CELL
+    { 10,         380,  240,  480,   40 },   // 3rd row down 2nd CELL
+    { 11,         380,  280,  480,   40 },   // 4th row down 2nd CELL
+    { 12,         380,  320,  480,   40 },   // 5th row down 2nd CELL
+
+    { 13,         860,  160,  100,   40 },   // TOP ROW LOAD CELL
+    { 14,         860,  200,  100,   40 },   // 2nd row down LOAD CELL
+    { 15,         860,  240,  100,   40 },   // 3rd row down LOAD CELL
+    { 16,         860,  280,  100,   40 },   // 4th row down LOAD CELL
+    { 17,         860,  320,  100,   40 },   // 5th row down LOAD CELL
+
+    { 18,         960,  160,  100,   40 },   // TOP ROW EDIT CELL
+    { 19,         960,  200,  100,   40 },   // 2nd row down EDIT CELL
+    { 20,         960,  240,  100,   40 },   // 3rd row down EDIT CELL
+    { 21,         960,  280,  100,   40 },   // 4th row down EDIT CELL
+    { 22,         960,  320,  100,   40 },   // 5th row down EDIT CELL
+
+    { 23,        1060,  160,  100,   40 },   // TOP ROW DELETE CELL
+    { 24,        1060,  200,  100,   40 },   // 2nd row down DELETE CELL
+    { 25,        1060,  240,  100,   40 },   // 3rd row down DELETE CELL
+    { 26,        1060,  280,  100,   40 },   // 4th row down DELETE CELL
+    { 27,        1060,  320,  100,   40 },   // 5th row down DELETE CELL
+
 };
 
 
@@ -53,7 +84,7 @@ void draw_cursor_highlighter() //TODO this functionality needs its own module
     
     int currentCursorID = g_ApplicationState.cursorPosition; //TODO do we need this variable?
     struct cursorHighlighterRectMapping *currentMapping = NULL;
-    int cursorHighlighterMapLength = 10; // TODO PROBLEM hardcoded TODO
+    int cursorHighlighterMapLength = 99; // TODO PROBLEM hardcoded TODO
 
 
     //right about here we'll do a switch on the current panel of the application state

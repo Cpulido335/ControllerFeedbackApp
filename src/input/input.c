@@ -289,7 +289,7 @@ void handle_preset_panel_input()
     // S key: only trigger on DOWN edge
     if (sDown && !prevS)
     {
-        if (g_ApplicationState.cursorPosition < 9)
+        if (g_ApplicationState.cursorPosition < 99) //TODO make sure you fix this 99 is way more
             g_ApplicationState.cursorPosition++;
     }
 
@@ -302,7 +302,7 @@ void handle_preset_panel_input()
 
 
      // Down arrow: increase because were scrolling down and its going DEEPER into the list currentPositionInList on DOWN edge
-    if (downArrow && !prevDown &&  g_ApplicationState.currentPositionInEditorList < 9) //TODO basically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
+    if (downArrow && !prevDown &&  g_ApplicationState.currentPositionInEditorList < 99) //TODO FIX IT HERE TOObasically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
     {
         g_ApplicationState.currentPositionInEditorList++;
     }
