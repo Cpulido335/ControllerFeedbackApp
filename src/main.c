@@ -104,7 +104,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             MSG message;
             while (PeekMessage(&message, 0, 0, 0, PM_REMOVE))
             {
-                // if (message.message == WM_QUIT)
+                // if (message.message == WM_QUIT) TODO put this back maybe maybe not we need free all memory allocations before we quit the program
                 //     running = false;
 
                 TranslateMessage(&message);

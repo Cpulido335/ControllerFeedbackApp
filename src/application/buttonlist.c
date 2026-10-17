@@ -93,9 +93,11 @@ void create_profile_from_preset_filepath(const char *path, struct ControllerButt
     parse_buttonlist(path, buttons, max);
 
     profile->arrayOfControllerButton = buttons;
-    profile->name = profile_name;
+    printf("profile_name: %s\n\n", profile_name);
+    //profile->name = profile_name;
 
-    //get the filename from the path
+    sprintf(profile->name, profile_name); //TODO what are the advantages of using snprintf over sprintf ??
+
 }
 
 

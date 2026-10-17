@@ -35,7 +35,7 @@ struct nlist { /* table entry: */ //TODO PUT THIS IN UTIL MAYBE? TODO where does
 // };
 
 struct Profile { //so your idea is that a Profile has a member that is a list of controller buttons?
-    char *name; //TODO problem does this imply const?
+    char name[128]; 
     // struct Binding* bindings; //TODO PROBLEM, is this heap alloc?
     struct ControllerButton  *arrayOfControllerButton; //21 keys 
 };

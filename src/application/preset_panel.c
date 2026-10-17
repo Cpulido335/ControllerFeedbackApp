@@ -50,40 +50,58 @@ void preset_panel_drawing_tree() //FFS just clear the whole screen this is is ri
     //INNER FRAME
     draw_rectangle_top_left(80, 160, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); //ROW 0 X=80 =80
         draw_rectangle_top_left(80, 160, 300, 40, COLOR_GREEN, 1, NOT_FILLED); //preset name
-        
+            draw_text_blazing(g_PresetPanelState.profile1->name, 400, 170);
         draw_rectangle_top_left(860, 160, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
+            draw_text_blazing("LOAD", 884, 170);
         draw_rectangle_top_left(960, 160, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
-        draw_rectangle_top_left(1060, 160, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete 
+            draw_text_blazing("EDIT", 984, 170);
+        draw_rectangle_top_left(1060, 160, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete
+            draw_text_blazing("DELETE", 1072, 170); 
     
     
     draw_rectangle_top_left(80, 200, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); //ROW 1 row1.y = row0.y + 40
         draw_rectangle_top_left(80, 200, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
-
+            draw_text_blazing(g_PresetPanelState.profile2->name, 400, 210);
         draw_rectangle_top_left(860, 200, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
+            draw_text_blazing("LOAD", 884, 210);
         draw_rectangle_top_left(960, 200, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
+            draw_text_blazing("EDIT", 984, 210);
         draw_rectangle_top_left(1060, 200, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete 
-    
+            draw_text_blazing("DELETE", 1072, 210);
     
     draw_rectangle_top_left(80, 240, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); //ROW 2
         draw_rectangle_top_left(80, 240, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
+            draw_text_blazing(g_PresetPanelState.profile3->name, 400, 250);
 
         draw_rectangle_top_left(860, 240, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
+            draw_text_blazing("LOAD", 884, 250);
         draw_rectangle_top_left(960, 240, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
-        draw_rectangle_top_left(1060, 240, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete 
+            draw_text_blazing("EDIT", 984, 250);
+        draw_rectangle_top_left(1060, 240, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete
+            draw_text_blazing("DELETE", 1072, 250); 
 
     draw_rectangle_top_left(80, 240, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); 
         draw_rectangle_top_left(80, 280, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
+            draw_text_blazing(g_PresetPanelState.profile4->name, 400, 290);
 
         draw_rectangle_top_left(860, 280, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
+            draw_text_blazing("LOAD", 884, 290);
         draw_rectangle_top_left(960, 280, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
+            draw_text_blazing("EDIT", 984, 290);
         draw_rectangle_top_left(1060, 280, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete 
+            draw_text_blazing("DELETE", 1072, 290);
 
      draw_rectangle_top_left(80, 320, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED);
         draw_rectangle_top_left(80, 320, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
+            draw_text_blazing(g_PresetPanelState.profile5->name, 400, 330);
+
 
         draw_rectangle_top_left(860, 320, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
+            draw_text_blazing("LOAD", 884, 330);
         draw_rectangle_top_left(960, 320, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
+            draw_text_blazing("EDIT", 984, 330);
         draw_rectangle_top_left(1060, 320, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //delete 
+            draw_text_blazing("DELETE", 1072, 330);
 
 
 
@@ -160,6 +178,7 @@ int load_presets(const char* presets_folder_filepath) //TODO for this we're gonn
                 strcat(profilepath2, "/");
                 strcat(profilepath2, entry->d_name);
                 printf("%s\n", profilepath2);
+                printf("entry->d_name %s\n", entry->d_name);
                 
                 create_profile_from_preset_filepath(profilepath2, g_PresetPanelState.buttons2, 21, g_PresetPanelState.profile2, entry->d_name);
                 break;
