@@ -146,7 +146,7 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
         if (g_ApplicationState.cursorPositionRow < 9)
             g_ApplicationState.cursorPositionRow++;
     }
-
+    
     // W key: only trigger on DOWN edge
     if (wDown && !prevW)
     {
@@ -155,17 +155,6 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
     }
 
 
-     // Down arrow: increase because were scrolling down and its going DEEPER into the list currentPositionInList on DOWN edge
-    if (downArrow && !prevDown &&  g_ApplicationState.currentPositionInEditorList < 9) //TODO basically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
-    {
-        g_ApplicationState.currentPositionInEditorList++;
-    }
-
-    // Up arrow: decrement currentPositionInList on DOWN edge
-    if (upArrow && !prevUp && g_ApplicationState.currentPositionInEditorList > 0)
-    {
-        g_ApplicationState.currentPositionInEditorList--;
-    }
 
     if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  3) 
     {
@@ -184,8 +173,6 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
     prevS = sDown;
     prevW = wDown;
 
-    prevDown = downArrow;  //up and down on keypad for scrolling through editor list
-    prevUp = upArrow;  //up and down on keypad for scrolling through editor list
 
     //printf("gGuiState.cursorPositionRow: %d\n", g_GuiState.cursorPositionRow);
 }
@@ -319,17 +306,6 @@ void handle_preset_panel_input()
     }
 
 
-     // Down arrow: increase because were scrolling down and its going DEEPER into the list currentPositionInList on DOWN edge
-    if (downArrow && !prevDown &&  g_ApplicationState.currentPositionInEditorList < 99) //TODO FIX IT HERE TOObasically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
-    {
-        g_ApplicationState.currentPositionInEditorList++;
-    }
-
-    // Up arrow: decrement currentPositionInList on DOWN edge
-    if (upArrow && !prevUp && g_ApplicationState.currentPositionInEditorList > 0)
-    {
-        g_ApplicationState.currentPositionInEditorList--;
-    }
 
     if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  1) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
     {
@@ -352,14 +328,12 @@ void handle_preset_panel_input()
     }
 
 
-
     prevS = sDown;
     prevW = wDown;
     prevA = aDown;
     prevD = dDown; 
 
-    prevDown = downArrow;  //up and down on keypad for scrolling through editor list
-    prevUp = upArrow;  //up and down on keypad for scrolling through editor list
+ 
 
     //printf("gGuiState.cursorPositionRow: %d\n", g_GuiState.cursorPositionRow);
 }
