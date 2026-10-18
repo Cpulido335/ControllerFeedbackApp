@@ -4,6 +4,7 @@
 
 #include "application/gui.h" //TODO not sure if this how I want to architect this
 #include "application/application_manager.h"
+#include "globals.h"
 
 #include <stdio.h> //TODO for deubbing handle_input function REMOVE
 
@@ -143,7 +144,7 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
     // S key: only trigger on DOWN edge
     if (sDown && !prevS)
     {
-        if (g_ApplicationState.cursorPositionRow < 9)
+        if (g_ApplicationState.cursorPositionRow < HOME_NUM_ROWS-1)
             g_ApplicationState.cursorPositionRow++;
     }
 
@@ -196,7 +197,7 @@ void handle_editor_input()
     // S key: only trigger on DOWN edge
     if (sDown && !prevS)
     {
-        if (g_ApplicationState.cursorPositionRow < 6)
+        if (g_ApplicationState.cursorPositionRow < EDITOR_NUM_ROWS-1)
             g_ApplicationState.cursorPositionRow++;
     }
 
