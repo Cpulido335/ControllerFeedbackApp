@@ -278,11 +278,15 @@ void handle_preset_panel_input()
 {
     static bool prevS = false;
     static bool prevW = false;
+    static bool prevA = false;
+    static bool prevD = false;
     static bool prevDown = false; //up and down on keypad for scrolling through editor list
     static bool prevUp = false; //up and down on keypad for scrolling through editor list
 
     bool sDown = isKeyPressed(DC_S);
     bool wDown = isKeyPressed(DC_W);
+    bool aDown = isKeyPressed(DC_A);
+    bool dDown = isKeyPressed(DC_D);
     bool downArrow = isKeyPressed(DC_DOWN); //up and down on keypad for scrolling through editor list
     bool upArrow   = isKeyPressed(DC_UP);   //up and down on keypad for scrolling through editor list
 
@@ -298,6 +302,20 @@ void handle_preset_panel_input()
     {
         if (g_ApplicationState.cursorPosition > 0)
             g_ApplicationState.cursorPosition--;
+    }
+
+
+    if (aDown && !prevA)
+    {
+        if (g_ApplicationState.cursorPositionColumn < 10) //TODO don't think there's 10 columns (11 columns)
+            g_ApplicationState.cursorPositionColumn++;
+    }
+
+
+    if (dDown && !prevD)
+    {
+        if (g_ApplicationState.cursorPositionColumn > 0)
+            g_ApplicationState.cursorPositionColumn--;
     }
 
 
