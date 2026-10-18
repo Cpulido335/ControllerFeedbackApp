@@ -196,7 +196,7 @@ void handle_editor_input()
     // S key: only trigger on DOWN edge
     if (sDown && !prevS)
     {
-        if (g_ApplicationState.cursorPositionRow < 9)
+        if (g_ApplicationState.cursorPositionRow < 6)
             g_ApplicationState.cursorPositionRow++;
     }
 
@@ -333,6 +333,6 @@ void handle_preset_panel_input()
     prevA = aDown;
     prevD = dDown; 
 
-    
+
     //printf("gGuiState.cursorPositionRow: %d\n", g_GuiState.cursorPositionRow);
 }

@@ -10,7 +10,7 @@
 
 
 
-struct cursorHighlighterRectMapping g_gui_cursorHighlighterRectMap[1][4] = { //TODO so this is a map of mappings or an array that is a struct of structs?
+struct cursorHighlighterRectMapping g_gui_cursorHighlighterRectMap[HOME_NUM_COLUMNS][HOME_NUM_ROWS] = { //TODO so this is a map of mappings or an array that is a struct of structs?
     //cursor_id_row, cursor_id_col, x, y, width, height
     {
         { 0,   0,       35,  37,  186,   12 },   // F10 MENU OPTION
@@ -21,7 +21,7 @@ struct cursorHighlighterRectMapping g_gui_cursorHighlighterRectMap[1][4] = { //T
 };
 
 
-struct cursorHighlighterRectMapping g_editor_cursorHighlighterRectMap[1][7] = { //TODO so this is a map of mappings or an array that is a struct of structs?
+struct cursorHighlighterRectMapping g_editor_cursorHighlighterRectMap[EDITOR_NUM_COLUMNS][EDITOR_NUM_ROWS] = { //TODO so this is a map of mappings or an array that is a struct of structs?
     //cursor_id_row, cursor_id_col, x, y, width, height
     {   //editor panel
         { 0,   0,       80+10, 100, 300-20, 40 }, //editor panel NEW button
@@ -37,7 +37,7 @@ struct cursorHighlighterRectMapping g_editor_cursorHighlighterRectMap[1][7] = { 
 
 
 
-struct cursorHighlighterRectMapping g_preset_panel_cursorHighlighterRectMap[6][5] = { //TODO so this is a map of mappings or an array that is a struct of structs?
+struct cursorHighlighterRectMapping g_preset_panel_cursorHighlighterRectMap[PRESET_PANEL_NUM_COLUMNS][PRESET_PANEL_NUM_ROWS] = { //TODO so this is a map of mappings or an array that is a struct of structs?
     //cursor_id_row, cursor_id_col, x, y, width, height
 
     {   //COLUMN 0 - MENU
@@ -131,7 +131,9 @@ void draw_cursor_highlighter() //TODO this functionality needs its own module
         case 2: //EDITOR
             if (column != 0 || row < 0 || row >= 7)
                 return;
-
+            if(row == 2)
+                printf("breakpoint\n");
+            
             currentMapping = &g_editor_cursorHighlighterRectMap[column][row];
             break;
 

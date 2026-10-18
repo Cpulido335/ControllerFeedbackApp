@@ -33,5 +33,11 @@
 #define CURSOR_FLASH_PERIOD 0.5   // seconds (2 Hz blink)
 
 
+#define HOME_NUM_ROWS   4
+#define HOME_NUM_COLUMNS 1
+#define EDITOR_NUM_ROWS 7
+#define EDITOR_NUM_COLUMNS 1
+#define PRESET_PANEL_NUM_ROWS 6
+#define PRESET_PANEL_NUM_COLUMNS 5
 
 #endif

@@ -2,6 +2,9 @@
 #define CURSOR_HIGHLIGHT_H
 
 
+#include "globals.h"
+
+
 
 struct cursorHighlighterRectMapping { //array of structs will be the "map", a particular struct in that array will be a "mapping"
     int cursorHighlightPositionStateID; 
@@ -15,9 +18,9 @@ struct cursorHighlighterRectMapping { //array of structs will be the "map", a pa
 void draw_cursor_highlighter();
 
 
-extern struct cursorHighlighterRectMapping g_gui_cursorHighlighterRectMap[][4];
-extern struct cursorHighlighterRectMapping g_editor_cursorHighlighterRectMap[][7];
-extern struct cursorHighlighterRectMapping g_preset_panel_cursorHighlighterRectMap[][5];
+extern struct cursorHighlighterRectMapping g_gui_cursorHighlighterRectMap[HOME_NUM_COLUMNS][HOME_NUM_ROWS];
+extern struct cursorHighlighterRectMapping g_editor_cursorHighlighterRectMap[EDITOR_NUM_COLUMNS][EDITOR_NUM_ROWS];
+extern struct cursorHighlighterRectMapping g_preset_panel_cursorHighlighterRectMap[PRESET_PANEL_NUM_COLUMNS][PRESET_PANEL_NUM_ROWS];
 
 
 
