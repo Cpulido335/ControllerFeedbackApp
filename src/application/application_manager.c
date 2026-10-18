@@ -12,7 +12,9 @@ struct APPLICATION_STATE g_ApplicationState = {
     .lastFlashToggleTime = 0,
     .currentPositionInEditorList =0,
 
-    .currentSelectedProfile = "data/profiles/xbox360example.preset"
-    
+    .currentSelectedProfile = "data/profiles/xbox360example.preset", //TODO define this path with a global var 
+
+
+    .controllerConnected = false
 };
 

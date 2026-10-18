@@ -30,6 +30,7 @@
 
 #include "application/application_manager.h"
 #include "application/cursor_highlight.h"
+#include "input/input_controller.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
@@ -132,7 +133,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
             // draw_fbx_model(mesh, 1); //TODO MOVE THIS TO GUI_DRAWING_TREE
 
-
+            poll_controller();
             gui_update(delta); //called once per frame TODO This function used to be the thing that was responsible for flashing the cursor now its applicaiton_update
             application_update();
             //gui_drawing_tree();

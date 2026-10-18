@@ -16,6 +16,10 @@ struct APPLICATION_STATE {
 
     const char *currentSelectedProfile; 
 
+    //controller
+
+    bool controllerConnected;
+
 };
 
 extern struct APPLICATION_STATE g_ApplicationState;

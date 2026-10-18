@@ -10,6 +10,8 @@
 #include "geometry/fbx_ascii_parser.h"
 #include "math/rotation.h"
 
+#include "application/application_manager.h"
+
 
 
 
@@ -129,6 +131,14 @@ void gui_drawing_tree()
 
     //BOTTOM CENTER
     draw_text_blazing("CONTROLLER DETECTED: DUALSHOCK4 UUID: ai19xj2ow291",   640-((51*12)/2), 650);
+    
+    if(g_ApplicationState.controllerConnected)
+    {
+        draw_text_blazing("CONTROLLER CONNECTED",   640-((51*12)/2), 600);
+    }
+    else {
+        draw_text_blazing("CONTROLLER NOT CONNECTED",   640-((51*12)/2), 600);
+    }
 
     //BOTTOM LEFT
     draw_rounded_rectangle(30, 510, 200, 160, 10, 1,  COLOR_GREEN);

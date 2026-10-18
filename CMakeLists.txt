@@ -14,3 +14,6 @@ file(GLOB_RECURSE SRC_FILES
 
 # Create the executable
 add_executable(MyProgram ${SRC_FILES})
+
+
+target_link_libraries(MyProgram PRIVATE xinput9_1_0)
