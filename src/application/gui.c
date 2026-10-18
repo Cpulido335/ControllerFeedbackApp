@@ -88,7 +88,7 @@ void gui_update(float delta) //updates all the things within the gui that need t
 //     if (!g_GuiState.cursorFlashingState) //if its not flashed then return
 //         return;
     
-//     int currentCursorID = g_GuiState.cursorPosition; //TODO do we need this variable?
+//     int currentCursorID = g_GuiState.cursorPositionRow; //TODO do we need this variable?
 //     struct cursorHighlighterRectMapping *currentMapping = NULL;
 //     int cursorHighlighterMapLength = 10; // TODO PROBLEM hardcoded TODO
 
@@ -137,7 +137,7 @@ void gui_drawing_tree()
     draw_rounded_rectangle(1030, 510, 200, 160, 10, 1,  COLOR_GREEN); //1220 = -mainframe padding -bottom corner rect padding
     //////////////----SETUP----//////////////
 
-    // switch(g_GuiState.cursorPosition) //TODO idek wtf this is supposed to do you can probablby just remove it all
+    // switch(g_GuiState.cursorPositionRow) //TODO idek wtf this is supposed to do you can probablby just remove it all
     // {
     //     case 0: //top left
     //     case 1:

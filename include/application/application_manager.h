@@ -5,7 +5,7 @@
 
 struct APPLICATION_STATE {
     int currentPanel;
-    int cursorPosition;
+    int cursorPositionRow;
     int cursorPositionColumn;
     bool cursorFlashingState;
     double lastFlashToggleTime;   // seconds

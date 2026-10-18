@@ -12,7 +12,7 @@
 
 /* Global GUI state (singleton) */
 struct PRESET_PANEL_STATE g_PresetPanelState = {
-    .cursorPosition = 0,        // start on F10 //TODO can probably remove all this stuff the cursor stuff is handled in application state
+    .cursorPositionRow = 0,        // start on F10 //TODO can probably remove all this stuff the cursor stuff is handled in application state
     .cursorFlashingState = false,
     .lastFlashToggleTime = 0
 };
@@ -105,7 +105,7 @@ void preset_panel_drawing_tree() //FFS just clear the whole screen this is is ri
 
 
 
-    switch(g_PresetPanelState.cursorPosition) 
+    switch(g_PresetPanelState.cursorPositionRow) 
     {
         case 0: //top left
         case 1:

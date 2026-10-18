@@ -12,7 +12,7 @@
 
 /* Global GUI state (singleton) */   //TODO why is this here?? shouldnt this only be in one spot? //TODO What the fuck probably remove this whole thing too
 struct EDITOR_PANEL_DATA g_EditorPanelData = {
-    .cursorPosition = 0,        // start on F10
+    .cursorPositionRow = 0,        // start on F10
     .cursorFlashingState = false,
     .lastFlashToggleTime = 0
 };
@@ -113,7 +113,7 @@ void editor_panel_drawing_tree() //FFS just clear the whole screen this is is ri
 
 
 
-    switch(g_EditorPanelData.cursorPosition) 
+    switch(g_EditorPanelData.cursorPositionRow) 
     {
         case 0: //top left
         case 1:

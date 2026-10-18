@@ -5,70 +5,88 @@
 
 #include "render/draw.h"
 
+#include <stdio.h> //TODO remove when done debugging
 
-struct cursorHighlighterRectMapping g_gui_cursorHighlighterRectMap[] = { //TODO so this is a map of mappings or an array that is a struct of structs?
-    // cursor_id, x,   y,   width, height
-    { 0,          35,  37,  186,    12 },   // F10 MENU OPTION
-    { 1,          35,  51,  186,    12 },   // F1 MENU OPTION
-    { 2,          35,  65,  186,    12 },   // F2 MENU OPTION
-    { 3,          35,  79,  186,    12 },   // F3 MENU OPTION
-    
+
+
+
+struct cursorHighlighterRectMapping g_gui_cursorHighlighterRectMap[1][4] = { //TODO so this is a map of mappings or an array that is a struct of structs?
+    //cursor_id_row, cursor_id_col, x, y, width, height
+    {
+        { 0,   0,       35,  37,  186,   12 },   // F10 MENU OPTION
+        { 1,   0,       35,  51,  186,   12 },   // F1 MENU OPTION
+        { 2,   0,       35,  65,  186,   12 },   // F2 MENU OPTION
+        { 3,   0,       35,  79,  186,   12 },   // F3 MENU OPTION
+    }
 };
 
 
-struct cursorHighlighterRectMapping g_editor_cursorHighlighterRectMap[] = { //TODO so this is a map of mappings or an array that is a struct of structs?
-    // cursor_id, x,   y,   width, height
+struct cursorHighlighterRectMapping g_editor_cursorHighlighterRectMap[1][7] = { //TODO so this is a map of mappings or an array that is a struct of structs?
+    //cursor_id_row, cursor_id_col, x, y, width, height
+    {   //editor panel
+        { 0,   0,       80+10, 100, 300-20, 40 }, //editor panel NEW button
+        { 1,   0,       80+10, 140, 300-20, 40 }, //editor panel EDIT button
+        { 2,   0,       80+10, 180, 300-20, 40 }, //editor panel LOAD button
+        { 3,   0,       80+10, 220, 300-20, 40 }, //editor panel SAVE button
 
-    //editor panel
-    { 0,         80+10, 100, 300-20, 40}, //editor panel NEW button
-    { 1,         80+10, 140, 300-20, 40}, //editor panel EDIT button
-    { 2,         80+10, 180, 300-20, 40}, //editor panel LOAD button
-    { 3,         80+10, 220, 300-20, 40}, //editor panel SAVE button
-    
-    { 4,         80+10, 340, 300-20, 40}, //editor panel HOME button 
-    { 5,         80+10, 380, 300-20, 40}, //editor panel PRESETS button
-    { 6,         80+10, 420, 300-20, 40}, //editor panel NEW button
-    
+        { 4,   0,       80+10, 340, 300-20, 40 }, //editor panel HOME button
+        { 5,   0,       80+10, 380, 300-20, 40 }, //editor panel PRESETS button
+        { 6,   0,       80+10, 420, 300-20, 40 }, //editor panel NEW button
+    }
 };
 
 
 
-struct cursorHighlighterRectMapping g_preset_panel_cursorHighlighterRectMap[] = { //TODO so this is a map of mappings or an array that is a struct of structs?
-    // cursor_id, x,   y,   width, height
-    { 0,          35,  37,  186,    12 },   // F10 MENU OPTION
-    { 1,          35,  51,  186,    12 },   // F1 MENU OPTION
-    { 2,          35,  65,  186,    12 },   // F2 MENU OPTION
-    
+struct cursorHighlighterRectMapping g_preset_panel_cursorHighlighterRectMap[6][5] = { //TODO so this is a map of mappings or an array that is a struct of structs?
+    //cursor_id_row, cursor_id_col, x, y, width, height
 
-    { 3,          80,  160,  300,   40 },   // TOP ROW FIRST CELL
-    { 4,          80,  200,  300,   40 },   // 2ND ROW DOWN FIRST CELL
-    { 5,          80,  240,  300,   40 },   // 3RD ROW DOWN FIRST CELL
-    { 6,          80,  280,  300,   40 },   // 4th ROW DOWN FIRST CELL
-    { 7,          80,  320,  300,   40 },   // 5th ROW DOWN FIRST CELL
+    {   //COLUMN 0 - MENU
+        { 0,   0,       35,   37,   186,   12 },   // F10 MENU OPTION
+        { 1,   0,       35,   51,   186,   12 },   // F1 MENU OPTION
+        { 2,   0,       35,   65,   186,   12 },   // F2 MENU OPTION
+        { 0,   0,        0,    0,     0,    0 },   // UNUSED
+        { 0,   0,        0,    0,     0,    0 },   // UNUSED
+    },
 
-    { 8,          380,  160,  480,   40 },   // TOP ROW 2nd CELL
-    { 9,          380,  200,  480,   40 },   // 2nd row down 2nd CELL
-    { 10,         380,  240,  480,   40 },   // 3rd row down 2nd CELL
-    { 11,         380,  280,  480,   40 },   // 4th row down 2nd CELL
-    { 12,         380,  320,  480,   40 },   // 5th row down 2nd CELL
+    {   //COLUMN 1 - FIRST CELL
+        { 0,   1,       80,  160,   300,   40 },   // TOP ROW FIRST CELL
+        { 1,   1,       80,  200,   300,   40 },   // 2ND ROW DOWN FIRST CELL
+        { 2,   1,       80,  240,   300,   40 },   // 3RD ROW DOWN FIRST CELL
+        { 3,   1,       80,  280,   300,   40 },   // 4TH ROW DOWN FIRST CELL
+        { 4,   1,       80,  320,   300,   40 },   // 5TH ROW DOWN FIRST CELL
+    },
 
-    { 13,         860,  160,  100,   40 },   // TOP ROW LOAD CELL
-    { 14,         860,  200,  100,   40 },   // 2nd row down LOAD CELL
-    { 15,         860,  240,  100,   40 },   // 3rd row down LOAD CELL
-    { 16,         860,  280,  100,   40 },   // 4th row down LOAD CELL
-    { 17,         860,  320,  100,   40 },   // 5th row down LOAD CELL
+    {   //COLUMN 2 - 2ND CELL
+        { 0,   2,      380,  160,   480,   40 },   // TOP ROW 2ND CELL
+        { 1,   2,      380,  200,   480,   40 },   // 2ND ROW DOWN 2ND CELL
+        { 2,   2,      380,  240,   480,   40 },   // 3RD ROW DOWN 2ND CELL
+        { 3,   2,      380,  280,   480,   40 },   // 4TH ROW DOWN 2ND CELL
+        { 4,   2,      380,  320,   480,   40 },   // 5TH ROW DOWN 2ND CELL
+    },
 
-    { 18,         960,  160,  100,   40 },   // TOP ROW EDIT CELL
-    { 19,         960,  200,  100,   40 },   // 2nd row down EDIT CELL
-    { 20,         960,  240,  100,   40 },   // 3rd row down EDIT CELL
-    { 21,         960,  280,  100,   40 },   // 4th row down EDIT CELL
-    { 22,         960,  320,  100,   40 },   // 5th row down EDIT CELL
+    {   //COLUMN 3 - LOAD
+        { 0,   3,      860,  160,   100,   40 },   // TOP ROW LOAD CELL
+        { 1,   3,      860,  200,   100,   40 },   // 2ND ROW DOWN LOAD CELL
+        { 2,   3,      860,  240,   100,   40 },   // 3RD ROW DOWN LOAD CELL
+        { 3,   3,      860,  280,   100,   40 },   // 4TH ROW DOWN LOAD CELL
+        { 4,   3,      860,  320,   100,   40 },   // 5TH ROW DOWN LOAD CELL
+    },
 
-    { 23,        1060,  160,  100,   40 },   // TOP ROW DELETE CELL
-    { 24,        1060,  200,  100,   40 },   // 2nd row down DELETE CELL
-    { 25,        1060,  240,  100,   40 },   // 3rd row down DELETE CELL
-    { 26,        1060,  280,  100,   40 },   // 4th row down DELETE CELL
-    { 27,        1060,  320,  100,   40 },   // 5th row down DELETE CELL
+    {   //COLUMN 4 - EDIT
+        { 0,   4,      960,  160,   100,   40 },   // TOP ROW EDIT CELL
+        { 1,   4,      960,  200,   100,   40 },   // 2ND ROW DOWN EDIT CELL
+        { 2,   4,      960,  240,   100,   40 },   // 3RD ROW DOWN EDIT CELL
+        { 3,   4,      960,  280,   100,   40 },   // 4TH ROW DOWN EDIT CELL
+        { 4,   4,      960,  320,   100,   40 },   // 5TH ROW DOWN EDIT CELL
+    },
+
+    {   //COLUMN 5 - DELETE
+        { 0,   5,     1060,  160,   100,   40 },   // TOP ROW DELETE CELL
+        { 1,   5,     1060,  200,   100,   40 },   // 2ND ROW DOWN DELETE CELL
+        { 2,   5,     1060,  240,   100,   40 },   // 3RD ROW DOWN DELETE CELL
+        { 3,   5,     1060,  280,   100,   40 },   // 4TH ROW DOWN DELETE CELL
+        { 4,   5,     1060,  320,   100,   40 },   // 5TH ROW DOWN DELETE CELL
+    }
 
 };
 
@@ -82,36 +100,48 @@ void draw_cursor_highlighter() //TODO this functionality needs its own module
     if (!g_ApplicationState.cursorFlashingState) //if its not flashed then return
         return;
     
-    int currentCursorID = g_ApplicationState.cursorPosition; //TODO do we need this variable?
     struct cursorHighlighterRectMapping *currentMapping = NULL;
     int cursorHighlighterMapLength = 99; // TODO PROBLEM hardcoded TODO
 
+    int row = g_ApplicationState.cursorPositionRow;
+    int column = g_ApplicationState.cursorPositionColumn;
 
     //right about here we'll do a switch on the current panel of the application state
     struct cursorHighlighterRectMapping* cursorHighlighterRectMap;
     
     switch (g_ApplicationState.currentPanel)
     {
-        case 0:
-            cursorHighlighterRectMap = g_gui_cursorHighlighterRectMap;
+        case 0: //GUI
+            if (column != 0 || row < 0 || row >= 4)
+                return;
+
+            currentMapping = &g_gui_cursorHighlighterRectMap[column][row];
             break;
-        case 1:
-            cursorHighlighterRectMap = g_preset_panel_cursorHighlighterRectMap;
+
+        case 1: //PRESETS
+            if (column < 0 || column >= 6 || row < 0 || row >= 5)
+                return;
+
+            if (column == 0 && row >= 3)
+                return;
+
+            currentMapping = &g_preset_panel_cursorHighlighterRectMap[column][row];
             break;
-        case 2:
-            cursorHighlighterRectMap = g_editor_cursorHighlighterRectMap;
+
+        case 2: //EDITOR
+            if (column != 0 || row < 0 || row >= 7)
+                return;
+
+            currentMapping = &g_editor_cursorHighlighterRectMap[column][row];
             break;
+
+        default:
+            return;
     }
 
 
-    for (int i = 0; i < cursorHighlighterMapLength; i++)
-    {
-        if (cursorHighlighterRectMap[i].cursorHighlightPositionStateID == currentCursorID)
-        {
-            currentMapping = &cursorHighlighterRectMap[i];
-            break;
-        }
-    }
+
+    printf("Row: %d            Column: %d\n", g_ApplicationState.cursorPositionRow, g_ApplicationState.cursorPositionColumn);
 
     if (!currentMapping)
         return;

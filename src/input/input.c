@@ -143,15 +143,15 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
     // S key: only trigger on DOWN edge
     if (sDown && !prevS)
     {
-        if (g_ApplicationState.cursorPosition < 9)
-            g_ApplicationState.cursorPosition++;
+        if (g_ApplicationState.cursorPositionRow < 9)
+            g_ApplicationState.cursorPositionRow++;
     }
 
     // W key: only trigger on DOWN edge
     if (wDown && !prevW)
     {
-        if (g_ApplicationState.cursorPosition > 0)
-            g_ApplicationState.cursorPosition--;
+        if (g_ApplicationState.cursorPositionRow > 0)
+            g_ApplicationState.cursorPositionRow--;
     }
 
 
@@ -167,7 +167,7 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
         g_ApplicationState.currentPositionInEditorList--;
     }
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  3) 
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  3) 
     {
         g_ApplicationState.currentPanel = 2; //TODO I thought the editor was 1 not 2?????? im so confused
     }
@@ -187,7 +187,7 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
     prevDown = downArrow;  //up and down on keypad for scrolling through editor list
     prevUp = upArrow;  //up and down on keypad for scrolling through editor list
 
-    //printf("gGuiState.cursorPosition: %d\n", g_GuiState.cursorPosition);
+    //printf("gGuiState.cursorPositionRow: %d\n", g_GuiState.cursorPositionRow);
 }
 
 
@@ -209,15 +209,15 @@ void handle_editor_input()
     // S key: only trigger on DOWN edge
     if (sDown && !prevS)
     {
-        if (g_ApplicationState.cursorPosition < 9)
-            g_ApplicationState.cursorPosition++;
+        if (g_ApplicationState.cursorPositionRow < 9)
+            g_ApplicationState.cursorPositionRow++;
     }
 
     // W key: only trigger on DOWN edge
     if (wDown && !prevW)
     {
-        if (g_ApplicationState.cursorPosition > 0)
-            g_ApplicationState.cursorPosition--;
+        if (g_ApplicationState.cursorPositionRow > 0)
+            g_ApplicationState.cursorPositionRow--;
     }
 
 
@@ -233,24 +233,24 @@ void handle_editor_input()
         g_ApplicationState.currentPositionInEditorList--;
     }
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  2) //if the cursor is on the LOAD button in the editor panel and enter is pressed: switch to the preset panel and then the preset panels list view of presets with load highlighted
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  2) //if the cursor is on the LOAD button in the editor panel and enter is pressed: switch to the preset panel and then the preset panels list view of presets with load highlighted
     {
         g_ApplicationState.currentPanel = 1; // switch to the preset panel
-        g_ApplicationState.cursorPosition =  0; // TODO GO INTO THE LOAD ON THE ACTUAL LIST VIEW OF THE PRESETS 
+        g_ApplicationState.cursorPositionRow =  0; // TODO GO INTO THE LOAD ON THE ACTUAL LIST VIEW OF THE PRESETS 
     }
 
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  4) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  4) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
     {
         g_ApplicationState.currentPanel = 0;
-        g_ApplicationState.cursorPosition =  0; //after switching to home panel set cursor position to 0
+        g_ApplicationState.cursorPositionRow =  0; //after switching to home panel set cursor position to 0
     }
 
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  5) //if the cursor is on the PRESETS button in the editor panel and enter is pressed: switch to the PRESETS panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  5) //if the cursor is on the PRESETS button in the editor panel and enter is pressed: switch to the PRESETS panel
     {
         g_ApplicationState.currentPanel = 1;
-        g_ApplicationState.cursorPosition =  0; //after switching to preset panel set cursor position to 0
+        g_ApplicationState.cursorPositionRow =  0; //after switching to preset panel set cursor position to 0
     }
 
     
@@ -268,7 +268,7 @@ void handle_editor_input()
     prevDown = downArrow;  //up and down on keypad for scrolling through editor list
     prevUp = upArrow;  //up and down on keypad for scrolling through editor list
 
-    //printf("gGuiState.cursorPosition: %d\n", g_GuiState.cursorPosition);
+    //printf("gGuiState.cursorPositionRow: %d\n", g_GuiState.cursorPositionRow);
 }
 
 
@@ -293,29 +293,29 @@ void handle_preset_panel_input()
     // S key: only trigger on DOWN edge
     if (sDown && !prevS)
     {
-        if (g_ApplicationState.cursorPosition < 99) //TODO make sure you fix this 99 is way more
-            g_ApplicationState.cursorPosition++;
+        if (g_ApplicationState.cursorPositionRow < 99) //TODO make sure you fix this 99 is way more
+            g_ApplicationState.cursorPositionRow++;
     }
 
     // W key: only trigger on DOWN edge
     if (wDown && !prevW)
     {
-        if (g_ApplicationState.cursorPosition > 0)
-            g_ApplicationState.cursorPosition--;
+        if (g_ApplicationState.cursorPositionRow > 0)
+            g_ApplicationState.cursorPositionRow--;
     }
 
 
     if (aDown && !prevA)
     {
-        if (g_ApplicationState.cursorPositionColumn < 10) //TODO don't think there's 10 columns (11 columns)
-            g_ApplicationState.cursorPositionColumn++;
+        if (g_ApplicationState.cursorPositionColumn > 0)
+            g_ApplicationState.cursorPositionColumn--;
     }
 
 
     if (dDown && !prevD)
     {
-        if (g_ApplicationState.cursorPositionColumn > 0)
-            g_ApplicationState.cursorPositionColumn--;
+        if (g_ApplicationState.cursorPositionColumn < 10) //TODO don't think there's 10 columns (11 columns)
+            g_ApplicationState.cursorPositionColumn++;
     }
 
 
@@ -331,17 +331,17 @@ void handle_preset_panel_input()
         g_ApplicationState.currentPositionInEditorList--;
     }
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  1) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  1) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
     {
         g_ApplicationState.currentPanel = 0; //switch to home
-        g_ApplicationState.cursorPosition =  0; //after switching to home panel set cursor position to 0
+        g_ApplicationState.cursorPositionRow =  0; //after switching to home panel set cursor position to 0
     }
 
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPosition ==  2) //if the cursor is on the editor button in the presets panel and enter is pressed: switch to the editor panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  2) //if the cursor is on the editor button in the presets panel and enter is pressed: switch to the editor panel
     {
         g_ApplicationState.currentPanel = 2; //switch to editor panel
-        g_ApplicationState.cursorPosition =  0; //after switching to the editor panel set cursor position to 0
+        g_ApplicationState.cursorPositionRow =  0; //after switching to the editor panel set cursor position to 0
     }
 
     
@@ -355,9 +355,11 @@ void handle_preset_panel_input()
 
     prevS = sDown;
     prevW = wDown;
+    prevA = aDown;
+    prevD = dDown; 
 
     prevDown = downArrow;  //up and down on keypad for scrolling through editor list
     prevUp = upArrow;  //up and down on keypad for scrolling through editor list
 
-    //printf("gGuiState.cursorPosition: %d\n", g_GuiState.cursorPosition);
+    //printf("gGuiState.cursorPositionRow: %d\n", g_GuiState.cursorPositionRow);
 }

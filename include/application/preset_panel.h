@@ -5,7 +5,7 @@
 
 
 struct PRESET_PANEL_STATE {
-    int cursorPosition;
+    int cursorPositionRow;
     bool cursorFlashingState;
     double lastFlashToggleTime;   // seconds
 

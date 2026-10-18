@@ -8,7 +8,7 @@
 
 struct GUI_STATE {
     // int currentPanel; TODO all this functionality needs to only be in the application state not specific to the gui panel state
-    // int cursorPosition;
+    // int cursorPositionRow;
     // bool cursorFlashingState;
     // double lastFlashToggleTime;   // seconds
 
