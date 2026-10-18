@@ -146,7 +146,7 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
         if (g_ApplicationState.cursorPositionRow < 9)
             g_ApplicationState.cursorPositionRow++;
     }
-    
+
     // W key: only trigger on DOWN edge
     if (wDown && !prevW)
     {
@@ -333,7 +333,6 @@ void handle_preset_panel_input()
     prevA = aDown;
     prevD = dDown; 
 
- 
-
+    
     //printf("gGuiState.cursorPositionRow: %d\n", g_GuiState.cursorPositionRow);
 }
