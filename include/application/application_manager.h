@@ -4,9 +4,16 @@
 #include <stdbool.h>
 
 
+enum ControllerType  
+{
+    CONTROLLER_TYPE_DS4,
+    CONTROLLER_TYPE_XBOX_ONE,
+    CONTROLLER_TYPE_OTHER
 
-#define CONTROLLER_TYPE_DS4 0
-#define CONTROLLER_TYPE_XBOX_ONE 1
+}
+// #define CONTROLLER_TYPE_DS4 0
+// #define CONTROLLER_TYPE_XBOX_ONE 1
+// #define CONTROLLER_TYPE_OTHER 2
 
 
 struct APPLICATION_STATE {

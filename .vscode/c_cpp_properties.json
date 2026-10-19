@@ -13,7 +13,8 @@
                 "${workspaceFolder}/include/application/**",
                 "${workspaceFolder}/include/input/**",
                 "${workspaceFolder}/include/util/**",
-                "${workspaceFolder}/src/util"
+                "${workspaceFolder}/src/util",
+                 "C:/DEV/SDL/x86_64-w64-mingw32/include/**"
             ],
             "defines": [
                 "_DEBUG",

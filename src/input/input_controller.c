@@ -7,6 +7,7 @@
 #include "application/application_manager.h"
 
 
+
 void poll_controller() //polls controller, relays controller state to g_ApplicationState
 {
     DWORD dwResult_controller0;
@@ -34,4 +35,23 @@ void poll_controller() //polls controller, relays controller state to g_Applicat
         {
             g_ApplicationState.controllerConnected = false;
         }
+}
+
+
+
+enum ControllerType detect_controller(SDL_JoystickID id)
+{
+    SDL_GamepadType type = SDL_GetGamepadTypeForID(id);
+
+    switch (type)
+    {
+        case SDL_GAMEPAD_TYPE_XBOXONE:
+            return CONTROLLER_TYPE_XBOX_ONE;
+
+        case SDL_GAMEPAD_TYPE_PS4:
+            return CONTROLLER_TYPE_DS4;
+
+        default:
+            return CONTROLLER_TYPE_OTHER;
+    }
 }
