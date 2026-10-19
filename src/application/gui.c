@@ -27,50 +27,77 @@ void gui_init()
     g_GuiState.leftCube = createCube(396, 48, 100, 20); //create a heap-allocated cube
     g_GuiState.rightCube = createCube(884, 48, 100, 20);
 
-    g_GuiState.controllerMesh = get_mesh(XBOX_ONE_CONTROLLER_FILEPATH);
+    g_GuiState.controllerMeshXboxOne = get_mesh(XBOX_ONE_CONTROLLER_FILEPATH);
+    g_GuiState.controllerMeshDS4 = get_mesh(DS4_CONTROLLER_FILEPATH);
     
-    //position the mesh in the right spot
+    //position the mesh in the right spot   
     //reflect_mesh(g_GuiState.controllerMesh);  //TODO MOVE THESE THREE TO INIT GUI REFLECT ROTATE TRANSLATE
     //rotate_vertices(g_GuiState.controllerMesh->vertices, 90, 180, 0); //DS4
      
     //translate_mesh(g_GuiState.controllerMesh, 600.0f, 340.0f, 0.0f); DS4 MODEL
 
-    
-    switch(g_ApplicationState.controllerTypeDetected)    //TODO add default
-    {
-        case CONTROLLER_TYPE_DS4:
-            rotate_vertices(g_GuiState.controllerMesh->vertices, 90, 180, 180); //DS4
-            translate_mesh(g_GuiState.controllerMesh, 600.0f, 340.0f, 0.0f); //XBOX_ONE ODEL
-            g_GuiState.controllerMeshPivot = malloc(sizeof(struct vec3));
+    //TODO for now lets just initialize them both we can leave this block when we want to optimize to only initiialize a mesh when its selected but its kind of overkill and 
+    // will make code sloppier
+    // switch(g_ApplicationState.controllerTypeDetected)    //TODO add default
+    // {
+    //     case CONTROLLER_TYPE_DS4:
+    //         rotate_vertices(g_GuiState.controllerMeshDS4->vertices, 90, 180, 180); //DS4
+    //         translate_mesh(g_GuiState.controllerMeshDS4, 600.0f, 340.0f, 0.0f); //XBOX_ONE ODEL
+    //         g_GuiState.controllerMeshPivot = malloc(sizeof(struct vec3));
 
-            if (g_GuiState.controllerMeshPivot != NULL) {
-                *g_GuiState.controllerMeshPivot = (struct vec3) { 600.0f, 340.0f, 0.0f };
-            }
-            break;
+    //         if (g_GuiState.controllerMeshPivot != NULL) {
+    //             *g_GuiState.controllerMeshPivot = (struct vec3) { 600.0f, 340.0f, 0.0f };
+    //         }
+    //         break;
         
         
-        case CONTROLLER_TYPE_XBOX_ONE:
-            rotate_vertices(g_GuiState.controllerMesh->vertices, 90, 180, 0); //TODO make sure theres no copying going on here and its all heap-allocations
-            scale_mesh(g_GuiState.controllerMesh, 500.0f);
-            translate_mesh(g_GuiState.controllerMesh, 600.0f, 340.0f, 0.0f); //XBOX_ONE ODEL
-            g_GuiState.controllerMeshPivot = malloc(sizeof(struct vec3));
+    //     case CONTROLLER_TYPE_XBOX_ONE:
+    //         rotate_vertices(g_GuiState.controllerMeshXboxOne->vertices, 90, 180, 0); //TODO make sure theres no copying going on here and its all heap-allocations
+    //         scale_mesh(g_GuiState.controllerMeshXboxOne, 500.0f);
+    //         translate_mesh(g_GuiState.controllerMeshXboxOne, 600.0f, 340.0f, 0.0f); //XBOX_ONE ODEL
+    //         g_GuiState.controllerMeshPivot = malloc(sizeof(struct vec3));
 
-            if (g_GuiState.controllerMeshPivot != NULL) {
-                *g_GuiState.controllerMeshPivot = (struct vec3) { 600.0f, 340.0f, 0.0f };
-            }
-            break;
+    //         if (g_GuiState.controllerMeshPivot != NULL) {
+    //             *g_GuiState.controllerMeshPivot = (struct vec3) { 600.0f, 340.0f, 0.0f };
+    //         }
+    //         break;
 
+    // }
+
+    //TODO for now lets just initialize them both
+    rotate_vertices(g_GuiState.controllerMeshDS4->vertices, 90, 180, 180); //DS4
+    translate_mesh(g_GuiState.controllerMeshDS4, 600.0f, 340.0f, 0.0f); //XBOX_ONE ODEL
+    g_GuiState.controllerMeshPivot = malloc(sizeof(struct vec3));
+
+    rotate_vertices(g_GuiState.controllerMeshXboxOne->vertices, 90, 180, 0); //TODO make sure theres no copying going on here and its all heap-allocations
+    scale_mesh(g_GuiState.controllerMeshXboxOne, 500.0f);
+    translate_mesh(g_GuiState.controllerMeshXboxOne, 600.0f, 340.0f, 0.0f); //XBOX_ONE ODEL
+    g_GuiState.controllerMeshPivot = malloc(sizeof(struct vec3));
+
+    if (g_GuiState.controllerMeshPivot != NULL) {
+        *g_GuiState.controllerMeshPivot = (struct vec3) { 600.0f, 340.0f, 0.0f };
     }
 } 
 
 
 void gui_update(float delta) //updates all the things within the gui that need to be updated, should take in delta as input because alot of stuff need that
-{
+{   
 
-
-    rotate_vertices_around_point(g_GuiState.controllerMesh->vertices, g_GuiState.controllerMeshPivot, 0, 40*delta, 0); //TODO MOVE THIS TO UPDATE GUI
-    rotateCubeAroundOrigin(g_GuiState.leftCube, 100*delta, 20*delta, 40*delta);  //TODO MOVE THIS TO UPDATE GUI
+    rotateCubeAroundOrigin(g_GuiState.leftCube, 100*delta,20*delta, 40*delta);  //TODO MOVE THIS TO UPDATE GUI
     rotateCubeAroundOrigin(g_GuiState.rightCube, -(100*delta), -(20*delta), -(40*delta));  //TODO MOVE THIS TO UPDATE GUI
+
+    switch(g_ApplicationState.controllerTypeDetected)  //TODO add default
+    {
+        case CONTROLLER_TYPE_DS4:
+            rotate_vertices_around_point(g_GuiState.controllerMeshDS4->vertices, g_GuiState.controllerMeshPivot, 0, 40*delta, 0); //TODO MOVE THIS TO UPDATE GUI
+            break;
+        
+        
+        case CONTROLLER_TYPE_XBOX_ONE:
+            rotate_vertices_around_point(g_GuiState.controllerMeshXboxOne->vertices, g_GuiState.controllerMeshPivot, 0, 40*delta, 0); //TODO MOVE THIS TO UPDATE GUI
+            break;
+
+    }
 }
 
 
@@ -134,7 +161,17 @@ void gui_drawing_tree()
     draw_cube(g_GuiState.leftCube, 1);  //TODO MOVE THIS TO GUI_DRAWING_TREE
     draw_cube(g_GuiState.rightCube,1); //TODO MOVE THIS TO GUI_DRAWING_TREE
 
-    draw_fbx_model(g_GuiState.controllerMesh, 1); //TODO MOVE THIS TO GUI_DRAWING_TREE
+
+    switch(g_ApplicationState.controllerTypeDetected)  //TODO add default
+    {
+        case CONTROLLER_TYPE_DS4:
+            draw_fbx_model(g_GuiState.controllerMeshDS4, 1); 
+            break;
+        
+        case CONTROLLER_TYPE_XBOX_ONE:
+            draw_fbx_model(g_GuiState.controllerMeshXboxOne, 1); 
+            break;
+    }
 
     //gui_draw_cursor_highlighter(); TODO i think this should be global in some way, putting this in here confines it to the main panel?
 }

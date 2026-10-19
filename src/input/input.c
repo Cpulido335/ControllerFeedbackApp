@@ -170,7 +170,19 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
     }
 
 
+    if (isKeyPressed(DC_Y)) //switch viewed model to DS4 
+    {
+        g_ApplicationState.controllerTypeDetected = CONTROLLER_TYPE_DS4; 
+    }
 
+    if (isKeyPressed(DC_U))  //switch viewed model to XboxOne Controller
+    {
+        g_ApplicationState.controllerTypeDetected = CONTROLLER_TYPE_XBOX_ONE;
+    }
+
+
+    
+    
     prevS = sDown;
     prevW = wDown;
 

@@ -18,7 +18,8 @@ struct GUI_STATE {
 
     struct Cube *leftCube;
     struct Cube *rightCube;
-    struct Mesh *controllerMesh;
+    struct Mesh *controllerMeshDS4; //TODO lets just have them both for now. clean code > optimization
+    struct Mesh *controllerMeshXboxOne;
     struct vec3 *controllerMeshPivot;
 };
 
