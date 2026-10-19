@@ -17,3 +17,20 @@ void reflect_mesh(struct Mesh *mesh)
         mesh->vertices->vec3array[i].x = -mesh->vertices->vec3array[i].x;
     }
 }
+
+void scale_mesh(struct Mesh *mesh, float scale)
+{
+    for (int i = 0; i < mesh->vertices->length; i++)
+    {
+        mesh->vertices->vec3array[i].x *= scale;
+        mesh->vertices->vec3array[i].y *= scale;
+        mesh->vertices->vec3array[i].z *= scale;
+    }
+}
+
+void scale_mesh_pivot(struct vec3 *mesh_pivot, float scale)
+{
+    mesh_pivot->x *= scale;
+    mesh_pivot->y *= scale;
+    mesh_pivot->z *= scale;
+}

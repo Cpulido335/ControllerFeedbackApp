@@ -162,20 +162,16 @@ void rotate_vertices(struct Vertices *vertices, float angleX, float angleY, floa
 }
 
 
-void rotate_vertices_around_point(struct Vertices *vertices,
-                                  struct vec3 pivot,
-                                  float angleX,
-                                  float angleY,
-                                  float angleZ)
+void rotate_vertices_around_point(struct Vertices *vertices, struct vec3 *pivot, float angleX, float angleY, float angleZ)
 {
     for (int i = 0; i < vertices->length; i++)
     {
         struct vec3 v = vertices->vec3array[i];
 
         // move pivot to origin
-        v.x -= pivot.x;
-        v.y -= pivot.y;
-        v.z -= pivot.z;
+        v.x -= pivot->x;
+        v.y -= pivot->y;
+        v.z -= pivot->z;
 
         // rotate in local space
         v = rotateX(v, angleX);
@@ -183,9 +179,9 @@ void rotate_vertices_around_point(struct Vertices *vertices,
         v = rotateZ(v, angleZ);
 
         // move back
-        v.x += pivot.x;
-        v.y += pivot.y;
-        v.z += pivot.z;
+        v.x += pivot->x;
+        v.y += pivot->y;
+        v.z += pivot->z;
 
         vertices->vec3array[i] = v;
     }

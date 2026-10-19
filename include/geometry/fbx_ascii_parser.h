@@ -14,9 +14,9 @@
 
 bool contains_string(const char* string, const char* buffer);
 
-struct Edges* get_edges(); //TODO question does this return an entire struct on the stack or a pointer to a struct on the heap or struct on the stack that contains a pointer to an array of vec3s on the heap how tf does this even wor
-struct Vertices* get_vertices();
-struct Mesh* get_mesh();
+struct Edges* get_edges(const char* filepath_to_fbx_ascii_model); //TODO question does this return an entire struct on the stack or a pointer to a struct on the heap or struct on the stack that contains a pointer to an array of vec3s on the heap how tf does this even wor
+struct Vertices* get_vertices(const char* filepath_to_fbx_ascii_model);
+struct Mesh* get_mesh(const char* filepath_to_fbx_ascii_model);
 
 
 

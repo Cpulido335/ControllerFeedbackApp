@@ -40,4 +40,7 @@
 #define PRESET_PANEL_NUM_ROWS 5
 #define PRESET_PANEL_NUM_COLUMNS 6
 
+//#define XBOX_ONE_CONTROLLER_FILEPATH "assets/test.fbx"
+#define XBOX_ONE_CONTROLLER_FILEPATH "assets/3dpea.com_attempt1.fbx"
+
 #endif

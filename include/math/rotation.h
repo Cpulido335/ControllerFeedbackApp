@@ -14,7 +14,7 @@ struct vec3 rotateVertex(struct vec3 v, float thetaX, float thetaY, float thetaZ
 void rotateCubeAroundOrigin(struct Cube *cube, float thetaX, float thetaY, float thetaZ);
 
 void rotate_vertices(struct Vertices *vertices, float angleX, float angleY, float angleZ);
-void rotate_vertices_around_point(struct Vertices *vertices, struct vec3 pivot, float angleX, float angleY, float angleZ);
+void rotate_vertices_around_point(struct Vertices *vertices, struct vec3 *pivot, float angleX, float angleY, float angleZ);
 
 
 #endif

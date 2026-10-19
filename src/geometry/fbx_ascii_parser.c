@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 #include "geometry/mesh.h"
+#include "globals.h"
 
 bool contains_string(const char* string, const char* buffer)
 {
@@ -36,59 +37,6 @@ bool contains_string(const char* string, const char* buffer)
 }
 
 
-// //it seems to me like the only practical way to do this is to just read in the entire file as a string
-// char *read_entire_file(const char *filename) 
-// {
-//     FILE *fp = fopen(filename, "rb"); //open file in binary mode for correct size in ftell
-//     if (!fp)
-//     {
-//         perror("Failed to open file");
-//         return NULL;
-//     }
-
-//     //go to the end of the file
-//     if (fseek(fp, 0L, SEEK_END) != 0) 
-//     {
-//         perror("Error seeking to end of file");
-//         fclose(fp);
-//         return NULL;
-//     }
-
-//     //get the size of the file
-//     long bufsize = ftell(fp);
-//     if (bufsize == -1) 
-//     {
-//         perror("Error getting file size");
-//         fclose(fp);
-//         return NULL;
-//     }
-
-//     //allocate our buffer to that size (+1 for null terminator if needed for text processing)
-//     char *source = malloc(sizeof(char) * (bufsize + 1));
-
-
-//     //go back to start of the file
-//     if (fseek(fp, 0L, SEEK_SET) != 0) {
-//         perror("Error seeking to start of file");
-//         free(source);
-//         fclose(fp);
-//         return NULL;
-//     }
-
-//     //read the entire file into memory
-//     size_t newLen = fread(source, sizeof(char), bufsize, fp);
-//     if (ferror(fp) != 0) {
-//         perror("Error reading file");
-//         free(source);
-//         fclose(fp);
-//         return NULL;
-//     } else {
-//         source[newLen] = '\\0'; //tack on the null terminator
-//     }
-
-//     fclose(fp);
-//     return source;
-// }
 
 char *read_entire_file(const char *filename)
 {
@@ -183,10 +131,9 @@ int get_float_count(const char *buffer){
 }
 
 
-struct Edges* get_edges()
+struct Edges* get_edges(const char* filepath_to_fbx_ascii_model)
 {
-    const char *theEntireFuckingFbxFileAsAString =
-        read_entire_file("assets/3dpea.com_attempt1.fbx");
+    const char *theEntireFuckingFbxFileAsAString = read_entire_file(filepath_to_fbx_ascii_model);
 
     int edges_start_index = find_substring_index(theEntireFuckingFbxFileAsAString, "PolygonVertexIndex:");
 
@@ -238,9 +185,10 @@ for (int i = 0; i < edges->length; i++)
 }
 
 
-struct Vertices* get_vertices()
+
+struct Vertices* get_vertices(const char* filepath_to_fbx_ascii_model)
 {
-    const char *theEntireFuckingFbxFileAsAString = read_entire_file("assets/3dpea.com_attempt1.fbx");
+    const char *theEntireFuckingFbxFileAsAString = read_entire_file(filepath_to_fbx_ascii_model);
 
     int vertices_start_index = find_substring_index(theEntireFuckingFbxFileAsAString, "Vertices:"); //find vertices
 
@@ -289,8 +237,14 @@ struct Vertices* get_vertices()
             break;
     }
 
-    float a = float_array[1084];
-    float b = float_array[1085];
+    float a = float_array[float_count-2]; //TODO somewhat dangerous I think we can only do this because of VLAs  TODO is this even necessary what is this for?
+    float b = float_array[float_count-1]; 
+
+
+    //float a = float_array[1084]; //DS4    
+    //float b = float_array[1085]; //DS4
+    //float a = float_array[7834]; //XBOX ONE
+    //float b = float_array[7835]; //XBOX ONE
 
     //create the vec3 array
     struct Vertices *vertices = malloc(sizeof(struct Vertices));
@@ -309,15 +263,15 @@ struct Vertices* get_vertices()
 
 
 
-struct Mesh* get_mesh()
+struct Mesh* get_mesh(const char* filepath_to_fbx_ascii_model)
 {
     // Allocate the Mesh itself on the heap
     struct Mesh *mesh = malloc(sizeof(struct Mesh));
     if (!mesh) return NULL;
 
     // Use your fully heap-allocated functions
-    mesh->vertices = get_vertices(); // returns struct Vertices* 
-    mesh->edges = get_edges();    // returns struct Edges*
+    mesh->vertices = get_vertices(filepath_to_fbx_ascii_model); // returns struct Vertices* 
+    mesh->edges = get_edges(filepath_to_fbx_ascii_model);    // returns struct Edges*
 
     return mesh;
 }

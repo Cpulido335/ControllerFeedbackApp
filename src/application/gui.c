@@ -15,39 +15,11 @@
 
 
 
-// struct cursorHighlighterRectMapping g_cursorHighlighterRectMap[] = { //TODO so this is a map of mappings or an array that is a struct of structs? TODO probably remove this too?
-//     // cursor_id, x,   y,   width, height
-//     { 0,          35,  37,  186,    12 },   // F10 MENU OPTION
-//     { 1,          35,  51,  186,    12 },   // F1 MENU OPTION
-//     { 2,          35,  65,  186,    12 },   // F2 MENU OPTION
-
-//     //editor panel
-//     { 3,         80+10, 100, 300-20, 40}, //editor panel NEW button
-//     { 4,         80+10, 140, 300-20, 40}, //editor panel EDIT button
-//     { 5,         80+10, 180, 300-20, 40}, //editor panel LOAD button
-//     { 6,         80+10, 220, 300-20, 40}, //editor panel SAVE button
-    
-//     { 7,         80+10, 340, 300-20, 40}, //editor panel HOME button 
-//     { 8,         80+10, 380, 300-20, 40}, //editor panel PRESETS button
-//     { 9,         80+10, 420, 300-20, 40}, //editor panel NEW button
-    
-// };
-
-
 struct GUI_STATE g_GuiState = { 
     
 };
 
 
-struct redrawZoneMapping g_redrawZoneMap[] = { //TODO I think we can get rid of this
-    // cursor_id,      x,   y,   width, height
-    { 0,            28, 27, 204, 86 },   // F10 MENU OPTION TOPLEFT KILLZONE
-    { 1,            28, 27, 204, 86 },   // F1 MENU OPTION  TOPLEFT KILLZONE
-    { 2,            28, 27, 204, 86 },   // F2 MENU OPTION  TOPLEFT KILLZONE
-
-
-    
-};
 
 
 void gui_init()
@@ -55,29 +27,46 @@ void gui_init()
     g_GuiState.leftCube = createCube(396, 48, 100, 20); //create a heap-allocated cube
     g_GuiState.rightCube = createCube(884, 48, 100, 20);
 
-    g_GuiState.controllerMesh = get_mesh();
+    g_GuiState.controllerMesh = get_mesh(XBOX_ONE_CONTROLLER_FILEPATH);
+    
     //position the mesh in the right spot
     //reflect_mesh(g_GuiState.controllerMesh);  //TODO MOVE THESE THREE TO INIT GUI REFLECT ROTATE TRANSLATE
-    rotate_vertices(g_GuiState.controllerMesh->vertices, 90, 180, 180); //TODO make sure theres no copying going on here and its all heap-allocations
-    translate_mesh(g_GuiState.controllerMesh, 600.0f, 340.0f, 0.0f);
+    //rotate_vertices(g_GuiState.controllerMesh->vertices, 90, 180, 0); //DS4
+     
+    //translate_mesh(g_GuiState.controllerMesh, 600.0f, 340.0f, 0.0f); DS4 MODEL
 
-    // struct vec3 pivot; //set up the pivot so that the controller mesh can rotate around it
-    // pivot.x = 0 + 600; pivot.y =0+340; pivot.z =0;
-    // g_GuiState.controllerMeshPivot = &pivot;
+    
+    switch(g_ApplicationState.controllerTypeDetected)    //TODO add default
+    {
+        case CONTROLLER_TYPE_DS4:
+            rotate_vertices(g_GuiState.controllerMesh->vertices, 90, 180, 180); //DS4
+            translate_mesh(g_GuiState.controllerMesh, 600.0f, 340.0f, 0.0f); //XBOX_ONE ODEL
+            g_GuiState.controllerMeshPivot = malloc(sizeof(struct vec3));
 
-    g_GuiState.controllerMeshPivot = (struct vec3){ 600.0f, 340.0f, 0.0f }; //TODO lets just store this by value
-}
+            if (g_GuiState.controllerMeshPivot != NULL) {
+                *g_GuiState.controllerMeshPivot = (struct vec3) { 600.0f, 340.0f, 0.0f };
+            }
+            break;
+        
+        
+        case CONTROLLER_TYPE_XBOX_ONE:
+            rotate_vertices(g_GuiState.controllerMesh->vertices, 90, 180, 0); //TODO make sure theres no copying going on here and its all heap-allocations
+            scale_mesh(g_GuiState.controllerMesh, 500.0f);
+            translate_mesh(g_GuiState.controllerMesh, 600.0f, 340.0f, 0.0f); //XBOX_ONE ODEL
+            g_GuiState.controllerMeshPivot = malloc(sizeof(struct vec3));
+
+            if (g_GuiState.controllerMeshPivot != NULL) {
+                *g_GuiState.controllerMeshPivot = (struct vec3) { 600.0f, 340.0f, 0.0f };
+            }
+            break;
+
+    }
+} 
 
 
 void gui_update(float delta) //updates all the things within the gui that need to be updated, should take in delta as input because alot of stuff need that
 {
-    double now = get_time_seconds();
 
-    // if (now - g_GuiState.lastFlashToggleTime >= CURSOR_FLASH_PERIOD)
-    // {
-    //     g_GuiState.cursorFlashingState = !g_GuiState.cursorFlashingState;
-    //     g_GuiState.lastFlashToggleTime = now;
-    // }
 
     rotate_vertices_around_point(g_GuiState.controllerMesh->vertices, g_GuiState.controllerMeshPivot, 0, 40*delta, 0); //TODO MOVE THIS TO UPDATE GUI
     rotateCubeAroundOrigin(g_GuiState.leftCube, 100*delta, 20*delta, 40*delta);  //TODO MOVE THIS TO UPDATE GUI
@@ -85,30 +74,7 @@ void gui_update(float delta) //updates all the things within the gui that need t
 }
 
 
-// void gui_draw_cursor_highlighter() //TODO this functionality needs its own module  
-// {
-//     if (!g_GuiState.cursorFlashingState) //if its not flashed then return
-//         return;
-    
-//     int currentCursorID = g_GuiState.cursorPositionRow; //TODO do we need this variable?
-//     struct cursorHighlighterRectMapping *currentMapping = NULL;
-//     int cursorHighlighterMapLength = 10; // TODO PROBLEM hardcoded TODO
 
-//     for (int i = 0; i < cursorHighlighterMapLength; i++)
-//     {
-//         if (g_cursorHighlighterRectMap[i].cursorHighlightPositionStateID == currentCursorID)
-//         {
-//             currentMapping = &g_cursorHighlighterRectMap[i];
-//             break;
-//         }
-//     }
-
-//     if (!currentMapping)
-//         return;
-
-//     //draw_rectangle_top_left(currentMapping->rectTopLeftX, currentMapping->rectTopLeftY, currentMapping->rectWidth, currentMapping->rectDepth, 0xFFFFFFFF, 2 );
-//     invert_rectangle_within_drawContext(currentMapping->rectTopLeftX, currentMapping->rectTopLeftY, currentMapping->rectWidth, currentMapping->rectDepth);
-// }
 
 
 void gui_drawing_tree()

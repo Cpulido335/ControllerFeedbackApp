@@ -3,6 +3,12 @@
 
 #include <stdbool.h>
 
+
+
+#define CONTROLLER_TYPE_DS4 0
+#define CONTROLLER_TYPE_XBOX_ONE 1
+
+
 struct APPLICATION_STATE {
     int currentPanel;
     int cursorPositionRow;
@@ -19,6 +25,7 @@ struct APPLICATION_STATE {
     //controller
 
     bool controllerConnected;
+    int controllerTypeDetected;
 
 };
 

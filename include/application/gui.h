@@ -19,7 +19,7 @@ struct GUI_STATE {
     struct Cube *leftCube;
     struct Cube *rightCube;
     struct Mesh *controllerMesh;
-    struct vec3 controllerMeshPivot;
+    struct vec3 *controllerMeshPivot;
 };
 
 //cursor position state list

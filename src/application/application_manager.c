@@ -15,6 +15,8 @@ struct APPLICATION_STATE g_ApplicationState = {
     .currentSelectedProfile = "data/profiles/xbox360example.preset", //TODO define this path with a global var 
 
 
-    .controllerConnected = false
+    .controllerConnected = false,
+
+    .controllerTypeDetected = CONTROLLER_TYPE_DS4
 };
 
