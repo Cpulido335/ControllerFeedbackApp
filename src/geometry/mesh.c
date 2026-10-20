@@ -28,7 +28,7 @@ void scale_mesh(struct Mesh *mesh, float scale)
     }
 }
 
-void scale_mesh_pivot(struct vec3 *mesh_pivot, float scale)
+void scale_mesh_pivot(struct vec3 *mesh_pivot, float scale) //TODO why would you need to scale a mesh pivot this probably can be removed??
 {
     mesh_pivot->x *= scale;
     mesh_pivot->y *= scale;
