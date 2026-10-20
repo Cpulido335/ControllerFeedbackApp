@@ -11,6 +11,7 @@
 #include "math/rotation.h"
 
 #include "application/application_manager.h"
+#include "input/input_controller.h"
 
 
 
@@ -79,13 +80,14 @@ void gui_init()
     }
 } 
 
-
 void gui_update(float delta) //updates all the things within the gui that need to be updated, should take in delta as input because alot of stuff need that
 {   
 
     rotateCubeAroundOrigin(g_GuiState.leftCube, 100*delta,20*delta, 40*delta);  //TODO MOVE THIS TO UPDATE GUI
     rotateCubeAroundOrigin(g_GuiState.rightCube, -(100*delta), -(20*delta), -(40*delta));  //TODO MOVE THIS TO UPDATE GUI
 
+    
+    
     switch(g_ApplicationState.controllerTypeDetected)  //TODO add default
     {
         case CONTROLLER_TYPE_DS4:

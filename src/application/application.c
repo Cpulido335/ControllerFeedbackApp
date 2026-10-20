@@ -5,9 +5,13 @@
 #include "globals.h"
 
 #include "input/input.h" //I dont know if this is how I want to architect this
+#include "input/input_controller.h"
 #include "util/clock.h"
 #include "application/application_manager.h"
 #include "application/cursor_highlight.h"
+
+#include <stdio.h>
+#include <SDL3/SDL.h> //using SDL3 for gamepad API
 
 
 
@@ -48,6 +52,15 @@ void Application_Init(struct Application* app, HINSTANCE hInstance)
     app->windowTitle = "Jahsehs App"; //hardcoded
     app->windowWidth = WINDOW_WIDTH;
     app->windowHeight = WINDOW_HEIGHT;
+
+    //initiazilize SDL3s gamepad subsystem
+    if (!SDL_Init(SDL_INIT_GAMEPAD))
+    {
+        printf("SDL initialization failed: %s\n", SDL_GetError());
+        return;
+    }
+
+    register_controller_sdl(); // call once on Init and everytime theres hotplugging, hotplugging can be detected with SDL3 API via SDL_EVENT_GAMEPAD_ADDED and SDL_EVENT_GAMEPAD_REMOVED
 }
 
 
@@ -59,6 +72,24 @@ void application_update()
     {
         g_ApplicationState.cursorFlashingState = !g_ApplicationState.cursorFlashingState;
         g_ApplicationState.lastFlashToggleTime = now;
+    }
+
+    //TODO right here we need do the SDL stuff for the gamepad subsystem
+    SDL_Event event;
+
+    while (SDL_PollEvent(&event))
+    {
+        switch (event.type)
+        {
+            case SDL_EVENT_GAMEPAD_ADDED:
+                register_controller_sdl();
+                break;
+
+            case SDL_EVENT_GAMEPAD_REMOVED:
+                register_controller_sdl();
+                break;
+
+        }
     }
 }
 

@@ -5,10 +5,11 @@
 #include "xinput.h"
 
 #include "application/application_manager.h"
+#include <stdio.h>
 
 
 
-void poll_controller() //polls controller, relays controller state to g_ApplicationState
+void poll_controller() //polls controller, relays controller state to g_ApplicationState TODO this is the OLD xinput version this can be removed after SDL3 gamepad API is implmented
 {
     DWORD dwResult_controller0;
     DWORD dwResult_controller1;
@@ -39,7 +40,68 @@ void poll_controller() //polls controller, relays controller state to g_Applicat
 
 
 
-enum ControllerType detect_controller(SDL_JoystickID id)
+void register_controller_sdl()  //TODO also needs error handling
+{
+    if (!SDL_HasGamepad()) 
+    {
+        printf("No gamepads connected.\n");
+        return;
+    } //From here we know at least one gampepad is connected
+
+
+    int count = 0;
+    SDL_JoystickID *ids = SDL_GetGamepads(&count);
+    SDL_Gamepad* gamepad = NULL;
+
+    // Iterate over the list of gamepads
+    for (int i = 0; i < count; i++) 
+    {
+        SDL_Gamepad* gamepd = SDL_OpenGamepad(ids[i]);
+        if (gamepad == NULL) {
+            gamepad = gamepd;
+        }
+        printf("Gamepad connected: %s\n", SDL_GetGamepadName(gamepd));
+        
+        // Close the other gamepads
+        if (i > 0) {
+            SDL_CloseGamepad(gamepd);
+        }
+
+        SDL_GamepadType type = SDL_GetGamepadType(gamepad);
+        register_gamepad_type(type);
+
+
+    }
+
+    if (!gamepad) {
+        printf("Failed to open gamepad\n");
+        return;
+    }
+
+     
+
+}
+
+//TODO needs error handling
+void register_gamepad_type(SDL_GamepadType gamepadType) //TODO this function acts as a translator between SDL3's controller type enumeration and my own controller type enumeration, honestly i should just exclusively utilize SDL3's
+{
+     switch (gamepadType)
+    {
+        case SDL_GAMEPAD_TYPE_XBOXONE:
+            g_ApplicationState.controllerTypeDetected = CONTROLLER_TYPE_XBOX_ONE;
+            break;
+
+        case SDL_GAMEPAD_TYPE_PS4:
+            g_ApplicationState.controllerTypeDetected = CONTROLLER_TYPE_DS4;
+            break;
+
+        default:
+            g_ApplicationState.controllerTypeDetected = CONTROLLER_TYPE_OTHER;
+            break;
+    }
+}
+
+enum ControllerType detect_controller(SDL_JoystickID id) //TODO this isnt used anymore i dont think
 {
     SDL_GamepadType type = SDL_GetGamepadTypeForID(id);
 
