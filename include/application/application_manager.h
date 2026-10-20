@@ -31,7 +31,7 @@ struct APPLICATION_STATE {
     const char *currentSelectedProfile; 
 
     //controller
-
+    SDL_Gamepad *current_gamepad;
     bool controllerConnected;
     int controllerTypeDetected;
 
@@ -39,6 +39,19 @@ struct APPLICATION_STATE {
 
     char controllerTypeString[64];
     char controllerSDL_GUID_string[128]; //TODO is this a practical way to initialize this in memory?
+
+
+    //controller axes
+    int controllerLeftStickX;
+    int controllerLeftStickY;
+    
+    int controllerRightStickX;
+    int controllerRightStickY;
+
+    int controllerLeftTrigger;
+    int controllerRightTrigger;
+
+    //controller buttons TODO add these
 
 };
 

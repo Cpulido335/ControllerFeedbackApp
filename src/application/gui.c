@@ -141,11 +141,19 @@ void gui_drawing_tree()
         draw_text_blazing("CONTROLLER NOT CONNECTED",   640-((51*12)/2), 600);
     }
 
+
+    //analag stick tracker 
+    //-32,768 - 32,767
+    
+    
     //BOTTOM LEFT
     draw_rounded_rectangle(30, 510, 200, 160, 10, 1,  COLOR_GREEN);
+    draw_circle(130 + g_ApplicationState.controllerLeftStickX * 94 / 32768, 590 + g_ApplicationState.controllerLeftStickY * 74 / 32768, 6, 1, COLOR_GREEN); 
 
     //BOTTOM RIGHT
     draw_rounded_rectangle(1030, 510, 200, 160, 10, 1,  COLOR_GREEN); //1220 = -mainframe padding -bottom corner rect padding
+    draw_circle(1130 + g_ApplicationState.controllerRightStickX * 94 / 32768, 590 + g_ApplicationState.controllerRightStickY * 74 / 32768, 6, 1, COLOR_GREEN);
+    
     //////////////----SETUP----//////////////
 
     // switch(g_GuiState.cursorPositionRow) //TODO idek wtf this is supposed to do you can probablby just remove it all

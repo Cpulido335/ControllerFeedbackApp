@@ -69,6 +69,7 @@ void register_controller_sdl()  //TODO also needs error handling
             SDL_CloseGamepad(gamepd);
         }
 
+        g_ApplicationState.current_gamepad = gamepad;
         SDL_GamepadType type = SDL_GetGamepadType(gamepad);
         register_gamepad_type(type);
 
@@ -129,4 +130,24 @@ enum ControllerType detect_controller(SDL_JoystickID id) //TODO this isnt used a
         default:
             return CONTROLLER_TYPE_OTHER;
     }
+}
+
+
+void handle_joystick_input() //TODO 'handle' might not be the right word for this this is more of a register or poll 
+{
+    g_ApplicationState.controllerLeftStickX = SDL_GetGamepadAxis(g_ApplicationState.current_gamepad, SDL_GAMEPAD_AXIS_LEFTX);
+    g_ApplicationState.controllerLeftStickY = SDL_GetGamepadAxis(g_ApplicationState.current_gamepad, SDL_GAMEPAD_AXIS_LEFTY);
+
+    g_ApplicationState.controllerRightStickX = SDL_GetGamepadAxis(g_ApplicationState.current_gamepad, SDL_GAMEPAD_AXIS_RIGHTX);
+    g_ApplicationState.controllerRightStickY = SDL_GetGamepadAxis(g_ApplicationState.current_gamepad, SDL_GAMEPAD_AXIS_RIGHTY);
+
+    g_ApplicationState.controllerLeftTrigger = SDL_GetGamepadAxis(g_ApplicationState.current_gamepad, SDL_GAMEPAD_AXIS_LEFT_TRIGGER);
+    g_ApplicationState.controllerRightTrigger = SDL_GetGamepadAxis(g_ApplicationState.current_gamepad, SDL_GAMEPAD_AXIS_RIGHT_TRIGGER);
+
+
+    // printf("Left Stick:    X: %6d  Y: %6d\n", LeftStickX, LeftStickY);
+    // printf("Right Stick:   X: %6d  Y: %6d\n", RightStickX, RightStickY);
+    // printf("Left Trigger:  %6d\n", LeftTrigger);
+    // printf("Right Trigger: %6d\n", RightTrigger);
+    // printf("-----------------------------\n");
 }
