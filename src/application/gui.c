@@ -150,10 +150,20 @@ void gui_drawing_tree()
     draw_rounded_rectangle(30, 510, 200, 160, 10, 1,  COLOR_GREEN);
     draw_circle(130 + g_ApplicationState.controllerLeftStickX * 94 / 32768, 590 + g_ApplicationState.controllerLeftStickY * 74 / 32768, 6, 1, COLOR_GREEN); 
 
+    draw_rectangle_top_left(240, 510, 20, 160, COLOR_GREEN, 1, false); //LEFT trigger
+    int leftFill = g_ApplicationState.controllerLeftTrigger * 158 / 32767;
+    if (leftFill > 0)
+        draw_rectangle_top_left(241, 669 - leftFill, 18, leftFill, COLOR_GREEN, 1, true);
+
     //BOTTOM RIGHT
     draw_rounded_rectangle(1030, 510, 200, 160, 10, 1,  COLOR_GREEN); //1220 = -mainframe padding -bottom corner rect padding
     draw_circle(1130 + g_ApplicationState.controllerRightStickX * 94 / 32768, 590 + g_ApplicationState.controllerRightStickY * 74 / 32768, 6, 1, COLOR_GREEN);
     
+    
+    draw_rectangle_top_left(1000, 510, 20, 160, COLOR_GREEN, 1, false); //Right Trigger
+    int rightFill = g_ApplicationState.controllerRightTrigger * 158 / 32767;
+    if (rightFill > 0)
+        draw_rectangle_top_left(1001, 669 - rightFill, 18, rightFill, COLOR_GREEN, 1, true);
     //////////////----SETUP----//////////////
 
     // switch(g_GuiState.cursorPositionRow) //TODO idek wtf this is supposed to do you can probablby just remove it all
