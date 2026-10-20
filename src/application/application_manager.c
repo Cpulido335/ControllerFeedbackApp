@@ -5,7 +5,7 @@
 
 /* Global Application state (singleton) */ 
 struct APPLICATION_STATE g_ApplicationState = {
-    .currentPanel= 2, //0=gui, 1=preset, 2=editor
+    .currentPanel= 2, //0=gui, 1=preset, 2=editor //TODO not even sure if these numbers are right
     .cursorPositionRow = 6,        // start on F10
     .cursorPositionColumn=0,
     .cursorFlashingState = false,

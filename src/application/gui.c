@@ -13,7 +13,7 @@
 #include "application/application_manager.h"
 #include "input/input_controller.h"
 
-
+#include <stdio.h>
 
 
 struct GUI_STATE g_GuiState = { 
@@ -125,7 +125,13 @@ void gui_drawing_tree()
     draw_text_blazing("F3: TOOLS",  35, 77); //++14
 
     //BOTTOM CENTER
-    draw_text_blazing("CONTROLLER DETECTED: DUALSHOCK4 UUID: ai19xj2ow291",   640-((51*12)/2), 650);
+    char controllerGUID_reading_string[256];  
+    
+    
+    snprintf(controllerGUID_reading_string, sizeof(controllerGUID_reading_string), "CONTROLLER DETECTED:%s GUID:%s", 
+                                    g_ApplicationState.controllerTypeString, g_ApplicationState.controllerSDL_GUID_string);
+    
+    draw_text_blazing(controllerGUID_reading_string,   640-((51*12)/2), 650);
     
     if(g_ApplicationState.controllerConnected)
     {

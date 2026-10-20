@@ -62,6 +62,7 @@ void register_controller_sdl()  //TODO also needs error handling
         }
         printf("Gamepad connected: %s\n", SDL_GetGamepadName(gamepd));
         
+        
         // Close the other gamepads
         if (i > 0) {
             SDL_CloseGamepad(gamepd);
@@ -70,6 +71,13 @@ void register_controller_sdl()  //TODO also needs error handling
         SDL_GamepadType type = SDL_GetGamepadType(gamepad);
         register_gamepad_type(type);
 
+        SDL_JoystickID id = SDL_GetGamepadID(gamepad); // TODO is this a stack allocation?
+        SDL_GUID controllerSDL_GUID = SDL_GetGamepadGUIDForID(id); ///we're passing a copy of the id to this function doesnt it need to be pointer just based on on how its a 
+                                        //GUID? i thought GUID implys a specific instance on your machine of something in that case
+                                        //it would to be a pointer to something that already exists and not a copy, the param is even called instance_ID 
+
+        
+        SDL_GUIDToString(controllerSDL_GUID, g_ApplicationState.controllerSDL_GUID_string, 128);    
 
     }
 
@@ -89,10 +97,12 @@ void register_gamepad_type(SDL_GamepadType gamepadType) //TODO this function act
     {
         case SDL_GAMEPAD_TYPE_XBOXONE:
             g_ApplicationState.controllerTypeDetected = CONTROLLER_TYPE_XBOX_ONE;
+            snprintf(g_ApplicationState.controllerTypeString, sizeof(g_ApplicationState.controllerTypeString), "XBOX ONE"); //TODO we could do this with array or const char* i guess ill just to array for now
             break;
 
         case SDL_GAMEPAD_TYPE_PS4:
             g_ApplicationState.controllerTypeDetected = CONTROLLER_TYPE_DS4;
+            snprintf(g_ApplicationState.controllerTypeString, sizeof(g_ApplicationState.controllerTypeString), "DUALSHOCK 4"); //TODO we could do this with array or const char* i guess ill just to array for now
             break;
 
         default:

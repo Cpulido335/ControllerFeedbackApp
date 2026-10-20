@@ -2,6 +2,7 @@
 #define APPLICATION_MANAGER_H
 
 #include <stdbool.h>
+#include <SDL3/SDL.h>
 
 
 enum ControllerType  
@@ -33,6 +34,11 @@ struct APPLICATION_STATE {
 
     bool controllerConnected;
     int controllerTypeDetected;
+
+    //SDL_GUID controllerSDL_GUID; //TODO should this be initilizaed to {0} or how should this work wont it be garbage until assigned?
+
+    char controllerTypeString[64];
+    char controllerSDL_GUID_string[128]; //TODO is this a practical way to initialize this in memory?
 
 };
 
