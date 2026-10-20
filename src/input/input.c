@@ -156,10 +156,17 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
     }
 
 
-
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  3) 
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  1) //F1: LOAD PRESET"
     {
-        g_ApplicationState.currentPanel = 2; //TODO I thought the editor was 1 not 2?????? im so confused
+        g_ApplicationState.currentPanel = 1; 
+        g_ApplicationState.cursorPositionColumn = 3; // set the column to the preset panel load column 
+        g_ApplicationState.cursorPositionRow = 0;  
+    }
+
+
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  2) //F2: EDITOR
+    {
+        g_ApplicationState.currentPanel = 1; //TODO I thought the editor was 1 not 2?????? im so confused
     }
 
     

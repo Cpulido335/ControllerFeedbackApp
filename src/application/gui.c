@@ -121,15 +121,15 @@ void gui_drawing_tree()
     draw_rounded_rectangle(30, 30, 200, 80, 10, 1,  COLOR_GREEN);
     draw_text_blazing("F10: EXIT",  35, 35); //top left options
     draw_text_blazing("F1: LOAD PRESET",  35, 49); //top left options
-    draw_text_blazing("F2: VIEW PRESET",  35, 63);
+    draw_text_blazing("F2: EDITOR",  35, 63);
     draw_text_blazing("F3: TOOLS",  35, 77); //++14
 
     //BOTTOM CENTER
     char controllerGUID_reading_string[256];  
     
     
-    snprintf(controllerGUID_reading_string, sizeof(controllerGUID_reading_string), "CONTROLLER DETECTED:%s GUID:%s", 
-                                    g_ApplicationState.controllerTypeString, g_ApplicationState.controllerSDL_GUID_string);
+    snprintf(controllerGUID_reading_string, sizeof(controllerGUID_reading_string), "CONTROLLER DETECTED:%s GUID:%.*s", 
+                                    g_ApplicationState.controllerTypeString, 18, g_ApplicationState.controllerSDL_GUID_string);
     
     
     
