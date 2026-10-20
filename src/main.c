@@ -1,6 +1,3 @@
-// #define _WIN32_WINNT 0x0A00  //Windows 10 TODO prob get rid of this 
-// #define WINVER       0x0A00 //TODO prob get rid of this
-
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX
 #define _WIN32_WINNT 0x0A00
@@ -52,37 +49,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     if(hwnd) //if WindowHandle
     {
-        //draw_init();
         draw_init_font(IMG_FILEPATH_FONT_C64_SMALL);
        
 
-        //init the clock
-        LARGE_INTEGER cpu_frequency;
+        LARGE_INTEGER cpu_frequency; //init the clock
         QueryPerformanceFrequency(&cpu_frequency);
 
         LARGE_INTEGER last_counter;
         QueryPerformanceCounter(&last_counter);
 
-        //struct Cube cube = createCube(100, 100, 100, 200); //create a cube  //TODO MOVE THIS TO INIT GUI
-        // struct Cube lil_cube_left = createCube(396, 48, 100, 20); //create a cube
-        // struct Cube lil_cube_right = createCube(884, 48, 100, 20); //create a cube
- 
-
-
-        // struct Mesh *mesh = get_mesh(); //TODO MOVE THIS TO INIT GUI
-        
-        // reflect_mesh(mesh);  //TODO MOVE THESE THREE TO INIT GUI REFLECT ROTATE TRANSLATE
-        // rotate_vertices(mesh->vertices, -90, 180, 0);
-        // translate_mesh(mesh, 600.0f, 340.0f, 0.0f);
-        
-
-        // struct vec3 pivot; //TODO MOVE THIS TO INIT GUI
-        // pivot.x = 0 + 600; pivot.y =0+340; pivot.z =0;
+    
         gui_init();
-        
-        //TODO you see how theres a GUI init there needs to be like a preset init where we initialize the preset structs in memory 
         editor_panel_init();
         preset_panel_init();
+        
         load_presets("data/profiles");
         
         while(true) //MAIN LOOP
@@ -116,28 +96,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 
 
-
-
-            //rotateCubeAroundOrigin(&cube, 100*delta, 20*delta, 40*delta);
-            //rotateCubeAroundZ(&cube, 20);
-            
-            
-            
-            // rotate_vertices_around_point(mesh->vertices, pivot, 0, 40*delta, 0); //TODO MOVE THIS TO UPDATE GUI
-
-            // rotateCubeAroundOrigin(&lil_cube_left, 100*delta, 20*delta, 40*delta);  //TODO MOVE THIS TO UPDATE GUI
-            // rotateCubeAroundOrigin(&lil_cube_right, -(100*delta), -(20*delta), -(40*delta));  //TODO MOVE THIS TO UPDATE GUI
-
-            // draw_cube(&lil_cube_left, 1);  //TODO MOVE THIS TO GUI_DRAWING_TREE
-            // draw_cube(&lil_cube_right,1); //TODO MOVE THIS TO GUI_DRAWING_TREE
-
-            // draw_fbx_model(mesh, 1); //TODO MOVE THIS TO GUI_DRAWING_TREE
-
-            //poll_controller(); TODO remove, this was the old xinput only poll controller function
-            gui_update(delta); //called once per frame TODO This function used to be the thing that was responsible for flashing the cursor now its applicaiton_update
             application_update();
-            //gui_drawing_tree();
-            //preset_panel_drawing_tree();
+            gui_update(delta); //called once per frame TODO This function used to be the thing that was responsible for flashing the cursor now its applicaiton_update
+            
+
             switch(g_ApplicationState.currentPanel) //TODO you need to double check that there is issue with having both the window and handle_input within this tree and before gui_update delta
             {
                 case 0:
@@ -155,16 +117,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             }
                 
 
-
             //CURSOR
-            
-            // gui_draw_cursor_highlighter(); //TODO THIS CAN ALSO BE MOVED WITHIN THE GUI_DRAWING_TREE() FUNCTION
             draw_cursor_highlighter();
 
             // --- DRAW TO SCREEN ---
             HDC deviceContext = GetDC(hwnd); //TODO wtf is going on here
-
-            //draw_rectangle_top_left(28, 27, 204, 86, COLOR_RED, 1); //TOP LEFT KILLZONE
 
 
             // --- FRAME END ---5
@@ -188,16 +145,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             }
 
             //FPS display (uses full frame time including sleep)
-            int fps = (int)(1.0f / frame_time);
+            int fps = (int)(1.0f / frame_time); //TODO might be expensive to do this
             char buffer[256];
 
-            // snprintf(
-            //     buffer,
-            //     sizeof(buffer),
-            //     "FPS: %d",
-            //     fps
-            // );
-            //draw_text_blazing(buffer, 1100, 80);
 
             copyBufferToWindow(deviceContext, WINDOW_WIDTH, WINDOW_HEIGHT);
             ReleaseDC(hwnd, deviceContext); //windows expects you to release this to avoid DC leaks
