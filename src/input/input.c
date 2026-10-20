@@ -320,14 +320,14 @@ void handle_preset_panel_input()
 
 
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  1) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  1 && g_ApplicationState.cursorPositionColumn == 0) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
     {
         g_ApplicationState.currentPanel = 0; //switch to home
         g_ApplicationState.cursorPositionRow =  0; //after switching to home panel set cursor position to 0
     }
 
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  2) //if the cursor is on the editor button in the presets panel and enter is pressed: switch to the editor panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  2 && g_ApplicationState.cursorPositionColumn == 0) //if the cursor is on the editor button in the presets panel and enter is pressed: switch to the editor panel
     {
         g_ApplicationState.currentPanel = 2; //switch to editor panel
         g_ApplicationState.cursorPositionRow =  0; //after switching to the editor panel set cursor position to 0
