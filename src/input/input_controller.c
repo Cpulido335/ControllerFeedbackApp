@@ -45,6 +45,7 @@ void register_controller_sdl()  //TODO also needs error handling
     if (!SDL_HasGamepad()) 
     {
         printf("No gamepads connected.\n");
+        g_ApplicationState.controllerConnected = false;
         return;
     } //From here we know at least one gampepad is connected
 
@@ -98,11 +99,13 @@ void register_gamepad_type(SDL_GamepadType gamepadType) //TODO this function act
         case SDL_GAMEPAD_TYPE_XBOXONE:
             g_ApplicationState.controllerTypeDetected = CONTROLLER_TYPE_XBOX_ONE;
             snprintf(g_ApplicationState.controllerTypeString, sizeof(g_ApplicationState.controllerTypeString), "XBOX ONE"); //TODO we could do this with array or const char* i guess ill just to array for now
+            g_ApplicationState.controllerConnected = true;
             break;
 
         case SDL_GAMEPAD_TYPE_PS4:
             g_ApplicationState.controllerTypeDetected = CONTROLLER_TYPE_DS4;
             snprintf(g_ApplicationState.controllerTypeString, sizeof(g_ApplicationState.controllerTypeString), "DUALSHOCK 4"); //TODO we could do this with array or const char* i guess ill just to array for now
+            g_ApplicationState.controllerConnected = true;
             break;
 
         default:

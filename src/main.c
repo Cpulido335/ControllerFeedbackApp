@@ -133,7 +133,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
             // draw_fbx_model(mesh, 1); //TODO MOVE THIS TO GUI_DRAWING_TREE
 
-            poll_controller();
+            //poll_controller(); TODO remove, this was the old xinput only poll controller function
             gui_update(delta); //called once per frame TODO This function used to be the thing that was responsible for flashing the cursor now its applicaiton_update
             application_update();
             //gui_drawing_tree();

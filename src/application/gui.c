@@ -131,11 +131,11 @@ void gui_drawing_tree()
     snprintf(controllerGUID_reading_string, sizeof(controllerGUID_reading_string), "CONTROLLER DETECTED:%s GUID:%s", 
                                     g_ApplicationState.controllerTypeString, g_ApplicationState.controllerSDL_GUID_string);
     
-    draw_text_blazing(controllerGUID_reading_string,   640-((51*12)/2), 650);
+    
     
     if(g_ApplicationState.controllerConnected)
     {
-        draw_text_blazing("CONTROLLER CONNECTED",   640-((51*12)/2), 600);
+        draw_text_blazing(controllerGUID_reading_string,   640-((51*12)/2), 600);
     }
     else {
         draw_text_blazing("CONTROLLER NOT CONNECTED",   640-((51*12)/2), 600);
