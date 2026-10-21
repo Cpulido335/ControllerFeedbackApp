@@ -9,6 +9,7 @@
 #include "util/clock.h"
 #include "application/application_manager.h"
 #include "application/cursor_highlight.h"
+#include "application/buttonlist.h"
 
 #include <stdio.h>
 #include <SDL3/SDL.h> //using SDL3 for gamepad API
@@ -61,6 +62,19 @@ void Application_Init(struct Application* app, HINSTANCE hInstance)
     }
 
     register_controller_sdl(); // call once on Init and everytime theres hotplugging, hotplugging can be detected with SDL3 API via SDL_EVENT_GAMEPAD_ADDED and SDL_EVENT_GAMEPAD_REMOVED
+
+        
+    g_ApplicationState.buttons1 = malloc(sizeof(struct ControllerButton) * 21); //TODO 21 buttons in a preset is still hardcoded fckn everywhere
+    g_ApplicationState.buttons2 = malloc(sizeof(struct ControllerButton) * 21);
+    g_ApplicationState.buttons3 = malloc(sizeof(struct ControllerButton) * 21);
+    g_ApplicationState.buttons4 = malloc(sizeof(struct ControllerButton) * 21);
+    g_ApplicationState.buttons5 = malloc(sizeof(struct ControllerButton) * 21);
+
+    g_ApplicationState.profile1 = malloc(sizeof(struct Profile));
+    g_ApplicationState.profile2 = malloc(sizeof(struct Profile));
+    g_ApplicationState.profile3 = malloc(sizeof(struct Profile));
+    g_ApplicationState.profile4 = malloc(sizeof(struct Profile));
+    g_ApplicationState.profile5 = malloc(sizeof(struct Profile));
 }
 
 

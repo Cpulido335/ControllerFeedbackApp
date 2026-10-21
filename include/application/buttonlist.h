@@ -34,10 +34,11 @@ struct nlist { /* table entry: */ //TODO PUT THIS IN UTIL MAYBE? TODO where does
 //     char *stringThatIsTheKeyTheButtonIsBindedTo;
 // };
 
-struct Profile { //so your idea is that a Profile has a member that is a list of controller buttons?
-    char name[128]; 
+struct Profile { //so your idea is that a Profile has a member that is a list of controller buttons? //TODO maybe add int ButtonCount, uint16 leftStickDeadzone, uint16 rightStickdeadZone
+    char name[128]; //Maybe profile controller type thats a very big maybe because we probably don't need that the buttons will just tell you what kind of controller it is along with SDL3 telling you what kind of controller it is
     // struct Binding* bindings; //TODO PROBLEM, is this heap alloc?
-    struct ControllerButton  *arrayOfControllerButton; //21 keys 
+    struct ControllerButton  *arrayOfControllerButton; //A button can be an axes too
+    int numButtons;
 };
 
 // int populateProfile(struct ControllerButton* arrayOfControllerButtons, struct Profile* profile);

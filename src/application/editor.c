@@ -20,15 +20,7 @@ struct EDITOR_PANEL_DATA g_EditorPanelData = {
 
 void editor_panel_init()
 {
-    g_EditorPanelData.currentEditorProfile.arrayOfControllerButton = malloc(sizeof(struct ControllerButton) * 21); //TODO 21 buttons still hardcoded
-
-    if (!g_EditorPanelData.currentEditorProfile.arrayOfControllerButton) 
-    {
-        return;
-    }
-
-
-    parse_buttonlist(g_ApplicationState.currentSelectedProfile, g_EditorPanelData.currentEditorProfile.arrayOfControllerButton, 21); //TODO 21 buttons still hardcoded
+    g_EditorPanelData.currentEditorProfile = g_ApplicationState.profile5; //Selecting Profile 5 for now
 }
 
 
@@ -84,31 +76,18 @@ void editor_panel_drawing_tree() //FFS just clear the whole screen this is is ri
     draw_rectangle_top_left((WINDOW_WIDTH/2) -200, 520, 600, 40, COLOR_GREEN, 1, NOT_FILLED);
     draw_rectangle_top_left((WINDOW_WIDTH/2) -200, 560, 600, 40, COLOR_GREEN, 1, NOT_FILLED);
 
-    //fill in text of the specific buttons for an xbox360 controller
 
-    // struct ControllerButton buttons[32]; //TODO PROBLEM stack not heap?? //PROBLEM this functionality should probably be done on application init and only done once and then the editor would just operrate on that existing data while its in program memory instead of implementing functionality here
 
-    // parse_buttonlist("data/xbox360.buttonlist", buttons, 32);
-
-    // //TODO this needs to be done once in init not every call of something in the loop this should just be the drawing tree
-    // struct Profile p;
-    // populateProfile(buttons, &p);
-
+    //TODO you need to put this in an if block aka If there is a current profile selected then execute this code otherwise its gonna seg fault
     int currentYvalue = 126;
-    // int currentPositionInList = 4;
     for(int i=g_ApplicationState.currentPositionInEditorList; i<12 + g_ApplicationState.currentPositionInEditorList; i++) //12 is the amt of entries that is displayed on the editor panel
     {
-        draw_text_blazing(g_EditorPanelData.currentEditorProfile.arrayOfControllerButton[i].name, (WINDOW_WIDTH/2) -200 + 8, currentYvalue);
-
+        draw_text_blazing(g_EditorPanelData.currentEditorProfile->arrayOfControllerButton[i].name, (WINDOW_WIDTH/2) -200 + 8, currentYvalue);
+        draw_text_blazing(g_EditorPanelData.currentEditorProfile->arrayOfControllerButton[i].key_that_its_binded_to, (WINDOW_WIDTH/2) + 8, currentYvalue); //PROBLEM passing as inconrrect type?
         currentYvalue += 40;
     }
     
-    currentYvalue = 126; //TODO combine this with the above for-loop
-    for(int i=g_ApplicationState.currentPositionInEditorList; i<12 + g_ApplicationState.currentPositionInEditorList; i++)
-    {
-        draw_text_blazing(g_EditorPanelData.currentEditorProfile.arrayOfControllerButton[i].key_that_its_binded_to, (WINDOW_WIDTH/2) + 8, currentYvalue); //PROBLEM passing as inconrrect type?
-        currentYvalue += 40;
-    } //new feature
+  
 
 
 

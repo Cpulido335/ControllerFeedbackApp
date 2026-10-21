@@ -5,13 +5,14 @@
 #include "render/draw.h"
 #include "globals.h"
 
+#include "application/application_manager.h"
 #include "application/buttonlist.h"
 #include <dirent.h> //POSIX library for reading directories
 
 
 
 /* Global GUI state (singleton) */
-struct PRESET_PANEL_STATE g_PresetPanelState = {
+struct PRESET_PANEL_STATE g_PresetPanelState = { //TODO i think this is totally unused after moving the profile structs to g_ApplicationState it can probably be removed
     .cursorPositionRow = 0,        // start on F10 //TODO can probably remove all this stuff the cursor stuff is handled in application state
     .cursorFlashingState = false,
     .lastFlashToggleTime = 0
@@ -20,17 +21,7 @@ struct PRESET_PANEL_STATE g_PresetPanelState = {
 
 void preset_panel_init()
 {
-    g_PresetPanelState.buttons1 = malloc(sizeof(struct ControllerButton) * 21); //TODO 21 buttons in a preset is still hardcoded fckn everywhere
-    g_PresetPanelState.buttons2 = malloc(sizeof(struct ControllerButton) * 21);
-    g_PresetPanelState.buttons3 = malloc(sizeof(struct ControllerButton) * 21);
-    g_PresetPanelState.buttons4 = malloc(sizeof(struct ControllerButton) * 21);
-    g_PresetPanelState.buttons5 = malloc(sizeof(struct ControllerButton) * 21);
 
-    g_PresetPanelState.profile1 = malloc(sizeof(struct Profile));
-    g_PresetPanelState.profile2 = malloc(sizeof(struct Profile));
-    g_PresetPanelState.profile3 = malloc(sizeof(struct Profile));
-    g_PresetPanelState.profile4 = malloc(sizeof(struct Profile));
-    g_PresetPanelState.profile5 = malloc(sizeof(struct Profile));
 }
 
 void preset_panel_drawing_tree() //FFS just clear the whole screen this is is ridiclous
@@ -50,7 +41,7 @@ void preset_panel_drawing_tree() //FFS just clear the whole screen this is is ri
     //INNER FRAME
     draw_rectangle_top_left(80, 160, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); //ROW 0 X=80 =80
         draw_rectangle_top_left(80, 160, 300, 40, COLOR_GREEN, 1, NOT_FILLED); //preset name
-            draw_text_blazing(g_PresetPanelState.profile1->name, 400, 170);
+            draw_text_blazing(g_ApplicationState.profile1->name, 400, 170);
         draw_rectangle_top_left(860, 160, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
             draw_text_blazing("LOAD", 884, 170);
         draw_rectangle_top_left(960, 160, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
@@ -61,7 +52,7 @@ void preset_panel_drawing_tree() //FFS just clear the whole screen this is is ri
     
     draw_rectangle_top_left(80, 200, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); //ROW 1 row1.y = row0.y + 40
         draw_rectangle_top_left(80, 200, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
-            draw_text_blazing(g_PresetPanelState.profile2->name, 400, 210);
+            draw_text_blazing(g_ApplicationState.profile2->name, 400, 210);
         draw_rectangle_top_left(860, 200, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
             draw_text_blazing("LOAD", 884, 210);
         draw_rectangle_top_left(960, 200, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //edit
@@ -71,7 +62,7 @@ void preset_panel_drawing_tree() //FFS just clear the whole screen this is is ri
     
     draw_rectangle_top_left(80, 240, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); //ROW 2
         draw_rectangle_top_left(80, 240, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
-            draw_text_blazing(g_PresetPanelState.profile3->name, 400, 250);
+            draw_text_blazing(g_ApplicationState.profile3->name, 400, 250);
 
         draw_rectangle_top_left(860, 240, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
             draw_text_blazing("LOAD", 884, 250);
@@ -82,7 +73,7 @@ void preset_panel_drawing_tree() //FFS just clear the whole screen this is is ri
 
     draw_rectangle_top_left(80, 240, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED); 
         draw_rectangle_top_left(80, 280, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
-            draw_text_blazing(g_PresetPanelState.profile4->name, 400, 290);
+            draw_text_blazing(g_ApplicationState.profile4->name, 400, 290);
 
         draw_rectangle_top_left(860, 280, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
             draw_text_blazing("LOAD", 884, 290);
@@ -93,7 +84,7 @@ void preset_panel_drawing_tree() //FFS just clear the whole screen this is is ri
 
      draw_rectangle_top_left(80, 320, (WINDOW_WIDTH)-200, 40, COLOR_GREEN, 1, NOT_FILLED);
         draw_rectangle_top_left(80, 320, 300, 40, COLOR_GREEN, 1, NOT_FILLED);
-            draw_text_blazing(g_PresetPanelState.profile5->name, 400, 330);
+            draw_text_blazing(g_ApplicationState.profile5->name, 400, 330);
 
 
         draw_rectangle_top_left(860, 320, 100, 40, COLOR_GREEN, 1, NOT_FILLED); //load
@@ -172,7 +163,7 @@ int load_presets(const char* presets_folder_filepath) //TODO for this we're gonn
                 strcat(profilepath1, entry->d_name);
                 printf("%s\n", profilepath1);
                 
-                create_profile_from_preset_filepath(profilepath1, g_PresetPanelState.buttons1, 21, g_PresetPanelState.profile1, entry->d_name);
+                create_profile_from_preset_filepath(profilepath1, g_ApplicationState.buttons1, 21, g_ApplicationState.profile1, entry->d_name);
                 break;
             case 2:
                 strcat(profilepath2, "/");
@@ -180,14 +171,14 @@ int load_presets(const char* presets_folder_filepath) //TODO for this we're gonn
                 printf("%s\n", profilepath2);
                 printf("entry->d_name %s\n", entry->d_name);
                 
-                create_profile_from_preset_filepath(profilepath2, g_PresetPanelState.buttons2, 21, g_PresetPanelState.profile2, entry->d_name);
+                create_profile_from_preset_filepath(profilepath2, g_ApplicationState.buttons2, 21, g_ApplicationState.profile2, entry->d_name);
                 break;
             case 3:
                 strcat(profilepath3, "/");
                 strcat(profilepath3, entry->d_name);
                 printf("%s\n", profilepath3);
                 
-                create_profile_from_preset_filepath(profilepath3, g_PresetPanelState.buttons3, 21, g_PresetPanelState.profile3, entry->d_name);
+                create_profile_from_preset_filepath(profilepath3, g_ApplicationState.buttons3, 21, g_ApplicationState.profile3, entry->d_name);
                 break;
             case 4:
                 strcat(profilepath4, "/");
@@ -195,14 +186,14 @@ int load_presets(const char* presets_folder_filepath) //TODO for this we're gonn
                 printf("%s\n", profilepath4);
                 
                 
-                create_profile_from_preset_filepath(profilepath4, g_PresetPanelState.buttons4, 21, g_PresetPanelState.profile4, entry->d_name);
+                create_profile_from_preset_filepath(profilepath4, g_ApplicationState.buttons4, 21, g_ApplicationState.profile4, entry->d_name);
                 break;     
             case 5:
                 strcat(profilepath5, "/");
                 strcat(profilepath5, entry->d_name);
                 printf("%s\n", profilepath5);
                 
-                create_profile_from_preset_filepath(profilepath5, g_PresetPanelState.buttons5, 21, g_PresetPanelState.profile5, entry->d_name);
+                create_profile_from_preset_filepath(profilepath5, g_ApplicationState.buttons5, 21, g_ApplicationState.profile5, entry->d_name);
                 break; 
         }
 

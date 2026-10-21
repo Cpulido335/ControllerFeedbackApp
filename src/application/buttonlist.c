@@ -12,8 +12,7 @@ int parse_buttonlist(const char *path, struct ControllerButton *out, int max) //
     char line[256];
     int count = 0;
 
-    while (count < max && fgets(line, sizeof(line), fileptr))
-    {
+    while (count < max && fgets(line, sizeof(line), fileptr)) {
         if (line[0] == '#' || line[0] == '\n')
             continue;
 
@@ -47,8 +46,8 @@ int parse_buttonlist(const char *path, struct ControllerButton *out, int max) //
         {
             button->type = BTN_BUTTON;
 
-            if (sscanf(bitmask_str, "%x",
-                       &button->bitmask) != 1) {
+            if (sscanf(bitmask_str, "%x", &button->bitmask) != 1) 
+            {
                 fclose(fileptr);
                 return -1;
             }
@@ -61,10 +60,8 @@ int parse_buttonlist(const char *path, struct ControllerButton *out, int max) //
             button->type = BTN_AXIS;
             button->bitmask = 0;
 
-            if (sscanf(min_str, "%d",
-                       &button->axis_min) != 1 ||
-                sscanf(max_str, "%d",
-                       &button->axis_max) != 1) {
+            if (sscanf(min_str, "%d", &button->axis_min) != 1 || sscanf(max_str, "%d", &button->axis_max) != 1) 
+            {
                 fclose(fileptr);
                 return -1;
             }
@@ -89,15 +86,17 @@ int parse_buttonlist(const char *path, struct ControllerButton *out, int max) //
 //Takes in a an array of ControllerButtons modifys a Profile struct
 void create_profile_from_preset_filepath(const char *path, struct ControllerButton *buttons, int max, struct Profile *profile, char* profile_name)
 {
+    int profileButtonCount;
+    
     //TODO we might be able to create the ControllerButton array with a heap allocation within the scope of this function but idk 
-    parse_buttonlist(path, buttons, max);
+    profileButtonCount = parse_buttonlist(path, buttons, max);
 
     profile->arrayOfControllerButton = buttons;
     printf("profile_name: %s\n\n", profile_name);
     //profile->name = profile_name;
+    profile->numButtons = profileButtonCount;
 
     sprintf(profile->name, profile_name); //TODO what are the advantages of using snprintf over sprintf ??
-
 }
 
 
