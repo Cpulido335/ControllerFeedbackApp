@@ -55,7 +55,7 @@ struct Profile { //so your idea is that a Profile has a member that is a list of
 
 
 int parse_buttonlist(const char *path, struct ControllerButton *out, int max);
-void create_profile_from_preset_filepath(const char *path, struct ControllerButton *buttons, int max, struct Profile *profile,  char* profile_name);
+void create_profile_from_preset_filepath(const char *path, struct ControllerButton *buttons, struct Profile *profile,  char* profile_name);
 
 // int create_bindinglist_from_profile(const char *path, struct ControllerButton *out, int max); //TODO PROBLEM unused so far
 

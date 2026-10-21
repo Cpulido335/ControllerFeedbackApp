@@ -84,8 +84,9 @@ int parse_buttonlist(const char *path, struct ControllerButton *out, int max) //
 
 
 //Takes in a an array of ControllerButtons modifys a Profile struct
-void create_profile_from_preset_filepath(const char *path, struct ControllerButton *buttons, int max, struct Profile *profile, char* profile_name)
+void create_profile_from_preset_filepath(const char *path, struct ControllerButton *buttons, struct Profile *profile, char* profile_name)
 {
+    int max = 128; //TODO very weird way to do this 
     int profileButtonCount;
     
     //TODO we might be able to create the ControllerButton array with a heap allocation within the scope of this function but idk 

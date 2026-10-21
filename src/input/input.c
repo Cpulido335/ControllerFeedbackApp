@@ -4,6 +4,7 @@
 
 #include "application/gui.h" //TODO not sure if this how I want to architect this
 #include "application/application_manager.h"
+#include "application/buttonlist.h"
 #include "globals.h"
 
 #include <stdio.h> //TODO for deubbing handle_input function REMOVE
@@ -229,8 +230,8 @@ void handle_editor_input()
 
 
      // Down arrow: increase because were scrolling down and its going DEEPER into the list currentPositionInList on DOWN edge
-    if (downArrow && !prevDown &&  g_ApplicationState.currentPositionInEditorList < 9) //TODO basically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
-    {
+    if (downArrow && !prevDown &&  g_ApplicationState.currentPositionInEditorList < g_ApplicationState.currentEditorProfile->numButtons - 12) //TODO basically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
+    { //in the above line you want to take the number of buttons in the currentEditorProfile and then subtract 12 because the editor list of buttons displays 12 button entries at a time, if you don't subrtract 12 and scroll to the bottom it will try to reach into unauthroized memory and seg fault
         g_ApplicationState.currentPositionInEditorList++;
     }
 
