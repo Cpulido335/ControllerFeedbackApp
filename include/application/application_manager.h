@@ -52,7 +52,44 @@ struct APPLICATION_STATE {
     int controllerLeftTrigger;
     int controllerRightTrigger;
 
-    //controller buttons TODO add these
+
+    //controller buttons 
+    bool controllerButtonNorth;                              
+    bool controllerButtonEast;
+    bool controllerButtonWest;
+    bool controllerButtonSouth;
+
+    bool controllerButtonBack;
+    bool controllerButtonGuide;
+    bool controllerButtonStart;
+
+    bool controllerButtonLeftStick;
+    bool controllerButtonRightStick;
+
+    bool controllerButtonLeftShoulder;
+    bool controllerButtonRightShoulder;
+
+    bool controllerButtonDpadUp;
+    bool controllerButtonDpadDown;
+    bool controllerButtonDpadLeft;
+    bool controllerButtonDpadRight;
+
+    bool controllerButtonMisc1;
+
+    bool controllerButtonRightPaddle1;
+    bool controllerButtonLeftPaddle1;
+    bool controllerButtonRightPaddle2;
+    bool controllerButtonLeftPaddle2;
+
+    bool controllerButtonTouchpad;
+
+    bool controllerButtonMisc2;
+    bool controllerButtonMisc3;
+    bool controllerButtonMisc4;
+    bool controllerButtonMisc5;
+    bool controllerButtonMisc6;
+
+
 
 
     //Profiles

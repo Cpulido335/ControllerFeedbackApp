@@ -135,6 +135,7 @@ enum ControllerType detect_controller(SDL_JoystickID id) //TODO this isnt used a
 
 void handle_joystick_input() //TODO 'handle' might not be the right word for this this is more of a register or poll 
 {
+    //Axes
     g_ApplicationState.controllerLeftStickX = SDL_GetGamepadAxis(g_ApplicationState.current_gamepad, SDL_GAMEPAD_AXIS_LEFTX);
     g_ApplicationState.controllerLeftStickY = SDL_GetGamepadAxis(g_ApplicationState.current_gamepad, SDL_GAMEPAD_AXIS_LEFTY);
 
@@ -143,6 +144,47 @@ void handle_joystick_input() //TODO 'handle' might not be the right word for thi
 
     g_ApplicationState.controllerLeftTrigger = SDL_GetGamepadAxis(g_ApplicationState.current_gamepad, SDL_GAMEPAD_AXIS_LEFT_TRIGGER);
     g_ApplicationState.controllerRightTrigger = SDL_GetGamepadAxis(g_ApplicationState.current_gamepad, SDL_GAMEPAD_AXIS_RIGHT_TRIGGER);
+
+
+    //Buttons 
+    g_ApplicationState.controllerButtonNorth = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_NORTH);
+    g_ApplicationState.controllerButtonEast = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_EAST);
+    g_ApplicationState.controllerButtonWest = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_WEST);
+    g_ApplicationState.controllerButtonSouth = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_SOUTH);
+
+    g_ApplicationState.controllerButtonBack = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_BACK);
+    g_ApplicationState.controllerButtonGuide = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_GUIDE);
+    g_ApplicationState.controllerButtonStart = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_START);
+
+    g_ApplicationState.controllerButtonLeftStick = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_LEFT_STICK);
+    g_ApplicationState.controllerButtonRightStick = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_RIGHT_STICK);
+
+
+    g_ApplicationState.controllerButtonLeftShoulder = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_LEFT_SHOULDER);
+    g_ApplicationState.controllerButtonRightShoulder = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER);
+
+
+    g_ApplicationState.controllerButtonDpadUp = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_DPAD_UP);
+    g_ApplicationState.controllerButtonDpadDown = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_DPAD_DOWN);
+    g_ApplicationState.controllerButtonDpadLeft = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_DPAD_LEFT);
+    g_ApplicationState.controllerButtonDpadRight = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_DPAD_RIGHT);
+
+
+
+    g_ApplicationState.controllerButtonRightPaddle1 = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_RIGHT_PADDLE1);
+    g_ApplicationState.controllerButtonLeftPaddle1 = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_LEFT_PADDLE1);
+    g_ApplicationState.controllerButtonRightPaddle2 = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_RIGHT_PADDLE2);
+    g_ApplicationState.controllerButtonLeftPaddle2 = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_LEFT_PADDLE2);
+
+
+    g_ApplicationState.controllerButtonTouchpad = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_TOUCHPAD);
+
+    g_ApplicationState.controllerButtonMisc1 = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_MISC1);
+    g_ApplicationState.controllerButtonMisc2 = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_MISC2);
+    g_ApplicationState.controllerButtonMisc3 = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_MISC3);
+    g_ApplicationState.controllerButtonMisc4 = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_MISC4);
+    g_ApplicationState.controllerButtonMisc5 = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_MISC5);
+    g_ApplicationState.controllerButtonMisc6 = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, SDL_GAMEPAD_BUTTON_MISC6);
 
 
     // printf("Left Stick:    X: %6d  Y: %6d\n", LeftStickX, LeftStickY);
