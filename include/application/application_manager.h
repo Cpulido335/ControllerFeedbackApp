@@ -28,7 +28,8 @@ struct APPLICATION_STATE {
     int currentPositionInEditorList;
     //Editor panel specific button selected logic //if 0 is pressed editor list entry is selected, changes to rebind, 
 
-    const char *currentSelectedProfile; 
+    const char *currentSelectedProfile;
+    struct Profile *currentEditorProfile; //TODO RENAME THESE ARE THE SAME THING AND CHANGE THE NAME OF currentSelectedProfile to currentSelectedProfileName or currentSelectedProfilePath whichever fits better because i forgot
 
     //controller
     SDL_Gamepad *current_gamepad;

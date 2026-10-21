@@ -20,7 +20,7 @@ struct EDITOR_PANEL_DATA g_EditorPanelData = {
 
 void editor_panel_init()
 {
-    g_EditorPanelData.currentEditorProfile = g_ApplicationState.profile5; //Selecting Profile 5 for now
+    // g_EditorPanelData.currentEditorProfile = g_ApplicationState.profile5; //Selecting Profile 5 for now //TODO moved this to g_ApplicationState this can be removed
 }
 
 
@@ -82,8 +82,8 @@ void editor_panel_drawing_tree() //FFS just clear the whole screen this is is ri
     int currentYvalue = 126;
     for(int i=g_ApplicationState.currentPositionInEditorList; i<12 + g_ApplicationState.currentPositionInEditorList; i++) //12 is the amt of entries that is displayed on the editor panel
     {
-        draw_text_blazing(g_EditorPanelData.currentEditorProfile->arrayOfControllerButton[i].name, (WINDOW_WIDTH/2) -200 + 8, currentYvalue);
-        draw_text_blazing(g_EditorPanelData.currentEditorProfile->arrayOfControllerButton[i].key_that_its_binded_to, (WINDOW_WIDTH/2) + 8, currentYvalue); //PROBLEM passing as inconrrect type?
+        draw_text_blazing(g_ApplicationState.currentEditorProfile->arrayOfControllerButton[i].name, (WINDOW_WIDTH/2) -200 + 8, currentYvalue);
+        draw_text_blazing(g_ApplicationState.currentEditorProfile->arrayOfControllerButton[i].key_that_its_binded_to, (WINDOW_WIDTH/2) + 8, currentYvalue); //PROBLEM passing as inconrrect type?
         currentYvalue += 40;
     }
     

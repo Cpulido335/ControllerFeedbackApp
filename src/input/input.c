@@ -341,6 +341,55 @@ void handle_preset_panel_input()
     }
 
     
+    
+    //LOAD entries //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  0 && g_ApplicationState.cursorPositionColumn == 3) 
+    {
+        g_ApplicationState.currentPositionInEditorList = 0;
+        g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile1;
+        g_ApplicationState.currentPanel = 2;
+    }
+
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  1 && g_ApplicationState.cursorPositionColumn == 3) 
+    {
+        g_ApplicationState.currentPositionInEditorList = 0;
+        g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile2;
+        g_ApplicationState.currentPanel = 2;
+    }
+
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  2 && g_ApplicationState.cursorPositionColumn == 3) 
+    {
+        g_ApplicationState.currentPositionInEditorList = 0;
+        g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile3;
+        g_ApplicationState.currentPanel = 2;
+    }
+
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  3 && g_ApplicationState.cursorPositionColumn == 3) 
+    {
+        g_ApplicationState.currentPositionInEditorList = 0;
+        g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile4;
+        g_ApplicationState.currentPanel = 2;
+    }
+
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  4 && g_ApplicationState.cursorPositionColumn == 3) 
+    {
+        g_ApplicationState.currentPositionInEditorList = 0;
+        g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile5;
+        g_ApplicationState.currentPanel = 2;
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
     //prset panel panel key list logic //TODO THIS WAS JUST COPIED FROM OTHER FUNCTION IT HASNT BEEN TOUCHED YET 
     if (isKeyPressed(DC_0) /* && editor panel is being dispalyed */) 
     {
@@ -354,5 +403,4 @@ void handle_preset_panel_input()
     prevD = dDown; 
 
 
-    //printf("gGuiState.cursorPositionRow: %d\n", g_GuiState.cursorPositionRow);
 }

@@ -75,6 +75,8 @@ void Application_Init(struct Application* app, HINSTANCE hInstance)
     g_ApplicationState.profile3 = malloc(sizeof(struct Profile));
     g_ApplicationState.profile4 = malloc(sizeof(struct Profile));
     g_ApplicationState.profile5 = malloc(sizeof(struct Profile));
+
+    g_ApplicationState.currentEditorProfile = g_ApplicationState.profile5; //Selecting Profile 5 for now
 }
 
 

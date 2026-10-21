@@ -14,7 +14,7 @@ struct EDITOR_PANEL_DATA {
     double lastFlashToggleTime;   // seconds
     
     // struct ControllerButton buttons[32]; TODO Remove
-    struct Profile *currentEditorProfile; //should this be stack or heap alloc? //TODO i'm probably gonna move this to g_ApplicationState instead
+    // struct Profile *currentEditorProfile; //should this be stack or heap alloc? //TODO i'm probably gonna move this to g_ApplicationState instead
 };
 
 extern struct EDITOR_PANEL_DATA g_EditorPanelState;
