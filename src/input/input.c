@@ -261,6 +261,7 @@ void handle_editor_input()
     {
         g_ApplicationState.currentPanel = 1; // switch to the preset panel
         g_ApplicationState.cursorPositionRow =  0; // TODO GO INTO THE LOAD ON THE ACTUAL LIST VIEW OF THE PRESETS 
+        g_ApplicationState.cursorPositionColumn = 3; //3 is LOAD button column
     }
 
 
