@@ -146,6 +146,12 @@ void gui_drawing_tree()
     //-32,768 - 32,767
     
 
+    //UPPER MIDDLE LEFT
+    draw_rectangle_top_left(89, 318, 80, 26, COLOR_GREEN, 1, g_ApplicationState.controllerButtonLeftShoulder); // LEFT BUMPER
+
+    draw_rectangle_top_left(1091, 318, 80, 26, COLOR_GREEN, 1, g_ApplicationState.controllerButtonRightShoulder);
+
+
     //MIDDLE LOWER LEFT DPAD
     draw_rectangle_top_left(69, 418, 42, 26, COLOR_GREEN, 1,  g_ApplicationState.controllerButtonDpadLeft);  // LEFT // FILL THE RECTANGLES IN WHILE THE BOOL IS TRUE 
     draw_rectangle_top_left(149, 418, 42, 26, COLOR_GREEN, 1, g_ApplicationState.controllerButtonDpadRight); // RIGHT
