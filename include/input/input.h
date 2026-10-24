@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "application/buttonlist.h"
+
 
 #define DC_MAX_KEYS 52 //TODO put this in global.h maybe
 
@@ -91,5 +93,10 @@ void input_process_keyboard_input(uint32_t VKCode, bool wasDown, bool isDown);
 
 void handle_gui_input();
 void handle_editor_input();
+
+
+
+
+void process_controller_bindings(struct Profile *profile);
 
 #endif

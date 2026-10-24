@@ -16,10 +16,10 @@ GUIDE         8     button   0x0100     -         -         default
 LSTICK_PRESS  9     button   0x0200     -         -         default
 RSTICK_PRESS 10     button   0x0400     -         -         default
 
-DPAD_UP      11     button   0x0800     -         -         default
-DPAD_DOWN    12     button   0x1000     -         -         default
-DPAD_LEFT    13     button   0x2000     -         -         default
-DPAD_RIGHT   14     button   0x4000     -         -         default
+DPAD_UP      11     button   0x0800     -         -         KB_w
+DPAD_DOWN    12     button   0x1000     -         -         KB_s
+DPAD_LEFT    13     button   0x2000     -         -         KB_a
+DPAD_RIGHT   14     button   0x4000     -         -         KB_d
 
 LT           15     axis     -          0         255       default
 RT           16     axis     -          0         255       default

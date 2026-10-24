@@ -426,3 +426,130 @@ void handle_preset_panel_input()
 
     
 }
+
+
+
+void send_keyboard_input(WORD key, bool pressed)
+{
+    INPUT input = {0};
+
+    input.type = INPUT_KEYBOARD;
+    input.ki.wVk = key;
+    input.ki.dwFlags = pressed ? 0 : KEYEVENTF_KEYUP;
+
+    SendInput(1, &input, sizeof(INPUT));
+}
+
+
+
+WORD binding_to_vk(const char *binding)
+{
+    if (!binding || strncmp(binding, "KB_", 3) != 0)
+        return 0; //"default" or invalid binding
+
+    const char *key = binding + 3;
+
+    //Letters and numbers
+    if (strlen(key) == 1)
+    {
+        if (key[0] >= 'a' && key[0] <= 'z')
+            return key[0] - 'a' + 'A';
+
+        if (key[0] >= 'A' && key[0] <= 'Z')
+            return key[0];
+
+        if (key[0] >= '0' && key[0] <= '9')
+            return key[0];
+    }
+
+    // Special keyboard keys
+    if (!strcmp(key, "ENTER"))     return VK_RETURN;
+    if (!strcmp(key, "SPACE"))     return VK_SPACE;
+    if (!strcmp(key, "ESCAPE"))    return VK_ESCAPE;
+    if (!strcmp(key, "TAB"))       return VK_TAB;
+    if (!strcmp(key, "BACKSPACE")) return VK_BACK;
+    if (!strcmp(key, "SHIFT"))     return VK_SHIFT;
+    if (!strcmp(key, "CTRL"))      return VK_CONTROL;
+    if (!strcmp(key, "ALT"))       return VK_MENU;
+    if (!strcmp(key, "CAPSLOCK"))  return VK_CAPITAL;
+
+    if (!strcmp(key, "UP"))        return VK_UP;
+    if (!strcmp(key, "DOWN"))      return VK_DOWN;
+    if (!strcmp(key, "LEFT"))      return VK_LEFT;
+    if (!strcmp(key, "RIGHT"))     return VK_RIGHT;
+
+    if (!strcmp(key, "DELETE"))    return VK_DELETE;
+    if (!strcmp(key, "INSERT"))    return VK_INSERT;
+    if (!strcmp(key, "HOME"))      return VK_HOME;
+    if (!strcmp(key, "END"))       return VK_END;
+
+    //F1 to F24
+    if (key[0] == 'F')
+    {
+        char *end;
+        long number = strtol(key + 1, &end, 10);
+
+        if (end != key + 1 && *end == '\0' && number >= 1 && number <= 24)
+            return VK_F1 + number - 1;
+    }
+
+    return 0;
+}
+
+
+SDL_GamepadButton controller_button_from_name(const char *name)
+{
+    if (!strcmp(name, "A") || !strcmp(name, "CROSS"))       return SDL_GAMEPAD_BUTTON_SOUTH; //Handle both PS style and Xbox Style might need some sort of flag here for ohter styles
+    if (!strcmp(name, "B") || !strcmp(name, "CIRCLE"))      return SDL_GAMEPAD_BUTTON_EAST;
+    if (!strcmp(name, "X") || !strcmp(name, "SQUARE"))      return SDL_GAMEPAD_BUTTON_WEST;
+    if (!strcmp(name, "Y") || !strcmp(name, "TRIANGLE"))    return SDL_GAMEPAD_BUTTON_NORTH;
+
+    if (!strcmp(name, "LB") || !strcmp(name, "L1"))         return SDL_GAMEPAD_BUTTON_LEFT_SHOULDER;
+    if (!strcmp(name, "RB") || !strcmp(name, "R1"))         return SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER;
+
+    if (!strcmp(name, "BACK") || !strcmp(name, "SHARE"))    return SDL_GAMEPAD_BUTTON_BACK;
+    if (!strcmp(name, "START") || !strcmp(name, "OPTIONS")) return SDL_GAMEPAD_BUTTON_START;
+    if (!strcmp(name, "GUIDE") || !strcmp(name, "PS"))      return SDL_GAMEPAD_BUTTON_GUIDE;
+
+    if (!strcmp(name, "LSTICK_PRESS") || !strcmp(name, "L3")) return SDL_GAMEPAD_BUTTON_LEFT_STICK;
+    if (!strcmp(name, "RSTICK_PRESS") || !strcmp(name, "R3")) return SDL_GAMEPAD_BUTTON_RIGHT_STICK;
+
+    if (!strcmp(name, "DPAD_UP"))    return SDL_GAMEPAD_BUTTON_DPAD_UP;
+    if (!strcmp(name, "DPAD_DOWN"))  return SDL_GAMEPAD_BUTTON_DPAD_DOWN;
+    if (!strcmp(name, "DPAD_LEFT"))  return SDL_GAMEPAD_BUTTON_DPAD_LEFT;
+    if (!strcmp(name, "DPAD_RIGHT")) return SDL_GAMEPAD_BUTTON_DPAD_RIGHT;
+
+    if (!strcmp(name, "TOUCHPAD"))      return SDL_GAMEPAD_BUTTON_TOUCHPAD;
+    if (!strcmp(name, "BACK_PADDLE_L")) return SDL_GAMEPAD_BUTTON_LEFT_PADDLE1;
+    if (!strcmp(name, "BACK_PADDLE_R")) return SDL_GAMEPAD_BUTTON_RIGHT_PADDLE1;
+
+    return SDL_GAMEPAD_BUTTON_INVALID;
+}
+
+
+
+void process_controller_bindings(struct Profile *profile) //TODO this can be called in the main loop repeatedley
+{
+    static bool prevButtonDown[SDL_GAMEPAD_BUTTON_COUNT] = {0}; //entire array of booleans 'buttonDown' for debouncing all possible inputs of a gamepad
+
+    if (!profile || !g_ApplicationState.current_gamepad) //TODO more explanatory error checking
+        return;
+
+    for (int i = 0; i < profile->numButtons; i++)
+    {
+        struct ControllerButton *button = &profile->arrayOfControllerButton[i];
+
+        SDL_GamepadButton sdlButton = controller_button_from_name(button->name);
+
+        if (sdlButton == SDL_GAMEPAD_BUTTON_INVALID)
+            continue;
+
+        bool down = SDL_GetGamepadButton(g_ApplicationState.current_gamepad, sdlButton);
+        WORD vk = binding_to_vk(button->key_that_its_binded_to);
+
+        if (vk && down != prevButtonDown[sdlButton])
+            send_keyboard_input(vk, down);
+
+        prevButtonDown[sdlButton] = down;
+    }
+}
