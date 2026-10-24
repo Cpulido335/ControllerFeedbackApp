@@ -294,6 +294,19 @@ void draw_circle(int cx, int cy, int r, int thickness, uint32_t color)
 }
 
 
+void draw_button_circle(int x, int y, int r, uint32_t color, bool filled)
+{
+    draw_circle(x, y, r, 1, color);
+
+    if (filled)
+        for (int dy = -r; dy <= r; dy++)
+        {
+            int dx = (int)sqrt(r * r - dy * dy);
+            draw_line(x - dx, y + dy, x + dx, y + dy, color, 1);
+        }
+}
+
+
 void midPointCircleForRoundedRectanglesCorners( int r, uint32_t color, int rectX, int rectY, int rectW, int rectH, int thickness) 
 {
     int x = 0, y = r;

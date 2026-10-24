@@ -145,6 +145,22 @@ void gui_drawing_tree()
     //analag stick tracker 
     //-32,768 - 32,767
     
+
+    //MIDDLE LOWER LEFT DPAD
+    draw_rectangle_top_left(69, 418, 42, 26, COLOR_GREEN, 1,  g_ApplicationState.controllerButtonDpadLeft);  // LEFT // FILL THE RECTANGLES IN WHILE THE BOOL IS TRUE 
+    draw_rectangle_top_left(149, 418, 42, 26, COLOR_GREEN, 1, g_ApplicationState.controllerButtonDpadRight); // RIGHT
+    draw_rectangle_top_left(117, 450, 26, 42, COLOR_GREEN, 1, g_ApplicationState.controllerButtonDpadDown); //DOWN DPAD
+    draw_rectangle_top_left(117, 370, 26, 42, COLOR_GREEN, 1,g_ApplicationState.controllerButtonDpadUp); //DPAD UP
+
+
+    // MIDDLE LOWER RIGHT FACE BUTTONS
+    draw_button_circle(1130, 391, 13, COLOR_GREEN, g_ApplicationState.controllerButtonNorth); 
+    draw_button_circle(1170, 431, 13, COLOR_GREEN, g_ApplicationState.controllerButtonEast);  
+    draw_button_circle(1090, 431, 13, COLOR_GREEN, g_ApplicationState.controllerButtonWest);  
+    draw_button_circle(1130, 471, 13, COLOR_GREEN, g_ApplicationState.controllerButtonSouth); 
+    
+    
+
     
     //BOTTOM LEFT
     draw_rounded_rectangle(30, 510, 200, 160, 10, 1,  COLOR_GREEN);

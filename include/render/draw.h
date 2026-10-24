@@ -34,6 +34,7 @@ void draw_rectangle(int x, int y, int width, int height, uint32_t color, int thi
 void draw_rectangle_top_left(int x, int y, int width, int height, uint32_t color, int thickness, bool filled);
 void draw_cube(struct Cube *cube, int thickness);
 void draw_circle(int xc, int yc, int r, int thickness, uint32_t color);
+void draw_button_circle(int x, int y, int r, uint32_t color, bool filled);
 void draw_rounded_rectangle( int x, int y, int w, int h, int r, int thickness, uint32_t color);
 
 
