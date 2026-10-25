@@ -17,6 +17,6 @@ struct APPLICATION_STATE g_ApplicationState = {
 
     .controllerConnected = false,
 
-    .controllerTypeDetected = CONTROLLER_TYPE_DS4
+    //.controllerTypeDetected = CONTROLLER_TYPE_DS4 TODO FIX THIS MAKE THE DEFAULT NONE
 };
 

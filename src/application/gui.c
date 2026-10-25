@@ -149,12 +149,13 @@ void gui_drawing_tree()
     //UPPER MIDDLE LEFT
     draw_rectangle_top_left(89, 318, 80, 26, COLOR_GREEN, 1, g_ApplicationState.controllerButtonLeftShoulder); // LEFT BUMPER
 
-    draw_rectangle_top_left(1091, 318, 80, 26, COLOR_GREEN, 1, g_ApplicationState.controllerButtonRightShoulder);
+    //UPPER MIDDLE RIGHT 
+    draw_rectangle_top_left(1091, 318, 80, 26, COLOR_GREEN, 1, g_ApplicationState.controllerButtonRightShoulder); //Right Bumper
 
 
     //MIDDLE LOWER LEFT DPAD
-    draw_rectangle_top_left(69, 418, 42, 26, COLOR_GREEN, 1,  g_ApplicationState.controllerButtonDpadLeft);  // LEFT // FILL THE RECTANGLES IN WHILE THE BOOL IS TRUE 
-    draw_rectangle_top_left(149, 418, 42, 26, COLOR_GREEN, 1, g_ApplicationState.controllerButtonDpadRight); // RIGHT
+    draw_rectangle_top_left(69, 418, 42, 26, COLOR_GREEN, 1,  g_ApplicationState.controllerButtonDpadLeft);  //LEFT // FILL THE RECTANGLES IN WHILE THE BOOL IS TRUE 
+    draw_rectangle_top_left(149, 418, 42, 26, COLOR_GREEN, 1, g_ApplicationState.controllerButtonDpadRight); //RIGHT
     draw_rectangle_top_left(117, 450, 26, 42, COLOR_GREEN, 1, g_ApplicationState.controllerButtonDpadDown); //DOWN DPAD
     draw_rectangle_top_left(117, 370, 26, 42, COLOR_GREEN, 1,g_ApplicationState.controllerButtonDpadUp); //DPAD UP
 
@@ -165,6 +166,14 @@ void gui_drawing_tree()
     draw_button_circle(1090, 431, 13, COLOR_GREEN, g_ApplicationState.controllerButtonWest);  
     draw_button_circle(1130, 471, 13, COLOR_GREEN, g_ApplicationState.controllerButtonSouth); 
     
+
+    //Thumb Stick buttons
+    draw_button_circle(1041, 431, 26, COLOR_GREEN, g_ApplicationState.controllerButtonRightStick); //Right stick
+    draw_button_circle(239,  431, 26, COLOR_GREEN, g_ApplicationState.controllerButtonLeftStick);  //LS
+
+    //START AND BACK BUTTONS
+    draw_button_circle(1061, 365, 10, COLOR_GREEN, g_ApplicationState.controllerButtonStart);   //START
+    draw_button_circle(199, 365, 10, COLOR_GREEN, g_ApplicationState.controllerButtonBack);     //BACK
     
 
     
@@ -219,6 +228,10 @@ void gui_drawing_tree()
         case CONTROLLER_TYPE_XBOX_ONE:
             draw_fbx_model(g_GuiState.controllerMeshXboxOne, 1); 
             break;
+
+        default:
+            break;
+            
     }
 
     //gui_draw_cursor_highlighter(); TODO i think this should be global in some way, putting this in here confines it to the main panel?
