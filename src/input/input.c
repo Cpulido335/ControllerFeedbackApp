@@ -411,6 +411,57 @@ void handle_preset_panel_input()
         g_ApplicationState.currentPanel = 2;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+    //EDIT entries ////////////////////////////////////////////////////////////////////////////////////////////////////////// TODO for now the edit buttons just do the exact same thing as the load buttons
+    if (enter && g_ApplicationState.cursorPositionRow ==  0 && g_ApplicationState.cursorPositionColumn == 4) 
+    {
+        g_ApplicationState.currentPositionInEditorList = 0;
+        g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile1;
+        g_ApplicationState.currentPanel = 2;
+    }
+
+    if (enter && g_ApplicationState.cursorPositionRow ==  1 && g_ApplicationState.cursorPositionColumn == 4) 
+    {
+        g_ApplicationState.currentPositionInEditorList = 0;
+        g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile2;
+        g_ApplicationState.currentPanel = 2;
+    }
+
+    if (enter && g_ApplicationState.cursorPositionRow ==  2 && g_ApplicationState.cursorPositionColumn == 4) 
+    {
+        g_ApplicationState.currentPositionInEditorList = 0;
+        g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile3;
+        g_ApplicationState.currentPanel = 2;
+    }
+
+    if (enter && g_ApplicationState.cursorPositionRow ==  3 && g_ApplicationState.cursorPositionColumn == 4) 
+    {
+        g_ApplicationState.currentPositionInEditorList = 0;
+        g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile4;
+        g_ApplicationState.currentPanel = 2;
+    }
+
+    if (enter && g_ApplicationState.cursorPositionRow ==  4 && g_ApplicationState.cursorPositionColumn == 4) 
+    {
+        g_ApplicationState.currentPositionInEditorList = 0;
+        g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
+        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile5;
+        g_ApplicationState.currentPanel = 2;
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     
     
     //prset panel panel key list logic //TODO THIS WAS JUST COPIED FROM OTHER FUNCTION IT HASNT BEEN TOUCHED YET 
