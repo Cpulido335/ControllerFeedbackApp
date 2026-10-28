@@ -143,7 +143,6 @@ static bool enter_just_pressed()
 void handle_gui_input() //TODO change the name of this to "handle_application_input" maybe idk still dont know
 {
     bool enter = enter_just_pressed();
-
     static bool prevS = false;
     static bool prevW = false;
     static bool prevDown = false; //up and down on keypad for scrolling through editor list
@@ -222,11 +221,15 @@ void handle_editor_input()
 
     static bool prevS = false;
     static bool prevW = false;
+    static bool prevA = false;
+    static bool prevD = false;
     static bool prevDown = false; //up and down on keypad for scrolling through editor list
     static bool prevUp = false; //up and down on keypad for scrolling through editor list
 
     bool sDown = isKeyPressed(DC_S);
     bool wDown = isKeyPressed(DC_W);
+    bool aDown = isKeyPressed(DC_A); //TODO this is copy and pasted code for input edge detection there is for sure a much better way of doing this 
+    bool dDown = isKeyPressed(DC_D);
     bool downArrow = isKeyPressed(DC_DOWN); //up and down on keypad for scrolling through editor list
     bool upArrow   = isKeyPressed(DC_UP);   //up and down on keypad for scrolling through editor list
 
@@ -242,6 +245,20 @@ void handle_editor_input()
     {
         if (g_ApplicationState.cursorPositionRow > 0)
             g_ApplicationState.cursorPositionRow--;
+    }
+
+
+    if (aDown && !prevA)
+    {
+        if (g_ApplicationState.cursorPositionColumn > 0)
+            g_ApplicationState.cursorPositionColumn--;
+    }
+
+
+    if (dDown && !prevD)
+    {
+        if (g_ApplicationState.cursorPositionColumn < EDITOR_NUM_COLUMNS) //TODO don't think there's 10 columns (11 columns)
+            g_ApplicationState.cursorPositionColumn++;
     }
 
 
@@ -289,6 +306,8 @@ void handle_editor_input()
 
     prevS = sDown;
     prevW = wDown;
+    prevA = aDown;
+    prevD = dDown; 
 
     prevDown = downArrow;  //up and down on keypad for scrolling through editor list
     prevUp = upArrow;  //up and down on keypad for scrolling through editor list

@@ -22,16 +22,33 @@ struct cursorHighlighterRectMapping g_gui_cursorHighlighterRectMap[HOME_NUM_COLU
 
 
 struct cursorHighlighterRectMapping g_editor_cursorHighlighterRectMap[EDITOR_NUM_COLUMNS][EDITOR_NUM_ROWS] = { //TODO so this is a map of mappings or an array that is a struct of structs?
-    //cursor_id_row, cursor_id_col, x, y, width, height
-    {   //editor panel
-        { 0,   0,       80+10, 100, 300-20, 40 }, //editor panel NEW button
-        { 1,   0,       80+10, 140, 300-20, 40 }, //editor panel EDIT button
-        { 2,   0,       80+10, 180, 300-20, 40 }, //editor panel LOAD button
-        { 3,   0,       80+10, 220, 300-20, 40 }, //editor panel SAVE button
+  
+    {   //COLUMN 0: THE EDITOR MENU OPTIONS
+        // row, column, x, y, width, height
+        { 0, 0, 90, 100, 280, 40 }, // NEW
+        { 1, 0, 90, 140, 280, 40 }, // EDIT
+        { 2, 0, 90, 180, 280, 40 }, // LOAD
+        { 3, 0, 90, 220, 280, 40 }, // SAVE
+        { 4, 0, 90, 340, 280, 40 }, // HOME
+        { 5, 0, 90, 380, 280, 40 }, // PRESETS
+        { 6, 0, 90, 420, 280, 40 }, // OTHER
+        { 7, 0, 90, 460, 280, 40 }, // OTHER
+    },
 
-        { 4,   0,       80+10, 340, 300-20, 40 }, //editor panel HOME button
-        { 5,   0,       80+10, 380, 300-20, 40 }, //editor panel PRESETS button
-        { 6,   0,       80+10, 420, 300-20, 40 }, //editor panel NEW button
+    {   //COLUMN 1: CURRENT PRESET BUTTON LIST
+        // row, column, x, y, width, height
+        {  0, 1, 440, 120, 600, 40 },
+        {  1, 1, 440, 160, 600, 40 },
+        {  2, 1, 440, 200, 600, 40 },
+        {  3, 1, 440, 240, 600, 40 },
+        {  4, 1, 440, 280, 600, 40 },
+        {  5, 1, 440, 320, 600, 40 },
+        {  6, 1, 440, 360, 600, 40 },
+        {  7, 1, 440, 400, 600, 40 },
+        {  8, 1, 440, 440, 600, 40 },
+        {  9, 1, 440, 480, 600, 40 },
+        { 10, 1, 440, 520, 600, 40 },
+        { 11, 1, 440, 560, 600, 40 },
     }
 };
 
@@ -129,7 +146,7 @@ void draw_cursor_highlighter() //TODO this functionality needs its own module
             break;
 
         case 2: //EDITOR
-            if (column != 0 || row < 0 || row >= 7)
+            if (column < 0 || column >= EDITOR_NUM_COLUMNS || row < 0 || row >= EDITOR_NUM_ROWS) //TODO ADD THE GLOBAL MAXS TO ALL THESE ERROR CHECKING STATEMETNS VERY IMPORATANT!!!!!!
                 return;
             if(row == 2)
                 printf("breakpoint\n");
