@@ -263,8 +263,8 @@ void handle_editor_input()
 
 
      // Down arrow: increase because were scrolling down and its going DEEPER into the list currentPositionInList on DOWN edge
-    if (downArrow && !prevDown &&  g_ApplicationState.currentPositionInEditorList < g_ApplicationState.currentEditorProfile->numButtons - 12) //TODO basically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
-    { //in the above line you want to take the number of buttons in the currentEditorProfile and then subtract 12 because the editor list of buttons displays 12 button entries at a time, if you don't subrtract 12 and scroll to the bottom it will try to reach into unauthroized memory and seg fault
+    if (downArrow && !prevDown &&  g_ApplicationState.currentPositionInEditorList < g_ApplicationState.currentSelectedProfile->numButtons - 12) //TODO basically 9 is the maximum times we can scroll in the list before the depth is maxed out and scrolling at all after that will cause a seg fault because there is no more space in the editor list for additional entries
+    { //in the above line you want to take the number of buttons in the currentSelectedProfile and then subtract 12 because the editor list of buttons displays 12 button entries at a time, if you don't subrtract 12 and scroll to the bottom it will try to reach into unauthroized memory and seg fault
         g_ApplicationState.currentPositionInEditorList++;
     }
 
@@ -390,7 +390,7 @@ void handle_preset_panel_input()
         g_ApplicationState.currentPositionInEditorList = 0;
         g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
         g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
-        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile1;
+        g_ApplicationState.currentSelectedProfile = g_ApplicationState.profile1;
         g_ApplicationState.currentPanel = 2;
     }
 
@@ -399,7 +399,7 @@ void handle_preset_panel_input()
         g_ApplicationState.currentPositionInEditorList = 0;
         g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
         g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
-        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile2;
+        g_ApplicationState.currentSelectedProfile = g_ApplicationState.profile2;
         g_ApplicationState.currentPanel = 2;
     }
 
@@ -408,7 +408,7 @@ void handle_preset_panel_input()
         g_ApplicationState.currentPositionInEditorList = 0;
         g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
         g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
-        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile3;
+        g_ApplicationState.currentSelectedProfile = g_ApplicationState.profile3;
         g_ApplicationState.currentPanel = 2;
     }
 
@@ -417,7 +417,7 @@ void handle_preset_panel_input()
         g_ApplicationState.currentPositionInEditorList = 0;
         g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
         g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
-        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile4;
+        g_ApplicationState.currentSelectedProfile = g_ApplicationState.profile4;
         g_ApplicationState.currentPanel = 2;
     }
 
@@ -426,7 +426,7 @@ void handle_preset_panel_input()
         g_ApplicationState.currentPositionInEditorList = 0;
         g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
         g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
-        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile5;
+        g_ApplicationState.currentSelectedProfile = g_ApplicationState.profile5;
         g_ApplicationState.currentPanel = 2;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -440,7 +440,7 @@ void handle_preset_panel_input()
         g_ApplicationState.currentPositionInEditorList = 0;
         g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
         g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
-        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile1;
+        g_ApplicationState.currentSelectedProfile = g_ApplicationState.profile1;
         g_ApplicationState.currentPanel = 2;
     }
 
@@ -449,7 +449,7 @@ void handle_preset_panel_input()
         g_ApplicationState.currentPositionInEditorList = 0;
         g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
         g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
-        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile2;
+        g_ApplicationState.currentSelectedProfile = g_ApplicationState.profile2;
         g_ApplicationState.currentPanel = 2;
     }
 
@@ -458,7 +458,7 @@ void handle_preset_panel_input()
         g_ApplicationState.currentPositionInEditorList = 0;
         g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
         g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
-        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile3;
+        g_ApplicationState.currentSelectedProfile = g_ApplicationState.profile3;
         g_ApplicationState.currentPanel = 2;
     }
 
@@ -467,7 +467,7 @@ void handle_preset_panel_input()
         g_ApplicationState.currentPositionInEditorList = 0;
         g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
         g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
-        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile4;
+        g_ApplicationState.currentSelectedProfile = g_ApplicationState.profile4;
         g_ApplicationState.currentPanel = 2;
     }
 
@@ -476,7 +476,7 @@ void handle_preset_panel_input()
         g_ApplicationState.currentPositionInEditorList = 0;
         g_ApplicationState.cursorPositionRow =  0; //before switching to editor panel set cursor position to 0
         g_ApplicationState.cursorPositionColumn =  0; //before switching to editor panel set cursor position to 0
-        g_ApplicationState.currentEditorProfile = g_ApplicationState.profile5;
+        g_ApplicationState.currentSelectedProfile = g_ApplicationState.profile5;
         g_ApplicationState.currentPanel = 2;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
