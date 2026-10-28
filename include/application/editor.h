@@ -8,16 +8,6 @@
 #include "application/buttonlist.h"
 
 
-struct EDITOR_PANEL_DATA {
-    int cursorPositionRow; //TODO dont think we need the cursor variables in here anymore they're in g_ApplicationData
-    bool cursorFlashingState;
-    double lastFlashToggleTime;   // seconds
-    
-    // struct ControllerButton buttons[32]; TODO Remove
-    // struct Profile *currentEditorProfile; //should this be stack or heap alloc? //TODO i'm probably gonna move this to g_ApplicationState instead
-};
-
-extern struct EDITOR_PANEL_DATA g_EditorPanelState;
 
 
 void editor_panel_init();

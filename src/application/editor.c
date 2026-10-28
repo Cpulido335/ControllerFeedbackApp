@@ -10,13 +10,6 @@
 
 
 
-/* Global GUI state (singleton) */   //TODO why is this here?? shouldnt this only be in one spot? //TODO What the fuck probably remove this whole thing too
-struct EDITOR_PANEL_DATA g_EditorPanelData = {
-    .cursorPositionRow = 0,        // start on F10
-    .cursorFlashingState = false,
-    .lastFlashToggleTime = 0
-};
-
 
 void editor_panel_init()
 {
@@ -90,23 +83,4 @@ void editor_panel_drawing_tree() //FFS just clear the whole screen this is is ri
   
 
 
-
-
-    switch(g_EditorPanelData.cursorPositionRow) 
-    {
-        case 0: //top left
-        case 1:
-        case 2: 
-            //clear_rectangle_within_drawContext(28, 27, 204, 86); //TODO should we clear before or after?
-
-            // draw_rounded_rectangle(30, 30, 200, 80, 10, 1,  COLOR_GREEN);
-            // draw_text_blazing("F10: EXIT",  35, 35); //top left options
-            // draw_text_blazing("F1: LOAD PRESET",  35, 49); //top left options
-            // draw_text_blazing("F2: VIEW PRESET",  35, 63);
-            // draw_text_blazing("F3: TOOLS",  35, 77); //++14
-            break;
-
-        default:
-            break;
-    }
 }
