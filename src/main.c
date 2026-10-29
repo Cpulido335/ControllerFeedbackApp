@@ -31,8 +31,6 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
-    //_chdir("C:/Users/cjpul/Desktop/ControllFeedbackApp"); //TODO why tf do we need this I never see any app need some stupid ass line like this
-    
     struct Application app;
     
     Application_Init(&app, hInstance);
