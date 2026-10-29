@@ -97,10 +97,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 
             application_update();
-            gui_update(delta); //called once per frame TODO This function used to be the thing that was responsible for flashing the cursor now its applicaiton_update
             handle_joystick_input(); //TODO theres probably a better spot for this 
             process_controller_bindings(g_ApplicationState.currentSelectedProfile); //TODO maybe move this into function like handle_input() or something idk
-            update_input_rebinding(); //handle the keyrebinding polling process, this probably only has to be called when the editor panel is being displayed
+            
             
 
             switch(g_ApplicationState.currentPanel) //TODO you need to double check that there is issue with having both the window and handle_input within this tree and before gui_update delta
@@ -108,6 +107,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                 case 0:
                     gui_drawing_tree();
                     handle_gui_input();
+                    gui_update(delta); //called once per frame TODO This function used to be the thing that was responsible for flashing the cursor now its applicaiton_update
                     break;
                 case 1:
                     preset_panel_drawing_tree();
@@ -116,12 +116,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                 case 2:
                     editor_panel_drawing_tree();
                     handle_editor_input();
+                    update_input_rebinding(); //handle the keyrebinding polling process, this probably only has to be called when the editor panel is being displayed
                     break;
             }
                 
 
             //CURSOR
-            draw_cursor_highlighter();
+            draw_cursor_highlighter(); //this function handles cursor on all three panels: GUI, PRESET, and EDITOR panel
 
             // --- DRAW TO SCREEN ---
             HDC deviceContext = GetDC(hwnd); //TODO wtf is going on here
