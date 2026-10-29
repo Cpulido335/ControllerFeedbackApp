@@ -50,7 +50,7 @@ LRESULT CALLBACK WindowCallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
 void Application_Init(struct Application* app, HINSTANCE hInstance)
 {
     app->hInstance = hInstance;
-    app->windowTitle = "Jahsehs App"; //hardcoded
+    app->windowTitle = "Controller Feedback GUI"; //hardcoded
     app->windowWidth = WINDOW_WIDTH;
     app->windowHeight = WINDOW_HEIGHT;
 
