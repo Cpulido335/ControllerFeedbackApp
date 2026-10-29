@@ -5,13 +5,9 @@
 
 
 void poll_controller();
-
 void register_controller_sdl();
-
-
 enum ControllerType detect_controller(SDL_JoystickID id);
 void register_gamepad_type(SDL_GamepadType gamepadType);
-
 void handle_joystick_input();
 
 

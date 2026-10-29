@@ -84,33 +84,18 @@ enum CapturedInputType {
 };
 
 
-
 static struct keyboardInputMap staticKeyboardInputMap;
 
+
 struct keyState getKeyState(uint32_t keycode);
-
 bool isKeyPressed(uint32_t keycode);
-
 bool isKeyReleased(uint32_t keycode);
-
-//returns true if the key has just been pressed
-static bool wasKeyPressed(uint32_t keycode);
-
-
+static bool wasKeyPressed(uint32_t keycode); //returns true if the key has just been pressed
 void input_process_keyboard_input(uint32_t VKCode, bool wasDown, bool isDown);
-
-
 void handle_gui_input();
 void handle_editor_input();
-
-
-
-
 void process_controller_bindings(struct Profile *profile);
-
-
-void update_input_rebinding();
-
+void update_input_rebinding(); //THIS IS A LOOP FUNCTION IT NEEDS TO BE POLLED AT LEAST EVERYTIME THE EDITOR PANEL IS BEING DRAWN TO THE SCREEN
 void rebind_button(struct Profile *profile, int buttonIndex, const char *newButtonString);
 
 #endif

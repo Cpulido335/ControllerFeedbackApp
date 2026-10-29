@@ -15,10 +15,6 @@
 #define IMG_FILEPATH_FONT_C64_SMALL "assets/c64-12-16-16.bmp"
 
 
-// //Colors for draw.h
-// #define COLOR_RED 0xFF0000
-// #define COLOR_BLUE 0x0000FF
-// #define COLOR_GREEN 0x00FF00
 
 // Fully opaque colors (A = 0xFF)
 #define COLOR_RED   0xFFFF0000  // AARRGGBB

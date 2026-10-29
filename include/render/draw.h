@@ -37,12 +37,9 @@ void draw_circle(int xc, int yc, int r, int thickness, uint32_t color);
 void draw_button_circle(int x, int y, int r, uint32_t color, bool filled);
 void draw_rounded_rectangle( int x, int y, int w, int h, int r, int thickness, uint32_t color);
 
-
 void draw_init_font(const char* fontBMPImageFilePath);
 void blit_bmp_blazing(int srcX, int srcY, int srcWidth, int srcDepth, int destX, int destY);
 void draw_text_blazing(const char* text, int topLeftCornerTextboxX, int topLeftCornerTextboxY);
-
-void translate_vertices(struct Vertices *v, float tx, float ty, float tz); //TODO this doesnt belong here
 
 void draw_fbx_model(struct Mesh *mesh, int thickness);
 

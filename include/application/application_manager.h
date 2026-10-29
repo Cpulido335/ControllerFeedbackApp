@@ -12,9 +12,6 @@ enum ControllerType
     CONTROLLER_TYPE_OTHER
 
 };
-// #define CONTROLLER_TYPE_DS4 0
-// #define CONTROLLER_TYPE_XBOX_ONE 1
-// #define CONTROLLER_TYPE_OTHER 2
 
 
 struct APPLICATION_STATE {
@@ -36,7 +33,6 @@ struct APPLICATION_STATE {
     bool controllerConnected;
     int controllerTypeDetected;
 
-    //SDL_GUID controllerSDL_GUID; //TODO should this be initilizaed to {0} or how should this work wont it be garbage until assigned?
 
     char controllerTypeString[64];
     char controllerSDL_GUID_string[128]; //TODO is this a practical way to initialize this in memory?
@@ -89,9 +85,6 @@ struct APPLICATION_STATE {
     bool controllerButtonMisc5;
     bool controllerButtonMisc6;
 
-
-
-
     //Profiles
     //create 5 preset entries first you need 5 ControllerButton arrays
     struct ControllerButton *buttons1;
@@ -111,7 +104,6 @@ struct APPLICATION_STATE {
 };
 
 extern struct APPLICATION_STATE g_ApplicationState;
-
 
 
 #endif

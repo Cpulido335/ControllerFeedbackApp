@@ -26,6 +26,4 @@ int load_presets(const char* presets_folder_filepath);
 
 
 
-
-
 #endif

@@ -2,8 +2,6 @@
 #define EDTIOR_H
 
 
-
-
 #include <stdbool.h>
 #include "application/buttonlist.h"
 
