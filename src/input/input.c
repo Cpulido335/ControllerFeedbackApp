@@ -10,6 +10,17 @@
 #include <stdio.h> //TODO for deubbing handle_input function REMOVE
 
 
+
+struct CapturedInput {
+    enum CapturedInputType type;
+    int code;
+};
+
+bool waitingForInput = false;
+struct CapturedInput capturedInput = {0};
+
+
+
 struct keyState getKeyState(uint32_t keycode)
 {
     return staticKeyboardInputMap.keys[keycode]; //return keyState
@@ -32,6 +43,14 @@ bool wasKeyPressed(uint32_t keycode)
 
 void input_process_keyboard_input(uint32_t VKCode, bool wasDown, bool isDown)
 {
+    if (waitingForInput && isDown && !wasDown)
+    {
+        capturedInput.type = CAPTURE_KEYBOARD;
+        capturedInput.code = VKCode;
+        waitingForInput = false;
+        return;
+    }
+
     if(wasDown != isDown) //if wasDown is not equal to isDown then there has been a change in the state of our key and we need to process it
     {
         if(VKCode >= 'A' && VKCode <= 'Z')
@@ -145,14 +164,12 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
     bool enter = enter_just_pressed();
     static bool prevS = false;
     static bool prevW = false;
-    static bool prevDown = false; //up and down on keypad for scrolling through editor list
-    static bool prevUp = false; //up and down on keypad for scrolling through editor list
+
 
 
     bool sDown = isKeyPressed(DC_S);
     bool wDown = isKeyPressed(DC_W);
-    bool downArrow = isKeyPressed(DC_DOWN); //up and down on keypad for scrolling through editor list
-    bool upArrow   = isKeyPressed(DC_UP);   //up and down on keypad for scrolling through editor list
+
     
 
   
@@ -257,7 +274,7 @@ void handle_editor_input()
 
     if (dDown && !prevD)
     {
-        if (g_ApplicationState.cursorPositionColumn < EDITOR_NUM_COLUMNS) //TODO don't think there's 10 columns (11 columns)
+        if (g_ApplicationState.cursorPositionColumn < EDITOR_NUM_COLUMNS - 1) //TODO don't think there's 10 columns (11 columns)
             g_ApplicationState.cursorPositionColumn++;
     }
 
@@ -274,7 +291,7 @@ void handle_editor_input()
         g_ApplicationState.currentPositionInEditorList--;
     }
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  2) //if the cursor is on the LOAD button in the editor panel and enter is pressed: switch to the preset panel and then the preset panels list view of presets with load highlighted
+    if (enter && g_ApplicationState.cursorPositionColumn == 0 && g_ApplicationState.cursorPositionRow == 2) //if the cursor is on the LOAD button in the editor panel and enter is pressed: switch to the preset panel and then the preset panels list view of presets with load highlighted
     {
         g_ApplicationState.currentPanel = 1; // switch to the preset panel
         g_ApplicationState.cursorPositionRow =  0; // TODO GO INTO THE LOAD ON THE ACTUAL LIST VIEW OF THE PRESETS 
@@ -282,27 +299,42 @@ void handle_editor_input()
     }
 
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  4) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionColumn == 0 && g_ApplicationState.cursorPositionRow ==  4) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
     {
         g_ApplicationState.currentPanel = 0;
         g_ApplicationState.cursorPositionRow =  0; //after switching to home panel set cursor position to 0
     }
 
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionRow ==  5) //if the cursor is on the PRESETS button in the editor panel and enter is pressed: switch to the PRESETS panel
+    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionColumn == 0 && g_ApplicationState.cursorPositionRow ==  5) //if the cursor is on the PRESETS button in the editor panel and enter is pressed: switch to the PRESETS panel
     {
         g_ApplicationState.currentPanel = 1;
         g_ApplicationState.cursorPositionRow =  0; //after switching to preset panel set cursor position to 0
     }
 
+    if (enter && g_ApplicationState.cursorPositionColumn == 1) //if enter is pressed on ANY entry in the list of bindings
+    {
+        g_ApplicationState.currentlyRebindingControllerButton = TRUE; //set the flag to true to trigger update_input_rebinding()  in the main loop
+    }
+
     
     //Editor panel key list logic
-    if (isKeyPressed(DC_0) /* && editor panel is being dispalyed */) 
+    if (isKeyPressed(DC_0) /* && editor panel is being dispalyed */) //TODO wtf is DC_0? maybe just remove this idk what this is for?
     {
         //find the corresponding entry in Profile
     }
 
 
+    //KEEP THE CURRENT BUTTON THATS HIGHLIGHTED BY THE CURRSOR AND THE currentSelectedButtonInCurrentSelectedProfile LINED UP SO WHEN YOU CLICK ON IT YOU INTERACT WITH THAT SPECIFIC BUTTON IN THE PROFILE
+    if (g_ApplicationState.cursorPositionColumn == 1 && g_ApplicationState.currentSelectedProfile)
+    {
+        int selectedIndex = g_ApplicationState.currentPositionInEditorList + g_ApplicationState.cursorPositionRow;
+
+        if (selectedIndex >= 0 && selectedIndex < g_ApplicationState.currentSelectedProfile->numButtons)
+        {
+            g_ApplicationState.currentSelectedButtonInCurrentSelectedProfile = &g_ApplicationState.currentSelectedProfile->arrayOfControllerButton[selectedIndex];
+        }
+    }
 
     prevS = sDown;
     prevW = wDown;
@@ -504,7 +536,7 @@ void send_keyboard_input(WORD key, bool pressed)
 {
     INPUT input = {0};
 
-    input.type = INPUT_KEYBOARD;
+    input.type = INPUT_KEYBOARD; //TODO This isn't suppoosed to be a CAPURE macro, INPUT_KEYBOARD is defined in <windows.h> dont change this 
     input.ki.wVk = key;
     input.ki.dwFlags = pressed ? 0 : KEYEVENTF_KEYUP;
 
@@ -519,6 +551,9 @@ WORD binding_to_vk(const char *binding)
         return 0; //"default" or invalid binding
 
     const char *key = binding + 3;
+
+    if (strncmp(key, "VK_", 3) == 0)
+        return (WORD)atoi(key + 3);
 
     //Letters and numbers
     if (strlen(key) == 1)
@@ -623,4 +658,68 @@ void process_controller_bindings(struct Profile *profile) //TODO this can be cal
 
         prevButtonDown[sdlButton] = down;
     }
+}
+
+
+
+void update_input_rebinding()
+{
+    static bool started = false;
+
+    if (!g_ApplicationState.currentlyRebindingControllerButton)
+    {
+        started = false;
+        waitingForInput = false;
+        capturedInput.type = CAPTURE_NONE;
+    }
+    else if (!started)
+    {
+        capturedInput.type = CAPTURE_NONE;
+        waitingForInput = true;
+        started = true;
+    }
+
+    //Wait for keyboard input
+    if (!started || waitingForInput || capturedInput.type == CAPTURE_NONE)
+        return;
+
+    //Apply captured binding
+    struct ControllerButton *button = g_ApplicationState.currentSelectedButtonInCurrentSelectedProfile;
+
+    if (button)
+    {
+        if (capturedInput.type == CAPTURE_KEYBOARD) //when we want a controller button to be bound to a keyboard key
+        {
+            char *binding = button->key_that_its_binded_to;
+            int code = capturedInput.code;
+
+            if (code >= 'A' && code <= 'Z')  //FORMATTING EXACTLY LIKE THE ORIGINAL TEXT FILE
+                snprintf(binding, 32, "KB_%c", code + 32);
+
+            else if (code >= '0' && code <= '9')
+                snprintf(binding, 32, "KB_%c", code);
+
+            else if (code == VK_RETURN)
+                strcpy(binding, "KB_ENTER");
+
+            else if (code == VK_SPACE)
+                strcpy(binding, "KB_SPACE");
+
+            else
+                snprintf(binding, 32, "KB_VK_%d", code);
+        }
+    }
+
+    //Finish rebinding
+    capturedInput.type = CAPTURE_NONE;
+    waitingForInput = false;
+    started = false;
+    g_ApplicationState.currentlyRebindingControllerButton = false;
+}
+
+
+
+void rebind_button(struct Profile *profile, int buttonIndex, const char *newButtonString) //REBINDS THE BUTTON IN MEMORY //TODO probably gonna stay unused
+{
+    strcpy(profile->arrayOfControllerButton[buttonIndex].key_that_its_binded_to, newButtonString);
 }

@@ -15,6 +15,8 @@ struct APPLICATION_STATE g_ApplicationState = {
 
     .controllerConnected = false,
 
-    .controllerTypeDetected = CONTROLLER_TYPE_OTHER
+    .controllerTypeDetected = CONTROLLER_TYPE_OTHER,
+
+    .currentlyRebindingControllerButton = false
 };
 

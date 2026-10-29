@@ -76,6 +76,15 @@ struct keyboardInputMap {
 };
 
 
+enum CapturedInputType {
+    CAPTURE_NONE,
+    CAPTURE_KEYBOARD,
+    CAPTURE_CONTROLLER_BUTTON,
+    CAPTURE_CONTROLLER_TRIGGER
+};
+
+
+
 static struct keyboardInputMap staticKeyboardInputMap;
 
 struct keyState getKeyState(uint32_t keycode);
@@ -98,5 +107,10 @@ void handle_editor_input();
 
 
 void process_controller_bindings(struct Profile *profile);
+
+
+void update_input_rebinding();
+
+void rebind_button(struct Profile *profile, int buttonIndex, const char *newButtonString);
 
 #endif

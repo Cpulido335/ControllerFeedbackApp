@@ -73,14 +73,25 @@ void editor_panel_drawing_tree() //FFS just clear the whole screen this is is ri
 
     //TODO you need to put this in an if block aka If there is a current profile selected then execute this code otherwise its gonna seg fault
     int currentYvalue = 126;
-    for(int i=g_ApplicationState.currentPositionInEditorList; i<12 + g_ApplicationState.currentPositionInEditorList; i++) //12 is the amt of entries that is displayed on the editor panel
+    for (int i = g_ApplicationState.currentPositionInEditorList; i < 12 + g_ApplicationState.currentPositionInEditorList; i++)
     {
-        draw_text_blazing(g_ApplicationState.currentSelectedProfile->arrayOfControllerButton[i].name, (WINDOW_WIDTH/2) -200 + 8, currentYvalue);
-        draw_text_blazing(g_ApplicationState.currentSelectedProfile->arrayOfControllerButton[i].key_that_its_binded_to, (WINDOW_WIDTH/2) + 8, currentYvalue); //PROBLEM passing as inconrrect type?
+        struct ControllerButton *button = &g_ApplicationState.currentSelectedProfile->arrayOfControllerButton[i];
+
+        draw_text_blazing(button->name, (WINDOW_WIDTH/2) - 200 + 8, currentYvalue);
+
+        if (g_ApplicationState.currentlyRebindingControllerButton && button == g_ApplicationState.currentSelectedButtonInCurrentSelectedProfile)
+        {
+            draw_text_blazing("PRESS KEY TO BIND...", (WINDOW_WIDTH/2) + 8, currentYvalue);
+        }
+        else
+        {
+            draw_text_blazing(button->key_that_its_binded_to, (WINDOW_WIDTH/2) + 8, currentYvalue);
+        }
+
         currentYvalue += 40;
     }
+        
     
-  
 
 
 }

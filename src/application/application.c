@@ -71,12 +71,13 @@ void Application_Init(struct Application* app, HINSTANCE hInstance)
     g_ApplicationState.buttons5 = malloc(sizeof(struct ControllerButton) * 128);
 
     g_ApplicationState.profile1 = malloc(sizeof(struct Profile));
-    g_ApplicationState.profile2 = malloc(sizeof(struct Profile));
+    g_ApplicationState.profile2 = malloc(sizeof(struct Profile)); //TODO we should probably have error checking all over this entire function for good practice
     g_ApplicationState.profile3 = malloc(sizeof(struct Profile));
     g_ApplicationState.profile4 = malloc(sizeof(struct Profile));
     g_ApplicationState.profile5 = malloc(sizeof(struct Profile));
 
     g_ApplicationState.currentSelectedProfile = g_ApplicationState.profile5; //Selecting Profile 5 for now
+    g_ApplicationState.currentSelectedButtonInCurrentSelectedProfile = &g_ApplicationState.currentSelectedProfile->arrayOfControllerButton[0]; //select the first button in the profile on init
 }
 
 

@@ -29,6 +29,7 @@ struct APPLICATION_STATE {
     //Editor panel specific button selected logic //if 0 is pressed editor list entry is selected, changes to rebind, 
 
     struct Profile *currentSelectedProfile; //TODO RENAME THESE ARE THE SAME THING AND CHANGE THE NAME OF currentSelectedProfile to currentSelectedProfileName or currentSelectedProfilePath whichever fits better because i forgot
+    struct ControllerButton *currentSelectedButtonInCurrentSelectedProfile; //in the editor list the correspeonding button in the proifle would be the currently highlighed entry 
 
     //controller
     SDL_Gamepad *current_gamepad;
@@ -106,6 +107,7 @@ struct APPLICATION_STATE {
     struct Profile *profile4;
     struct Profile *profile5;
 
+    bool currentlyRebindingControllerButton;
 };
 
 extern struct APPLICATION_STATE g_ApplicationState;

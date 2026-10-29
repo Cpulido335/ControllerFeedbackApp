@@ -100,6 +100,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             gui_update(delta); //called once per frame TODO This function used to be the thing that was responsible for flashing the cursor now its applicaiton_update
             handle_joystick_input(); //TODO theres probably a better spot for this 
             process_controller_bindings(g_ApplicationState.currentSelectedProfile); //TODO maybe move this into function like handle_input() or something idk
+            update_input_rebinding(); //handle the keyrebinding polling process, this probably only has to be called when the editor panel is being displayed
             
 
             switch(g_ApplicationState.currentPanel) //TODO you need to double check that there is issue with having both the window and handle_input within this tree and before gui_update delta

@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "application/application_manager.h"
+
 
 int parse_buttonlist(const char *path, struct ControllerButton *out, int max) //TODO name this function to something better
 {
@@ -99,5 +101,7 @@ void create_profile_from_preset_filepath(const char *path, struct ControllerButt
 
     sprintf(profile->name, profile_name); //TODO what are the advantages of using snprintf over sprintf ??
 }
+
+
 
 
