@@ -10,24 +10,19 @@
 #include <direct.h>
 
 #include <stdbool.h>
-#include "geometry/cube.h"
 #include "render/draw.h"
 #include "math/rotation.h"
-
-#include <stdio.h> //snprintf todo rm this
 #include "application/gui.h"
 #include "input/input.h" //TODO not sure if this is how I want to architect this
 #include "geometry/fbx_ascii_parser.h"
 #include "geometry/mesh.h"
-
 #include "application/preset_panel.h"
 #include "application/editor.h"
-
 #include "application/buttonlist.h" //TODO PROBLEM for sure remove this once youre done, the preset functionality needs a (run-once-initialization) phase 
-
 #include "application/application_manager.h"
 #include "application/cursor_highlight.h"
 #include "input/input_controller.h"
+
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
@@ -35,9 +30,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     
     application_init(&app, hInstance);
     
-    SetProcessDpiAwarenessContext(
-    DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 //this apparanrley stops windows from scaling DPI in newer versions but makes it not compatiable with older than win10
-    );
+    SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 ); //this apparanrley stops windows from scaling DPI in newer versions but makes it not compatiable with older than win10
+   
     
     HWND hwnd = Application_CreateWindow(&app);
 
@@ -46,9 +40,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     UpdateWindow(hwnd);
 
     if(hwnd) //if WindowHandle
-    {
-        draw_init_font(IMG_FILEPATH_FONT_C64_SMALL);
-       
+    {   
 
         LARGE_INTEGER cpu_frequency; //init the clock
         QueryPerformanceFrequency(&cpu_frequency);
@@ -57,11 +49,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         QueryPerformanceCounter(&last_counter);
 
     
-        gui_init();
-        editor_panel_init();
-        preset_panel_init();
-        
-        load_presets("data/profiles");
         
         while(true) //MAIN LOOP
         {
@@ -145,10 +132,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                 frame_ticks = frame_end.QuadPart - frame_start.QuadPart;
                 frame_time = (float)frame_ticks / (float)cpu_frequency.QuadPart;
             }
-
-            //FPS display (uses full frame time including sleep)
-            int fps = (int)(1.0f / frame_time); //TODO might be expensive to do this
-            char buffer[256];
 
 
             copyBufferToWindow(deviceContext, WINDOW_WIDTH, WINDOW_HEIGHT);

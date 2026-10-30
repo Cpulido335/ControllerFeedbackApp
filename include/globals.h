@@ -39,4 +39,6 @@
 #define XBOX_ONE_CONTROLLER_FILEPATH "assets/xbox_one_controller_mesh.fbx"
 #define DS4_CONTROLLER_FILEPATH "assets/dualshock4_controller_mesh.fbx"
 
+#define PRESETS_FILEPATH "data/profiles"
+
 #endif

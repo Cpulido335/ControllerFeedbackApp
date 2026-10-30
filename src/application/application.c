@@ -15,9 +15,10 @@
 #include <SDL3/SDL.h> //using SDL3 for gamepad API
 
 
-//#include "application/editor.h" //These are included for the destroy_application function
+#include "render/draw.h"
+#include "application/editor.h" //These are included for the destroy_application function
 #include "application/gui.h" //These are included for the destroy_application function  TODO there is no editor destroy? neither editor panel or preset panel has heap 
-                             //allocated members, the only thing that does is GUI panel because it has the cubes and fbx models, 
+#include "application/preset_panel.h"                             //allocated members, the only thing that does is GUI panel because it has the cubes and fbx models, 
                              //the profiles are heap allocated but they are stored in application  
 
 
@@ -63,6 +64,12 @@ void application_init(struct Application* app, HINSTANCE hInstance)
     app->windowWidth = WINDOW_WIDTH;
     app->windowHeight = WINDOW_HEIGHT;
 
+    draw_init_font(IMG_FILEPATH_FONT_C64_SMALL); //initialize the font
+
+    gui_init();  //INIT GUI PANEL
+    editor_panel_init(); //INIT EDITOR PANEL
+    preset_panel_init(); //INIT PRESET PANEL
+
     //initiazilize SDL3s gamepad subsystem
     if (!SDL_Init(SDL_INIT_GAMEPAD))
     {
@@ -87,6 +94,10 @@ void application_init(struct Application* app, HINSTANCE hInstance)
 
     g_ApplicationState.currentSelectedProfile = g_ApplicationState.profile5; //Selecting Profile 5 for now
     g_ApplicationState.currentSelectedButtonInCurrentSelectedProfile = &g_ApplicationState.currentSelectedProfile->arrayOfControllerButton[0]; //select the first button in the profile on init
+
+   
+        
+    load_presets(PRESETS_FILEPATH); //LOAD PRESETS
 }
 
 
