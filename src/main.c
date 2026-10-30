@@ -33,7 +33,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     struct Application app;
     
-    Application_Init(&app, hInstance);
+    application_init(&app, hInstance);
     
     SetProcessDpiAwarenessContext(
     DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 //this apparanrley stops windows from scaling DPI in newer versions but makes it not compatiable with older than win10

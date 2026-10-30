@@ -34,11 +34,11 @@ LRESULT CALLBACK WindowCallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
             break;
         }
 
-        case WM_CLOSE:
+        case WM_CLOSE: //TODO is this what should kick off the chain of all the free/destroy/cleanup memory functions?
             DestroyWindow(hwnd);
             break;
-        case WM_DESTROY:
-            PostQuitMessage(0);
+        case WM_DESTROY: //TODO is this what should kick off the chain of all the free/destroy/cleanup memory functions?
+            PostQuitMessage(0); 
             break;
         default:
             return DefWindowProc(hwnd, msg, wParam, lParam);
@@ -47,7 +47,7 @@ LRESULT CALLBACK WindowCallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
 }
 
 
-void Application_Init(struct Application* app, HINSTANCE hInstance)
+void application_init(struct Application* app, HINSTANCE hInstance)
 {
     app->hInstance = hInstance;
     app->windowTitle = "Controller Feedback GUI"; //hardcoded
@@ -158,6 +158,25 @@ HWND Application_CreateWindow(struct Application* app) //TODO Do we actually nee
 
 void Application_Update(struct Application *app, float delta)
 {
+
+}
+
+
+
+void application_destroy()
+{
+    free(g_ApplicationState.buttons1);
+    free(g_ApplicationState.buttons2);
+    free(g_ApplicationState.buttons3);
+    free(g_ApplicationState.buttons4);
+    free(g_ApplicationState.buttons5);
+
+
+    free(g_ApplicationState.profile1);
+    free(g_ApplicationState.profile2);
+    free(g_ApplicationState.profile3);
+    free(g_ApplicationState.profile4);
+    free(g_ApplicationState.profile5);
 
 }
 
