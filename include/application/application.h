@@ -10,8 +10,6 @@ struct Application {
 
     char *windowTitle;
     int windowWidth, windowHeight;
-
-    //bool isRunning
 };
 
 

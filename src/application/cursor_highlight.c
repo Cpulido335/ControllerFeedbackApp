@@ -149,7 +149,9 @@ void draw_cursor_highlighter() //TODO this functionality needs its own module
             if (column < 0 || column >= EDITOR_NUM_COLUMNS || row < 0 || row >= EDITOR_NUM_ROWS) //TODO ADD THE GLOBAL MAXS TO ALL THESE ERROR CHECKING STATEMETNS VERY IMPORATANT!!!!!!
                 return;
             if(row == 2)
-                printf("breakpoint\n");
+            {
+                //printf("breakpoint\n");
+            }
             
             currentMapping = &g_editor_cursorHighlighterRectMap[column][row];
             break;
@@ -159,12 +161,10 @@ void draw_cursor_highlighter() //TODO this functionality needs its own module
     }
 
 
-
-    printf("Row: %d            Column: %d\n", g_ApplicationState.cursorPositionRow, g_ApplicationState.cursorPositionColumn);
+    //printf("Row: %d            Column: %d\n", g_ApplicationState.cursorPositionRow, g_ApplicationState.cursorPositionColumn); debug print statement
 
     if (!currentMapping)
         return;
 
-    //draw_rectangle_top_left(currentMapping->rectTopLeftX, currentMapping->rectTopLeftY, currentMapping->rectWidth, currentMapping->rectDepth, 0xFFFFFFFF, 2 );
     invert_rectangle_within_drawContext(currentMapping->rectTopLeftX, currentMapping->rectTopLeftY, currentMapping->rectWidth, currentMapping->rectDepth);
 }
