@@ -156,7 +156,7 @@ struct Edges* get_edges(const char* filepath_to_fbx_ascii_model)
     while (theEntireFuckingFbxFileAsAString[iterator] == ' ')
         iterator++;
 
-    char *p = (char *)theEntireFuckingFbxFileAsAString + iterator;
+    const char *p = (char *)theEntireFuckingFbxFileAsAString + iterator;
 
     while (*p)
     {
@@ -218,7 +218,7 @@ struct Vertices* get_vertices(const char* filepath_to_fbx_ascii_model)
     }
 
 
-    char *p = theEntireFuckingFbxFileAsAString + iterator;
+    const char *p = theEntireFuckingFbxFileAsAString + iterator;
 
     int floats_parsed = 0;
 
