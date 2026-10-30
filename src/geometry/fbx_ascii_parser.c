@@ -192,33 +192,33 @@ struct Edges* get_edges(const char* filepath_to_fbx_ascii_model)
 
 struct Vertices* get_vertices(const char* filepath_to_fbx_ascii_model)
 {
-    const char *theEntireFuckingFbxFileAsAString = read_entire_file(filepath_to_fbx_ascii_model);
+    const char *theEntireFbxFileAsAString = read_entire_file(filepath_to_fbx_ascii_model);
 
-    int vertices_start_index = find_substring_index(theEntireFuckingFbxFileAsAString, "Vertices:"); //find vertices
+    int vertices_start_index = find_substring_index(theEntireFbxFileAsAString, "Vertices:"); //find vertices
 
     //init the float array
-    int float_count = get_float_count(theEntireFuckingFbxFileAsAString);
+    int float_count = get_float_count(theEntireFbxFileAsAString);
     float *float_array = malloc(sizeof(float) * float_count); //heap allocation
 
     //find the a
     int iterator = vertices_start_index;
-    while(theEntireFuckingFbxFileAsAString[iterator] != 'a'){
+    while(theEntireFbxFileAsAString[iterator] != 'a'){
         iterator++;
     }
     //find the ':' after the 'a'
-    while(theEntireFuckingFbxFileAsAString[iterator] != ':'){
+    while(theEntireFbxFileAsAString[iterator] != ':'){
         iterator++;
     }
     //go one past it to enter the whitespace 
     iterator++;
 
     //traverse past all the whitespace to the first character which should be an ascii number
-    while(theEntireFuckingFbxFileAsAString[iterator] == ' '){
+    while(theEntireFbxFileAsAString[iterator] == ' '){
         iterator++;
     }
 
 
-    const char *p = theEntireFuckingFbxFileAsAString + iterator;
+    const char *p = theEntireFbxFileAsAString + iterator;
 
     int floats_parsed = 0;
 
@@ -267,7 +267,7 @@ struct Vertices* get_vertices(const char* filepath_to_fbx_ascii_model)
     }
 
     free(float_array);
-    free((void *)theEntireFuckingFbxFileAsAString);
+    free((void *)theEntireFbxFileAsAString);
 
     return vertices; //i want vertices entirely heap allocated
 }
