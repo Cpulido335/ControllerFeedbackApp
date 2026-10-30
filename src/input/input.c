@@ -206,12 +206,6 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
     }
 
     
-    //Editor panel key list logic
-    if (isKeyPressed(DC_0) /* && editor panel is being dispalyed */) 
-    {
-        //find the corresponding entry in Profile
-    }
-
 
     if (isKeyPressed(DC_Y)) //switch viewed model to DS4 
     {
@@ -303,14 +297,14 @@ void handle_editor_input()
     }
 
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionColumn == 0 && g_ApplicationState.cursorPositionRow ==  4) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
+    if (enter && g_ApplicationState.cursorPositionColumn == 0 && g_ApplicationState.cursorPositionRow ==  4) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel
     {
         g_ApplicationState.currentPanel = 0;
         g_ApplicationState.cursorPositionRow =  0; //after switching to home panel set cursor position to 0
     }
 
 
-    if (isKeyPressed(DC_ENTER) && g_ApplicationState.cursorPositionColumn == 0 && g_ApplicationState.cursorPositionRow ==  5) //if the cursor is on the PRESETS button in the editor panel and enter is pressed: switch to the PRESETS panel
+    if (enter && g_ApplicationState.cursorPositionColumn == 0 && g_ApplicationState.cursorPositionRow ==  5) //if the cursor is on the PRESETS button in the editor panel and enter is pressed: switch to the PRESETS panel
     {
         g_ApplicationState.currentPanel = 1;
         g_ApplicationState.cursorPositionRow =  0; //after switching to preset panel set cursor position to 0
