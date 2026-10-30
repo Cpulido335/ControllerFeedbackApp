@@ -101,8 +101,10 @@ void application_init(struct Application* app, HINSTANCE hInstance)
 }
 
 
-void application_update()
+void application_update(float delta)
 {
+    clear_drawContext(); //CLEAR SCREEN
+    
     double now = get_time_seconds();
 
     if (now - g_ApplicationState.lastFlashToggleTime >= CURSOR_FLASH_PERIOD)
@@ -110,7 +112,7 @@ void application_update()
         g_ApplicationState.cursorFlashingState = !g_ApplicationState.cursorFlashingState;
         g_ApplicationState.lastFlashToggleTime = now;
     }
-
+    
     //TODO right here we need do the SDL stuff for the gamepad subsystem
     SDL_Event event;
 
@@ -128,6 +130,32 @@ void application_update()
 
         }
     }
+    
+    //HANDLE CONTROLLER INPUT
+    handle_joystick_input(); //TODO theres probably a better spot for this 
+    process_controller_bindings(g_ApplicationState.currentSelectedProfile); //TODO maybe move this into function like handle_input() or something idk
+
+
+    switch(g_ApplicationState.currentPanel) //TODO you need to double check that there is issue with having both the window and handle_input within this tree and before gui_update delta
+    {
+        case 0:
+            gui_drawing_tree();
+            handle_gui_input();
+            gui_update(delta); //called once per frame TODO This function used to be the thing that was responsible for flashing the cursor now its applicaiton_update
+            break;
+        case 1:
+            preset_panel_drawing_tree();
+            handle_preset_panel_input();
+            break;
+        case 2:
+            editor_panel_drawing_tree();
+            handle_editor_input();
+            update_input_rebinding(); //handle the keyrebinding polling process, this probably only has to be called when the editor panel is being displayed
+            break;
+    }
+
+    //FOR SOME REASON draw_cursor_highlighter HAS TO COME AFTER THE application switch statement, OTHERWISE THE CURSOR IS ALL SCREWED UP
+    draw_cursor_highlighter(); //this function handles cursor on all three panels: GUI, PRESET, and EDITOR panel                 
 }
 
 

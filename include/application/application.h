@@ -15,7 +15,7 @@ struct Application {
 
 void application_init(struct Application* app, HINSTANCE hInstance);
 HWND Application_CreateWindow(struct Application* app);
-void application_update();
+void application_update(float delta);
 void application_destroy();
 
 

@@ -13,12 +13,7 @@
 #include "render/draw.h"
 #include "application/gui.h"
 #include "input/input.h" //TODO not sure if this is how I want to architect this
-#include "geometry/mesh.h"
-#include "application/preset_panel.h"
-#include "application/editor.h"
 #include "application/application_manager.h"
-#include "application/cursor_highlight.h"
-#include "input/input_controller.h"
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
@@ -29,7 +24,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     
     SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 ); //this apparanrley stops windows from scaling DPI in newer versions but makes it not compatiable with older than win10
    
-    
     HWND hwnd = Application_CreateWindow(&app);
 
     MSG Msg;
@@ -74,37 +68,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                 DispatchMessage(&message);        // Send message to the WindowProc (WindowCallback)
             }
 
-            clear_drawContext();   
 
-
-
-            application_update();
-            handle_joystick_input(); //TODO theres probably a better spot for this 
-            process_controller_bindings(g_ApplicationState.currentSelectedProfile); //TODO maybe move this into function like handle_input() or something idk
-            
-            
-
-            switch(g_ApplicationState.currentPanel) //TODO you need to double check that there is issue with having both the window and handle_input within this tree and before gui_update delta
-            {
-                case 0:
-                    gui_drawing_tree();
-                    handle_gui_input();
-                    gui_update(delta); //called once per frame TODO This function used to be the thing that was responsible for flashing the cursor now its applicaiton_update
-                    break;
-                case 1:
-                    preset_panel_drawing_tree();
-                    handle_preset_panel_input();
-                    break;
-                case 2:
-                    editor_panel_drawing_tree();
-                    handle_editor_input();
-                    update_input_rebinding(); //handle the keyrebinding polling process, this probably only has to be called when the editor panel is being displayed
-                    break;
-            }
-                
-
-            //CURSOR
-            draw_cursor_highlighter(); //this function handles cursor on all three panels: GUI, PRESET, and EDITOR panel
+            application_update(delta); //MEAT AND POTATOES FUNCTION
+                        
 
             // --- DRAW TO SCREEN ---
             HDC deviceContext = GetDC(hwnd); //TODO wtf is going on here
@@ -117,9 +83,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             int64_t frame_ticks = frame_end.QuadPart - frame_start.QuadPart;
             float frame_time = (float)frame_ticks / (float)cpu_frequency.QuadPart;
 
-            //sleepy time to cap FPS
-            if (frame_time < TARGET_FRAME_TIME)
-            {
+           
+            if (frame_time < TARGET_FRAME_TIME) {  //sleepy time to cap FPS
                 DWORD sleep_ms = (DWORD)((TARGET_FRAME_TIME - frame_time) * 1000.0);
                 if (sleep_ms > 0)
                     Sleep(sleep_ms);
@@ -134,8 +99,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             copyBufferToWindow(deviceContext, WINDOW_WIDTH, WINDOW_HEIGHT);
             ReleaseDC(hwnd, deviceContext); //windows expects you to release this to avoid DC leaks
 
-            if (g_ApplicationState.quit == TRUE)
-            {
+            if (g_ApplicationState.quit == TRUE) {
                 application_destroy();
                 break; //EXIT THE LOOP AFTER
             }
