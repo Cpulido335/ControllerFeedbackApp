@@ -544,6 +544,12 @@ void draw_fbx_model(struct Mesh *mesh, int thickness)
             continue;
         }
 
+        if (prev_index < 0 || prev_index >= mesh->vertices->length ||  idx < 0 || idx >= mesh->vertices->length)
+        {
+            printf("INVALID INDEX! prev_index=%d, idx=%d, vertex_count=%d, edge_position=%d\n", prev_index, idx, mesh->vertices->length, i);
+            break;
+        }
+
         //project previous and current vertices
         struct vec2 p0 =projectA3dPointIn2DSpace(mesh->vertices->vec3array[prev_index]);
         struct vec2 p1 = projectA3dPointIn2DSpace(mesh->vertices->vec3array[idx]);

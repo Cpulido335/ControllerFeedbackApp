@@ -2,16 +2,17 @@
 
 #include <stdlib.h>
 #include <stddef.h>
+#include <stdio.h>
 
 //create a cube centered at (cx, cy, cz) with side length 'size'
 struct Cube *createCube(float cx, float cy, float cz, float size) {
-    struct Cube *cube = malloc(sizeof *cube);
+    struct Cube *cube = malloc(sizeof *cube); //CUBE ITS SELF IS HEAP ALLOC
     if (!cube)
         return NULL;
     float half = size / 2.0f;
 
     // Define all 8 localVertices
-    cube->localVertices[0] = (struct vec3){ cx - half, cy - half, cz - half };
+    cube->localVertices[0] = (struct vec3){ cx - half, cy - half, cz - half }; 
     cube->localVertices[1] = (struct vec3){ cx + half, cy - half, cz - half };
     cube->localVertices[2] = (struct vec3){ cx + half, cy + half, cz - half };
     cube->localVertices[3] = (struct vec3){ cx - half, cy + half, cz - half };
@@ -25,4 +26,15 @@ struct Cube *createCube(float cx, float cy, float cz, float size) {
     cube->origin.z = cz;
 
     return cube;
+}
+
+void destroy_cube(struct Cube *cube)
+{
+    if(!cube)
+    {
+        printf("Destroy Cube: ERROR: *cube is NULL\n");
+        return;
+    }
+
+    free(cube);
 }

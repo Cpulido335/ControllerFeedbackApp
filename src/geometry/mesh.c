@@ -1,4 +1,5 @@
 #include "geometry/mesh.h"
+#include <stdlib.h>
 
 void translate_mesh(struct Mesh *mesh, float tx, float ty, float tz)
 {
@@ -33,4 +34,26 @@ void scale_mesh_pivot(struct vec3 *mesh_pivot, float scale) //TODO why would you
     mesh_pivot->x *= scale;
     mesh_pivot->y *= scale;
     mesh_pivot->z *= scale;
+}
+
+
+
+void destroy_mesh(struct Mesh *mesh)
+{
+    if (!mesh)
+        return;
+
+    if (mesh->vertices)
+    {
+        free(mesh->vertices->vec3array);
+        free(mesh->vertices);
+    }
+
+    if (mesh->edges)
+    {
+        free(mesh->edges->indices);
+        free(mesh->edges);
+    }
+
+    free(mesh);
 }

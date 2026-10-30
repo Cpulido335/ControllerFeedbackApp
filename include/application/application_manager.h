@@ -101,6 +101,8 @@ struct APPLICATION_STATE {
     struct Profile *profile5;
 
     bool currentlyRebindingControllerButton;
+
+    bool quit;
 };
 
 extern struct APPLICATION_STATE g_ApplicationState;

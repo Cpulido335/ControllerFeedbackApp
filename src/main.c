@@ -153,6 +153,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
             copyBufferToWindow(deviceContext, WINDOW_WIDTH, WINDOW_HEIGHT);
             ReleaseDC(hwnd, deviceContext); //windows expects you to release this to avoid DC leaks
+
+            if (g_ApplicationState.quit == TRUE)
+            {
+                application_destroy();
+                break; //EXIT THE LOOP AFTER
+            }
         }
 
     }

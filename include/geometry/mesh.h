@@ -25,5 +25,6 @@ void translate_mesh(struct Mesh *mesh, float tx, float ty, float tz);
 void reflect_mesh(struct Mesh *mesh);
 void scale_mesh(struct Mesh *mesh, float scale);
 void scale_mesh_pivot(struct vec3 *mesh_pivot, float scale);
+void destroy_mesh(struct Mesh *mesh);
 
 #endif

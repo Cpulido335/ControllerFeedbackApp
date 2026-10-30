@@ -1,6 +1,5 @@
 #include "application/gui.h" //TODO a better word for this would be MAIN_PANEL
 
-//#include "util/clock.h"
 #include "globals.h"
 #include <stdlib.h>
 
@@ -25,7 +24,7 @@ struct GUI_STATE g_GuiState = {
 
 void gui_init()
 {
-    g_GuiState.leftCube = createCube(396, 48, 100, 20); //create a heap-allocated cube
+    g_GuiState.leftCube = createCube(396, 48, 100, 20); //create a heap-allocated cube 
     g_GuiState.rightCube = createCube(884, 48, 100, 20);
 
     g_GuiState.controllerMeshXboxOne = get_mesh(XBOX_ONE_CONTROLLER_FILEPATH);
@@ -35,17 +34,18 @@ void gui_init()
     //TODO for now lets just initialize them both
     rotate_vertices(g_GuiState.controllerMeshDS4->vertices, 90, 180, 180); //DS4
     translate_mesh(g_GuiState.controllerMeshDS4, 635.0f, 340.0f, 0.0f); //XBOX_ONE ODEL
-    g_GuiState.controllerMeshPivot = malloc(sizeof(struct vec3));
+
 
     rotate_vertices(g_GuiState.controllerMeshXboxOne->vertices, 90, 180, 0); //TODO make sure theres no copying going on here and its all heap-allocations
     scale_mesh(g_GuiState.controllerMeshXboxOne, 500.0f);
     translate_mesh(g_GuiState.controllerMeshXboxOne, 635.0f, 340.0f, 0.0f); //XBOX_ONE ODEL
     g_GuiState.controllerMeshPivot = malloc(sizeof(struct vec3));
 
-    if (g_GuiState.controllerMeshPivot != NULL) {
+    if (g_GuiState.controllerMeshPivot != NULL) 
         *g_GuiState.controllerMeshPivot = (struct vec3) { 635.0f, 340.0f, 0.0f };
-    }
 } 
+
+
 
 void gui_update(float delta) //updates all the things within the gui that need to be updated, should take in delta as input because alot of stuff need that
 {   
@@ -184,4 +184,17 @@ void gui_drawing_tree()
             
     }
 
+}
+
+
+
+void gui_destroy()
+{
+    destroy_cube(g_GuiState.leftCube);
+    destroy_cube(g_GuiState.rightCube);
+
+    destroy_mesh(g_GuiState.controllerMeshXboxOne);
+    destroy_mesh(g_GuiState.controllerMeshDS4);
+
+    free(g_GuiState.controllerMeshPivot); //TODO a little weird that both models share the same pivot //TODO there is no destroy_function for vec3 because it only contains 3 floats, its allocated with malloc and its destroyed with free
 }

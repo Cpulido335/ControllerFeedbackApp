@@ -15,6 +15,13 @@
 #include <SDL3/SDL.h> //using SDL3 for gamepad API
 
 
+//#include "application/editor.h" //These are included for the destroy_application function
+#include "application/gui.h" //These are included for the destroy_application function  TODO there is no editor destroy? neither editor panel or preset panel has heap 
+                             //allocated members, the only thing that does is GUI panel because it has the cubes and fbx models, 
+                             //the profiles are heap allocated but they are stored in application  
+
+
+
 
 //define window procedure
 LRESULT CALLBACK WindowCallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
@@ -36,9 +43,11 @@ LRESULT CALLBACK WindowCallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
 
         case WM_CLOSE: //TODO is this what should kick off the chain of all the free/destroy/cleanup memory functions?
             DestroyWindow(hwnd);
+            g_ApplicationState.quit = true;
             break;
         case WM_DESTROY: //TODO is this what should kick off the chain of all the free/destroy/cleanup memory functions?
             PostQuitMessage(0); 
+            g_ApplicationState.quit = true;
             break;
         default:
             return DefWindowProc(hwnd, msg, wParam, lParam);
@@ -178,5 +187,6 @@ void application_destroy()
     free(g_ApplicationState.profile4);
     free(g_ApplicationState.profile5);
 
+    gui_destroy();
 }
 

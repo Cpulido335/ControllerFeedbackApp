@@ -164,6 +164,9 @@ struct Edges* get_edges(const char* filepath_to_fbx_ascii_model)
         while (*p == ',' || *p == ' ' || *p == '\n' || *p == '\t')
             p++;
 
+        if (*p == '}' || *p == '\0' || edges->length >= int_count)
+            break;
+
         int current_int = 0;
         sscanf(p, "%d", &current_int);
 
@@ -178,9 +181,10 @@ struct Edges* get_edges(const char* filepath_to_fbx_ascii_model)
     }
 
     int neg = 0; //TODO REMOEV THIS 
-for (int i = 0; i < edges->length; i++)
-    neg += (edges->indices[i] < 0);
-
+    for (int i = 0; i < edges->length; i++)
+        neg += (edges->indices[i] < 0);
+    
+    free((void *)theEntireFuckingFbxFileAsAString);
     return edges;
 }
 
@@ -194,7 +198,7 @@ struct Vertices* get_vertices(const char* filepath_to_fbx_ascii_model)
 
     //init the float array
     int float_count = get_float_count(theEntireFuckingFbxFileAsAString);
-    float *float_array = malloc(sizeof(float) * (float_count - 1)); //heap allocation
+    float *float_array = malloc(sizeof(float) * float_count); //heap allocation
 
     //find the a
     int iterator = vertices_start_index;
@@ -223,6 +227,9 @@ struct Vertices* get_vertices(const char* filepath_to_fbx_ascii_model)
         while(*p == ',' || *p == ' ' || *p == '\n' || *p == '\t') //if p is standing on trash walk forward
             p++;
         
+        if (*p == '}' || *p == '\0' || floats_parsed >= float_count)
+            break;
+
         float current_float = -1;
         sscanf(p, "%f", &current_float);
         float_array[floats_parsed] = current_float;
@@ -230,12 +237,13 @@ struct Vertices* get_vertices(const char* filepath_to_fbx_ascii_model)
         
         
         //skip all the trash (go to the next comma)
-        while(*p != ',' && *p != ' ' && *p != '\n' && *p != '\t')
+        while(*p != ',' && *p != ' ' && *p != '\n' && *p != '\t' && *p != '}' && *p != '\0') //COVER EVERYTHING 
             p++;
         
-        if(*p == '}' || *p == ' ')
+        if(*p == '}') // the space conditiion can prematurely stop parsing
             break;
     }
+
 
     float a = float_array[float_count-2]; //TODO somewhat dangerous I think we can only do this because of VLAs  TODO is this even necessary what is this for?
     float b = float_array[float_count-1]; 
@@ -258,6 +266,9 @@ struct Vertices* get_vertices(const char* filepath_to_fbx_ascii_model)
         vertices->vec3array[i/3].z = float_array[i+2];
     }
 
+    free(float_array);
+    free((void *)theEntireFuckingFbxFileAsAString);
+
     return vertices; //i want vertices entirely heap allocated
 }
 
@@ -273,6 +284,15 @@ struct Mesh* get_mesh(const char* filepath_to_fbx_ascii_model)
     mesh->vertices = get_vertices(filepath_to_fbx_ascii_model); // returns struct Vertices* 
     mesh->edges = get_edges(filepath_to_fbx_ascii_model);    // returns struct Edges*
 
+    printf("MESH LOADED: vertices=%d, edges=%d\n",
+    mesh->vertices->length,
+    mesh->edges->length);
+
+    if (mesh->edges->length > 0) 
+    {
+        printf("FIRST EDGE INDEX: %d\n", mesh->edges->indices[0]);
+    }
+        
     return mesh;
 }
 

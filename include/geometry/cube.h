@@ -11,5 +11,6 @@ struct Cube {
 
 
 struct Cube *createCube(float cx, float cy, float cz, float size);
+void destroy_cube(struct Cube *cube);
 
 #endif

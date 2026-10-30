@@ -187,6 +187,10 @@ void handle_gui_input() //TODO change the name of this to "handle_application_in
             g_ApplicationState.cursorPositionRow--;
     }
 
+    if (enter && g_ApplicationState.cursorPositionRow ==  0) //F10: EXIT
+    {
+        g_ApplicationState.quit = true; //set the quit flag to true
+    }
 
     if (enter && g_ApplicationState.cursorPositionRow ==  1) //F1: LOAD PRESET"
     {
@@ -312,6 +316,13 @@ void handle_editor_input()
         g_ApplicationState.cursorPositionRow =  0; //after switching to preset panel set cursor position to 0
     }
 
+
+
+    if (enter && g_ApplicationState.cursorPositionColumn == 0 && g_ApplicationState.cursorPositionRow ==  7) //if the cursor is on the EXIT button
+    {
+        g_ApplicationState.quit = true; //set the quit flag to true
+    }
+
     if (enter && g_ApplicationState.cursorPositionColumn == 1) //if enter is pressed on ANY entry in the list of bindings
     {
         g_ApplicationState.currentlyRebindingControllerButton = TRUE; //set the flag to true to trigger update_input_rebinding()  in the main loop
@@ -399,6 +410,12 @@ void handle_preset_panel_input()
             g_ApplicationState.cursorPositionColumn++;
     }
 
+    
+    
+    if (enter && g_ApplicationState.cursorPositionRow ==  0 && g_ApplicationState.cursorPositionColumn == 0)  //F10: EXIT
+    {
+        g_ApplicationState.quit = true; //set the quit flag to true
+    }
 
 
     if (enter && g_ApplicationState.cursorPositionRow ==  1 && g_ApplicationState.cursorPositionColumn == 0) //if the cursor is on the home button in the editor panel and enter is pressed: switch to the home panel

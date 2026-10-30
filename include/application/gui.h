@@ -33,6 +33,6 @@ void gui_draw_cursor_highlighter();
 
 
 void gui_drawing_tree();
-
+void gui_destroy();
 
 #endif //!GUI_H

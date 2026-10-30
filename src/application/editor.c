@@ -46,7 +46,14 @@ void editor_panel_drawing_tree() //FFS just clear the whole screen this is is ri
     draw_text_blazing("PRESETS",  188, 390);
     
     draw_rectangle_top_left(80+10, 420, 300-20, 80, COLOR_GREEN, 1, NOT_FILLED); //other
-     draw_text_blazing("OTHER",  196, 430);
+    draw_text_blazing("OTHER",  196, 430);
+
+
+    draw_text_blazing("EXIT",  204, 470);
+    
+
+
+    
     
     
     
