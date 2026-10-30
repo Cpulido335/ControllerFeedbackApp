@@ -11,14 +11,11 @@
 
 #include <stdbool.h>
 #include "render/draw.h"
-#include "math/rotation.h"
 #include "application/gui.h"
 #include "input/input.h" //TODO not sure if this is how I want to architect this
-#include "geometry/fbx_ascii_parser.h"
 #include "geometry/mesh.h"
 #include "application/preset_panel.h"
 #include "application/editor.h"
-#include "application/buttonlist.h" //TODO PROBLEM for sure remove this once youre done, the preset functionality needs a (run-once-initialization) phase 
 #include "application/application_manager.h"
 #include "application/cursor_highlight.h"
 #include "input/input_controller.h"
