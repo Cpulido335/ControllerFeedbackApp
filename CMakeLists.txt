@@ -68,6 +68,14 @@ add_custom_command(
 )
 
 
+add_custom_command(
+    TARGET MyProgram POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${PROJECT_SOURCE_DIR}/assets"
+        "$<TARGET_FILE_DIR:MyProgram>/assets"
+)
+
+
 
 if(EXISTS "${PROJECT_SOURCE_DIR}/data")
     add_custom_command(
