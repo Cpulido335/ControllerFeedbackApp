@@ -2,8 +2,11 @@
 <img width="1270" height="710" alt="MyProgram_siYFFdAKtk" src="https://github.com/user-attachments/assets/85fb35e2-d744-408c-a2a2-e8148bf40429" />
 
 
-ControllerFeedbackApp / ControllerFeedbackGUI is a Windows 10/11 Application for diagnosing controller inputs problems, analyzaing inputs, and rebinding inputs to VK_Key or windows virtual keys.
+ControllerFeedbackApp / ControllerFeedbackGUI is a Windows 10/11 Application for diagnosing USB controller problems, analyzing inputs, and rebinding inputs to VK_Keys (windows virtual keys).
+So far it supports Xbox One, Xbox 360, DS4, and DS5 controllers OEM and Knockoffs. It uses SDL3 for its Gamepad API system but the application is all my own C code inside a very basic Win32API window
 It is entirely written in C with my own custom draw library. 
+
+It Supports 5 Profiles which can be edited as a text file to rebind keys or key rebinds can be experimented with at runtime. 
 
 
 ## Building from Source (Windows)
