@@ -133,11 +133,11 @@ int get_float_count(const char *buffer){
 
 struct Edges* get_edges(const char* filepath_to_fbx_ascii_model)
 {
-    const char *theEntireFuckingFbxFileAsAString = read_entire_file(filepath_to_fbx_ascii_model);
+    const char *theEntireFbxFileAsAString = read_entire_file(filepath_to_fbx_ascii_model);
 
-    int edges_start_index = find_substring_index(theEntireFuckingFbxFileAsAString, "PolygonVertexIndex:");
+    int edges_start_index = find_substring_index(theEntireFbxFileAsAString, "PolygonVertexIndex:");
 
-    int int_count = get_int_count(theEntireFuckingFbxFileAsAString);
+    int int_count = get_int_count(theEntireFbxFileAsAString);
 
     struct Edges *edges = malloc(sizeof(struct Edges)); //the struct is allocated on the heap
     edges->indices = malloc(sizeof(int) * int_count);   //the struct contains a pointer to the heap (indices), the pointer needs that memory to be allocated on the heap
@@ -145,18 +145,18 @@ struct Edges* get_edges(const char* filepath_to_fbx_ascii_model)
                                                         //so the pointer itself is also on the heap but the memory it points to will not be on the heap unless you explictly malloc it on the heap
     int iterator = edges_start_index;
 
-    while (theEntireFuckingFbxFileAsAString[iterator] != 'a')
+    while (theEntireFbxFileAsAString[iterator] != 'a')
         iterator++;
 
-    while (theEntireFuckingFbxFileAsAString[iterator] != ':')
+    while (theEntireFbxFileAsAString[iterator] != ':')
         iterator++;
 
     iterator++; //step into the whitespace after ':'
 
-    while (theEntireFuckingFbxFileAsAString[iterator] == ' ')
+    while (theEntireFbxFileAsAString[iterator] == ' ')
         iterator++;
 
-    const char *p = (char *)theEntireFuckingFbxFileAsAString + iterator;
+    const char *p = (char *)theEntireFbxFileAsAString + iterator;
 
     while (*p)
     {
@@ -184,7 +184,7 @@ struct Edges* get_edges(const char* filepath_to_fbx_ascii_model)
     for (int i = 0; i < edges->length; i++)
         neg += (edges->indices[i] < 0);
     
-    free((void *)theEntireFuckingFbxFileAsAString);
+    free((void *)theEntireFbxFileAsAString);
     return edges;
 }
 

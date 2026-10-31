@@ -31,12 +31,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     if(hwnd) //if WindowHandle
     {   
-
         float delta;
         
         while(true) //MAIN LOOP
         {            
-            delta = clock_frame_start();
+            delta = clock_frame_start(); //at the start of the frame delta is computed 
             
             //message loop processes windows messages
             MSG message;
@@ -52,7 +51,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             // --- DRAW TO SCREEN ---
             HDC deviceContext = GetDC(hwnd); 
 
-            clock_frame_end();
+            clock_frame_end(); //at the end of the frame a loop exists taht can slow down the fps / execution of the main loop
 
             copyBufferToWindow(deviceContext, WINDOW_WIDTH, WINDOW_HEIGHT);
             ReleaseDC(hwnd, deviceContext); //windows expects you to release this to avoid DC leaks
