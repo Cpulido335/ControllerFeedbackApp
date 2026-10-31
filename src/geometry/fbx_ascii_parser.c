@@ -244,9 +244,18 @@ struct Vertices* get_vertices(const char* filepath_to_fbx_ascii_model)
             break;
     }
 
+    FILE *debug = fopen("mesh_debug.txt", "a");
 
-    float a = float_array[float_count-2]; //TODO somewhat dangerous I think we can only do this because of VLAs  TODO is this even necessary what is this for?
-    float b = float_array[float_count-1]; 
+    if (debug)
+    {
+        fprintf(debug, "FILE: %s\n", filepath_to_fbx_ascii_model);
+        fprintf(debug, "FLOATS PARSED: %d / %d\n", floats_parsed, float_count);
+        fclose(debug);
+    }
+
+
+    // float a = float_array[float_count-2]; //TODO somewhat dangerous I think we can only do this because of VLAs  TODO is this even necessary what is this for?
+    // float b = float_array[float_count-1]; 
 
 
     //float a = float_array[1084]; //DS4    
@@ -293,6 +302,27 @@ struct Mesh* get_mesh(const char* filepath_to_fbx_ascii_model)
         printf("FIRST EDGE INDEX: %d\n", mesh->edges->indices[0]);
     }
         
+    
+    FILE *f = fopen("mesh_debug.txt", "a");
+
+    if (f)
+    {
+        fprintf(f, "Vertices: %d\n", mesh->vertices->length);
+        fprintf(f, "Edges: %d\n", mesh->edges->length);
+
+        for (int i = 0; i < 5 && i < mesh->vertices->length; i++)
+        {
+            struct vec3 v = mesh->vertices->vec3array[i];
+            fprintf(f, "Vertex %d: %f %f %f\n", i, v.x, v.y, v.z);
+        }
+
+        for (int i = 0; i < 10 && i < mesh->edges->length; i++)
+            fprintf(f, "Edge %d: %d\n", i, mesh->edges->indices[i]);
+
+        fclose(f);
+    }
+        
+    
     return mesh;
 }
 
